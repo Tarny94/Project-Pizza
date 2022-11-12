@@ -13,14 +13,6 @@ const Login = () => {
   };
 
   const authentificate = async () => {
-    try {
-      const res = await axios.post("http://localhost:3000/login", {
-        user: loginUser,
-      });
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   console.log(loginUser);
