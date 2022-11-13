@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "../Styles/registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { registreURL } from "../Api/Address";
 
-const Registration = () => {
+const Registre = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,37 +21,18 @@ const Registration = () => {
     password,
   };
 
-  const Validation = (user: any) => {
-    if (!user) {
-      throw Error("Complet the require fields");
-    }
-    if (!user.firstName) {
-      throw Error("First Name field is required");
-    }
-    if (!user.lastName) {
-      throw Error("Last Name field is required");
-    }
-    if (!user.email) {
-      throw Error("Email field is required");
-    }
-    if (!user.password) {
-      throw Error("Password field is required");
-    }
-  };
-
-  const registreURL = "http://localhost:6060/registre";
-
   const handleSubmit = async () => {
-    try {
-      Validation(user);
-      const res = await axios.post(registreURL, {
+    await axios
+      .post(registreURL, {
         user,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/login");
+      })
+      .catch((e) => {
+        console.log(e);
       });
-      navigate("/login");
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   return (
@@ -113,4 +95,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Registre;
