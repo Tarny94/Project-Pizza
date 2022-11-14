@@ -3,15 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Registre from "./Registre";
 import HomePage from "./HomePage";
-import Filter from "./Filter";
+import NotFound from "./NotFound";
 
 const Navigation = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registre />} />
-      <Route path="*" element={"Not Found"} />
+      <Route path="/registre" element={<Registre />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

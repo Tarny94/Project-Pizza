@@ -6,7 +6,7 @@ import "../Styles/login.scss";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email);
+
   const loginUser = {
     email,
     password,
