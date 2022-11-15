@@ -1,5 +1,4 @@
 
-
 .registration-container{
   margin: 0 auto;
   margin-top: 15px;
@@ -47,7 +46,6 @@
    border-radius: 5px;
    padding: 25px 150px;
    cursor: pointer;
-  
    font-size: 19px;
    margin-bottom: 20px;
    &:hover {
@@ -56,6 +54,15 @@
     color: white;
    }
   }
+}
+
+.registre-button-disabled{
+  border: 2px solid rgba(169,174,184,.2);
+  border-radius: 5px;
+  padding: 25px 150px;
+  cursor: pointer;
+  font-size: 19px;
+  margin-bottom: 20px;
 }
 
 .response-field{

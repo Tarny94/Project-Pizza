@@ -11,6 +11,7 @@ const Registre = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [response, setResponse] = useState("");
+  const [terms, setTerms] = useState(false);
 
   const navigate = useNavigate();
 
@@ -96,20 +97,39 @@ const Registre = () => {
             setPassword(e.target.value);
           }}
         ></input>
-        {/* <input
-          placeholder="REPEAT PASSWORD"
-          className="input-registration"
-        ></input> */}
         <div className="response-field">{response ? response : ""}</div>
         <div className="term-cont-field">
-          <input type="radio"></input>
-          <p className="term-cont">
-            I read and I am agree with terms and condition
+          <p
+            className="term-cont"
+            onClick={() => {
+              if (!terms) setTerms(true);
+              else setTerms(false);
+            }}
+          >
+            {" "}
+            <input
+              type="radio"
+              id="terms"
+              name="termss"
+              value="terms"
+              checked={terms}
+            ></input>
+            <label htmlFor="terms"></label>I am agree with terms and condition
           </p>
         </div>
-        <button className="registre-button" onClick={handleSubmit}>
-          SUBMIT
-        </button>
+        {terms ? (
+          <button className="registre-button" onClick={handleSubmit}>
+            SUBMIT
+          </button>
+        ) : (
+          <button
+            className="registre-button-disabled"
+            disabled
+            onClick={handleSubmit}
+          >
+            SUBMIT
+          </button>
+        )}
       </div>
     </div>
   );
