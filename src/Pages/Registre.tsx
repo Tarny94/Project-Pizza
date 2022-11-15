@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../Styles/registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { registreURL } from "../Api/Address";
+import { registreURL } from "../Api/api";
 
 const Registre = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,7 +10,6 @@ const Registre = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-
   const navigate = useNavigate();
 
   const user = {
