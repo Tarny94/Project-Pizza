@@ -5,19 +5,37 @@ import { useNavigate } from "react-router-dom";
 import { registreURL } from "../Api/api";
 
 const Registre = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [addres, setAddres] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [response, setResponse] = useState("");
+
   const navigate = useNavigate();
 
   const user = {
-    firstName,
-    lastName,
+    fullName,
     phone,
     email,
+    addres,
     password,
+  };
+
+  const handleResponse = (res: any) => {
+    if (res === "OK") {
+      return setResponse("");
+    }
+    if (res === "Error: ER_DUP_ENTRY") {
+      return setResponse("Email is already used");
+    }
+    if (res === "Error: ER_DATA_TOO_LONG") {
+      return setResponse("Data is too long");
+    }
+    if (res === "") {
+      return setResponse("Something went wrong");
+    }
+    setResponse(res);
   };
 
   const handleSubmit = async () => {
@@ -27,10 +45,13 @@ const Registre = () => {
       })
       .then((res) => {
         console.log(res);
+        handleResponse(res.statusText);
+        setResponse("Succefull Registre");
         navigate("/login");
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        handleResponse(error.response.data.error);
+        console.log(error);
       });
   };
 
@@ -42,16 +63,16 @@ const Registre = () => {
 
         <input
           className="input-registration top-input"
-          placeholder="FIRST NAME"
+          placeholder="FULL NAME"
           onChange={(e: any) => {
-            setFirstName(e.target.value);
+            setFullName(e.target.value);
           }}
         ></input>
         <input
-          placeholder="LAST NAME"
+          placeholder="ADDRES"
           className="input-registration"
           onChange={(e: any) => {
-            setLastName(e.target.value);
+            setAddres(e.target.value);
           }}
         ></input>
         <input
@@ -80,6 +101,7 @@ const Registre = () => {
           placeholder="REPEAT PASSWORD"
           className="input-registration"
         ></input> */}
+        <div className="response-field">{response ? response : ""}</div>
         <div className="term-cont-field">
           <input type="radio"></input>
           <p className="term-cont">
