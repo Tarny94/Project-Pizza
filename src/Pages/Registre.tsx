@@ -58,8 +58,7 @@ const Registre = () => {
   return (
     <div className="page-container">
       <div className="registration-container">
-        <h1 className="registration-title">REGISTRATION</h1>
-        <h4>CREATE AN ACCOUNT</h4>
+        <h1 className="registration-title">CREATE AN ACCOUNT</h1>
 
         <input
           className="input-registration top-input"
