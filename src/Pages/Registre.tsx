@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "../Styles/registration.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { registreURL } from "../Api/api";
 
-const Registration = () => {
+const Registre = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
 
   const user = {
     firstName,
@@ -17,20 +20,18 @@ const Registration = () => {
     password,
   };
 
-  const registreURL = "http://localhost:6060/registre";
-
   const handleSubmit = async () => {
-    try {
-      if (!lastName || !email || !lastName || !password) {
-        throw Error("Fields are require to complet");
-      }
-      const res = await axios.post(registreURL, {
+    await axios
+      .post(registreURL, {
         user,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/login");
+      })
+      .catch((e) => {
+        console.log(e);
       });
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   return (
@@ -93,4 +94,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Registre;

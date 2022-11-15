@@ -1,12 +1,10 @@
 import React from "react";
-import HomePage from "./Pages/HomePage";
-import Login from "./Pages/Login";
-import Registration from "./Pages/Registration";
+import Navigation from "./Pages/Navigation";
 
 function App() {
   return (
     <div className="App">
-      <Registration />
+      <Navigation />
     </div>
   );
 }
