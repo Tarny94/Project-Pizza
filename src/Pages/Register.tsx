@@ -24,6 +24,7 @@ const Register = () => {
   };
 
   const handleSubmit = async () => {
+    setResponse("");
     await axios
       .post(getApiUrl("register"), user)
       .then((res) => {
