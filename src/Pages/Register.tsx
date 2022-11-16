@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { registreURL } from "../Api/api";
 
-const Registre = () => {
+const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [addres, setAddres] = useState("");
@@ -23,22 +23,6 @@ const Registre = () => {
     password,
   };
 
-  const handleResponse = (res: any) => {
-    if (res === "OK") {
-      return setResponse("");
-    }
-    if (res === "ER_DUP_ENTRY") {
-      return setResponse("Email is already used");
-    }
-    if (res === "ER_DATA_TOO_LONG") {
-      return setResponse("Data is too long");
-    }
-    if (res === "") {
-      return setResponse("Something went wrong");
-    }
-    setResponse(res);
-  };
-
   const handleSubmit = async () => {
     await axios
       .post(registreURL, {
@@ -46,12 +30,12 @@ const Registre = () => {
       })
       .then((res) => {
         console.log(res);
-        handleResponse(res.statusText);
-        setResponse("Succefull Registre");
+        setResponse(res.statusText);
+        setResponse("");
         navigate("/login");
       })
       .catch((error) => {
-        handleResponse(error.response.data.error);
+        setResponse(error.response.data.error);
         console.log(error);
       });
   };
@@ -108,9 +92,9 @@ const Registre = () => {
           >
             {" "}
             <input
-              type="radio"
+              type="checkbox"
               id="terms"
-              name="termss"
+              name="terms"
               value="terms"
               checked={terms}
             ></input>
@@ -135,4 +119,4 @@ const Registre = () => {
   );
 };
 
-export default Registre;
+export default Register;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
-import Registre from "./Registre";
+import Register from "./Register";
 import HomePage from "./HomePage";
 import NotFound from "./NotFound";
 import Terms from "./Terms&cond";
@@ -11,8 +11,8 @@ const Navigation = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/registre" element={<Registre />} />
-      <Route path="/registre/terms" element={<Terms />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/terms" element={<Terms />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

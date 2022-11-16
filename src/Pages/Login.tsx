@@ -20,14 +20,9 @@ const Login = () => {
       .post(loginURL, loginUser)
       .then((res) => {
         setResponse("");
-        console.log("Succesfull", res);
         navigate("/");
       })
       .catch((e) => {
-        console.log(e);
-        if (e.response.data.error === "Error: ER_BAD_FIELD_ERROR") {
-          return setResponse("Something went wrong");
-        }
         setResponse(e.response.data.error);
       });
   };
