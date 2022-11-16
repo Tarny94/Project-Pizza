@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../Styles/registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { registreURL } from "../Api/api";
+import { getApiUrl } from "../Api/api";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -25,7 +25,7 @@ const Register = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post(registreURL, user)
+      .post(getApiUrl("register"), user)
       .then((res) => {
         setResponse("");
         navigate("/login");
@@ -43,13 +43,13 @@ const Register = () => {
 
         <input
           className="input-registration top-input"
-          placeholder="FULL NAME"
+          placeholder="FULL NAME *"
           onChange={(e: any) => {
             setFullName(e.target.value);
           }}
         ></input>
         <input
-          placeholder="ADDRES"
+          placeholder="ADDRES *"
           className="input-registration"
           onChange={(e: any) => {
             setAddress(e.target.value);
@@ -63,14 +63,14 @@ const Register = () => {
           }}
         ></input>
         <input
-          placeholder="EMAIL"
+          placeholder="EMAIL *"
           className="input-registration"
           onChange={(e: any) => {
             setEmail(e.target.value);
           }}
         ></input>
         <input
-          placeholder="PASSWORD"
+          placeholder="PASSWORD *"
           className="input-registration"
           type="password"
           onChange={(e: any) => {

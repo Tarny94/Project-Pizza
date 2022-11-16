@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { loginURL } from "../Api/api";
+import { getApiUrl } from "../Api/api";
 import "../Styles/login.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const Login = () => {
 
   const authentificate = async () => {
     axios
-      .post(loginURL, loginUser)
+      .post(getApiUrl("login"), loginUser)
       .then((res) => {
         setResponse("");
         navigate("/");
