@@ -3,6 +3,15 @@ import "../Styles/registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../Api/api";
+import { Snackbar } from "@mui/material";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -12,6 +21,8 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [response, setResponse] = useState("");
   const [terms, setTerms] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [fail, setFail] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,10 +39,16 @@ const Register = () => {
     await axios
       .post(getApiUrl("register"), user)
       .then((res) => {
+        setFail(false);
         setResponse("");
-        navigate("/login");
+        setOpen(true);
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
       })
       .catch((error) => {
+        setFail(true);
+        setOpen(true);
         setResponse(error.response.data.error);
         console.log(error);
       });
@@ -111,6 +128,32 @@ const Register = () => {
             SUBMIT
           </button>
         )}
+        <Snackbar
+          open={open}
+          autoHideDuration={1000}
+          onClose={(event?: React.SyntheticEvent | Event, reason?: string) => {
+            if (reason === "clickaway") {
+              return;
+            }
+            setOpen(false);
+          }}
+        >
+          <Alert
+            onClose={(
+              event?: React.SyntheticEvent | Event,
+              reason?: string
+            ) => {
+              if (reason === "clickaway") {
+                return;
+              }
+              setOpen(false);
+            }}
+            severity={fail ? "warning" : "success"}
+            sx={{ width: "100%" }}
+          >
+            {fail ? "Warning 😧" : "Succesfull Register 😀"}
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );
