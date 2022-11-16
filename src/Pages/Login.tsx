@@ -3,15 +3,7 @@ import axios from "axios";
 import { getApiUrl } from "../Api/api";
 import "../Styles/login.scss";
 import { useNavigate } from "react-router-dom";
-import { Snackbar } from "@mui/material";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import Snackbar from "../Utils/Snackbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -82,35 +74,7 @@ const Login = () => {
           <button onClick={authentificate} className="authenticate-button">
             Authenticate
           </button>
-          <Snackbar
-            open={open}
-            autoHideDuration={1000}
-            onClose={(
-              event?: React.SyntheticEvent | Event,
-              reason?: string
-            ) => {
-              if (reason === "clickaway") {
-                return;
-              }
-              setOpen(false);
-            }}
-          >
-            <Alert
-              onClose={(
-                event?: React.SyntheticEvent | Event,
-                reason?: string
-              ) => {
-                if (reason === "clickaway") {
-                  return;
-                }
-                setOpen(false);
-              }}
-              severity={fail ? "warning" : "success"}
-              sx={{ width: "100%" }}
-            >
-              {fail ? "Warning 😧" : "Succesfull Register 😀"}
-            </Alert>
-          </Snackbar>
+          <Snackbar open={open} setOpen={setOpen} fail={fail} />
         </div>
         <div className="account-create-field">
           <p>Do not have an account yet?</p>
