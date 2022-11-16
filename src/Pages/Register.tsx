@@ -7,7 +7,7 @@ import { registreURL } from "../Api/api";
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [addres, setAddres] = useState("");
+  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [response, setResponse] = useState("");
@@ -19,18 +19,14 @@ const Register = () => {
     fullName,
     phone,
     email,
-    addres,
+    address,
     password,
   };
 
   const handleSubmit = async () => {
     await axios
-      .post(registreURL, {
-        user,
-      })
+      .post(registreURL, user)
       .then((res) => {
-        console.log(res);
-        setResponse(res.statusText);
         setResponse("");
         navigate("/login");
       })
@@ -56,7 +52,7 @@ const Register = () => {
           placeholder="ADDRES"
           className="input-registration"
           onChange={(e: any) => {
-            setAddres(e.target.value);
+            setAddress(e.target.value);
           }}
         ></input>
         <input
