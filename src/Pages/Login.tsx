@@ -1,20 +1,36 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { loginURL } from "../Api/api";
 import "../Styles/login.scss";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [response, setResponse] = useState("");
 
+  const navigate = useNavigate();
   const loginUser = {
     email,
     password,
   };
 
   const authentificate = async () => {
+    axios
+      .post(loginURL, loginUser)
+      .then((res) => {
+        setResponse("");
+        console.log("Succesfull", res);
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        if (e.response.data.error === "Error: ER_BAD_FIELD_ERROR") {
+          return setResponse("Something went wrong");
+        }
+        setResponse(e.response.data.error);
+      });
   };
-
   console.log(loginUser);
 
   return (
@@ -37,12 +53,15 @@ const Login = () => {
             onChange={(event: any) => {
               setPassword(event.target.value);
             }}
+            type="password"
             placeholder="PASSWORD"
           ></input>
         </div>
         <div>
           <div className="error-message"></div>
         </div>
+
+        <div className="response-field">{response ? response : ""}</div>
         <div className="password-word">
           <p>I forgot the password</p>
         </div>

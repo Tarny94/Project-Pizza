@@ -27,10 +27,10 @@ const Registre = () => {
     if (res === "OK") {
       return setResponse("");
     }
-    if (res === "Error: ER_DUP_ENTRY") {
+    if (res === "ER_DUP_ENTRY") {
       return setResponse("Email is already used");
     }
-    if (res === "Error: ER_DATA_TOO_LONG") {
+    if (res === "ER_DATA_TOO_LONG") {
       return setResponse("Data is too long");
     }
     if (res === "") {
@@ -92,7 +92,7 @@ const Registre = () => {
         <input
           placeholder="PASSWORD"
           className="input-registration"
-          type={password}
+          type="password"
           onChange={(e: any) => {
             setPassword(e.target.value);
           }}
