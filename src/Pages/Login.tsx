@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { getApiUrl } from "../Api/api";
 import "../Styles/login.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Snackbar from "../Design/Snackbar";
 
 const Login = () => {
@@ -40,46 +40,42 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="input-container">
-        <h1 className="login-title">Sign in</h1>
-        <div className="input-field">
-          <input
-            onChange={(event: any) => {
-              setEmail(event.target.value);
-            }}
-            className="input-login input-auth "
-            placeholder="EMAIL"
-            type="text"
-          ></input>
-        </div>
-        <div className="input-field">
-          <input
-            className="input-login"
-            onChange={(event: any) => {
-              setPassword(event.target.value);
-            }}
-            type="password"
-            placeholder="PASSWORD"
-          ></input>
-        </div>
-        <div>
-          <div className="error-message"></div>
-        </div>
+      <h1 className="login-title">Sign in</h1>
+      <input
+        onChange={(event: any) => {
+          setEmail(event.target.value);
+        }}
+        className="input-login input-auth "
+        placeholder="EMAIL"
+        type="text"
+      ></input>
+      <input
+        className="input-login"
+        onChange={(event: any) => {
+          setPassword(event.target.value);
+        }}
+        type="password"
+        placeholder="PASSWORD"
+      ></input>
 
-        <div className="response-field">{response ? response : ""}</div>
-        <div className="password-word">
-          <p>I forgot the password</p>
-        </div>
-        <div>
-          <button onClick={authentificate} className="authenticate-button">
-            Authenticate
-          </button>
-          <Snackbar open={open} setOpen={setOpen} fail={fail} />
-        </div>
-        <div className="account-create-field">
-          <p>Do not have an account yet?</p>
-          <p>Create a new one</p>
-        </div>
+      <div>
+        <div className="error-message"></div>
+      </div>
+
+      <div className="response-field">{response ? response : ""}</div>
+      <div className="password-word">
+        <p>I forgot the password</p>
+      </div>
+      <div>
+        <button onClick={authentificate} className="authenticate-button">
+          Authenticate
+        </button>
+        <Snackbar open={open} setOpen={setOpen} fail={fail} />
+      </div>
+      <div className="account-create-field">
+        <Link to={"/register"} className="account-create-field">
+          Create a new account
+        </Link>
       </div>
     </div>
   );

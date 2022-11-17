@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../Api/api";
 import Snackbar from "../Design/Snackbar";
+import Button from "../Util/Button";
+import Input from "../Util/Input";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -26,6 +28,8 @@ const Register = () => {
     password,
   };
 
+  console.log(user);
+
   const handleSubmit = async () => {
     setResponse("");
     await axios
@@ -47,81 +51,73 @@ const Register = () => {
   };
 
   return (
-    <div className="page-container">
-      <div className="registration-container">
-        <h1 className="registration-title">CREATE AN ACCOUNT</h1>
+    <div className="registration-container">
+      <h1 className="registration-title">CREATE AN ACCOUNT</h1>
 
-        <input
-          className="input-registration top-input"
-          placeholder="FULL NAME *"
-          onChange={(e: any) => {
-            setFullName(e.target.value);
+      <Input
+        placeholder={"FULL NAME *"}
+        title={"Name is require"}
+        type={""}
+        setValue={setFullName}
+      />
+      <Input
+        placeholder="ADDRES *"
+        title={"Address is require"}
+        type={""}
+        setValue={setAddress}
+      ></Input>
+      <Input
+        placeholder="PHONE"
+        title={"Phone is not require"}
+        type={""}
+        setValue={setPhone}
+      ></Input>
+      <Input
+        placeholder="EMAIL *"
+        title={"Email is require"}
+        type={""}
+        setValue={setEmail}
+      ></Input>
+      <Input
+        placeholder="PASSWORD *"
+        type="password"
+        title={"Password is require"}
+        setValue={setPassword}
+      ></Input>
+      <div className="response-field">{response ? response : ""}</div>
+      <div className="term-cont-field">
+        <p
+          className="term-cont"
+          onClick={() => {
+            if (!terms) setTerms(true);
+            else setTerms(false);
           }}
-        ></input>
-        <input
-          placeholder="ADDRES *"
-          className="input-registration"
-          onChange={(e: any) => {
-            setAddress(e.target.value);
-          }}
-        ></input>
-        <input
-          placeholder="PHONE"
-          className="input-registration"
-          onChange={(e: any) => {
-            setPhone(e.target.value);
-          }}
-        ></input>
-        <input
-          placeholder="EMAIL *"
-          className="input-registration"
-          onChange={(e: any) => {
-            setEmail(e.target.value);
-          }}
-        ></input>
-        <input
-          placeholder="PASSWORD *"
-          className="input-registration"
-          type="password"
-          onChange={(e: any) => {
-            setPassword(e.target.value);
-          }}
-        ></input>
-        <div className="response-field">{response ? response : ""}</div>
-        <div className="term-cont-field">
-          <p
-            className="term-cont"
-            onClick={() => {
-              if (!terms) setTerms(true);
-              else setTerms(false);
-            }}
-          >
-            {" "}
-            <input
-              type="checkbox"
-              id="terms"
-              name="terms"
-              value="terms"
-              checked={terms}
-            ></input>
-            <label htmlFor="terms"></label>I am agree with terms and condition
-          </p>
-        </div>
-        {terms ? (
-          <button className="registre-button" onClick={handleSubmit}>
-            SUBMIT
-          </button>
-        ) : (
-          <button
-            className="registre-button-disabled"
-            disabled
-            onClick={handleSubmit}
-          >
-            SUBMIT
-          </button>
-        )}
-        <Snackbar open={open} setOpen={setOpen} fail={fail} />
+        >
+          {" "}
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+            value="terms"
+            checked={terms}
+          ></input>
+          <label htmlFor="terms"></label>I am agree with terms and condition
+        </p>
       </div>
+      {terms ? (
+        <button className="registre-button" onClick={handleSubmit}>
+          SUBMIT
+        </button>
+      ) : (
+        <button
+          className="registre-button-disabled"
+          disabled
+          onClick={handleSubmit}
+        >
+          SUBMIT
+        </button>
+      )}
+      <Snackbar open={open} setOpen={setOpen} fail={fail} />
     </div>
   );
 };
