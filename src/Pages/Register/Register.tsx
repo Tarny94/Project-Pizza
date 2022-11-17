@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "../Styles/registration.scss";
+import "./registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getApiUrl } from "../Api/api";
-import Snackbar from "../Design/Snackbar";
-import Button from "../Util/Button";
-import Input from "../Util/Input";
+import { getApiUrl } from "../../Api/api";
+import Snackbar from "../../Design/Snackbar";
+import Button from "../../Design/Button";
+import Input from "../../Design/Input";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -27,8 +27,6 @@ const Register = () => {
     address,
     password,
   };
-
-  console.log(user);
 
   const handleSubmit = async () => {
     setResponse("");
@@ -106,8 +104,10 @@ const Register = () => {
       </div>
       <Button
         title={"SUBMIT"}
-        event={handleSubmit}
-        disable={terms}
+        event={() => {
+          handleSubmit();
+        }}
+        terms={terms}
         width={undefined}
         high={undefined}
       />

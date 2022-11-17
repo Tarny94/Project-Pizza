@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import HomePage from "./HomePage";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import HomePage from ".//HomePage/HomePage";
 import NotFound from "./NotFound";
 import Terms from "./Terms";
 
