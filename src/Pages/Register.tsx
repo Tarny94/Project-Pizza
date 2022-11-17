@@ -3,7 +3,7 @@ import "../Styles/registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../Api/api";
-import Snackbar from "../Utils/Snackbar";
+import Snackbar from "../Design/Snackbar";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");

@@ -3,7 +3,7 @@ import axios from "axios";
 import { getApiUrl } from "../Api/api";
 import "../Styles/login.scss";
 import { useNavigate } from "react-router-dom";
-import Snackbar from "../Utils/Snackbar";
+import Snackbar from "../Design/Snackbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
