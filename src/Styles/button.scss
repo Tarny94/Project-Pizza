@@ -1,22 +1,25 @@
+@import "../Styles/vars";
+
 .button-field {
-  border: 2px solid #a9aeb833;
-  background-color:#a19f9f33 ;
+  border: 2px solid $usual_300;
+  background-color: $usual_200 ;
   border-radius: 5px;
   padding: 25px 150px;
   cursor: pointer;
   font-size: 19px;
   margin-bottom: 20px;
+  transition: 0.5s ease;
   &:hover {
     transition: 0.5s ease;
-    background: grey;
-    color: white;
+    background: $usual_600;
+    color:$usual_200;
   }
 }
 
 .registre-button-disabled{
-  border: 2px solid #a9aeb833;
-  background-color:#c3c3c333 ;
-  color: rgb(204, 204, 204);
+  border: 2px solid $prim_2;
+  background-color: $prim_1 ;
+  color: $usual_300;
   border-radius: 5px;
   padding: 25px 150px;
   cursor: pointer;
