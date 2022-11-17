@@ -107,7 +107,7 @@ const Register = () => {
         event={() => {
           handleSubmit();
         }}
-        terms={terms}
+        disabled={!terms ? true : false}
         width={undefined}
         high={undefined}
       />

@@ -4,6 +4,8 @@ import { getApiUrl } from "../../Api/api";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Snackbar from "../../Design/Snackbar";
+import Button from "../../Design/Button";
+import Input from "../../Design/Input";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,35 +43,36 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1 className="login-title">Sign in</h1>
-      <input
-        onChange={(event: any) => {
-          setEmail(event.target.value);
-        }}
-        className="input-login input-auth "
-        placeholder="EMAIL"
-        type="text"
-      ></input>
-      <input
-        className="input-login"
-        onChange={(event: any) => {
-          setPassword(event.target.value);
-        }}
-        type="password"
-        placeholder="PASSWORD"
-      ></input>
+      <Input
+        placeholder={"EMAIL"}
+        title={"Email is require"}
+        type={"text"}
+        setValue={setEmail}
+      />
+      <Input
+        placeholder={"PASSWORD"}
+        title={"Password is require"}
+        type={"password"}
+        setValue={setPassword}
+      />
 
       <div>
         <div className="error-message"></div>
       </div>
-
       <div className="response-field">{response ? response : ""}</div>
       <div className="password-word">
         <p>I forgot the password</p>
       </div>
       <div>
-        <button onClick={authentificate} className="authenticate-button">
-          Authenticate
-        </button>
+        <Button
+          title={"Authenticate"}
+          event={() => {
+            authentificate();
+          }}
+          disabled={false}
+          width={undefined}
+          high={undefined}
+        />
         <Snackbar open={open} setOpen={setOpen} fail={fail} />
       </div>
       <div className="account-create-field">

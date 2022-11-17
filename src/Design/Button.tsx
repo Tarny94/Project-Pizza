@@ -4,17 +4,17 @@ import "../Styles/button.scss";
 type iProp = {
   title: string;
   event: any;
-  terms: boolean;
+  disabled: boolean;
   width: number | undefined;
   high: number | undefined;
 };
 
-const Button = ({ title, event, terms, width, high }: iProp) => {
+const Button = ({ title, event, disabled, width, high }: iProp) => {
   return (
     <button
-      className={!terms ? "registre-button-disabled" : "button-field"}
-      onClick={terms ? event : undefined}
-      disabled={!terms ? true : false}
+      className={disabled ? "registre-button-disabled" : "button-field"}
+      onClick={event}
+      disabled={disabled}
       style={{ width: width, height: high }}
     >
       {title}
