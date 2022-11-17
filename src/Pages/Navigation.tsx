@@ -4,7 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import HomePage from "./HomePage";
 import NotFound from "./NotFound";
-import Terms from "./Terms&cond";
+import Terms from "./Terms";
 
 const Navigation = () => {
   return (
