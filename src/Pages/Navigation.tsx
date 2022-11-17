@@ -5,16 +5,20 @@ import Register from "./Register/Register";
 import HomePage from ".//HomePage/HomePage";
 import NotFound from "./NotFound";
 import Terms from "./Terms";
+import Filter from "./Filter/Filter";
 
 const Navigation = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/terms" element={<Terms />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Filter/>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 
