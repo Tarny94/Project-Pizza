@@ -1,1 +1,5 @@
-export const registreURL = "http://localhost:6060/registre";
+const API_URL = "http://localhost:6060";
+
+export const getApiUrl = (route: string) => {
+  return `${API_URL}/${route}`;
+};
