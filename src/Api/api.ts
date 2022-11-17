@@ -1,5 +1,5 @@
-const port = 6060;
+const API__URL = "http://localhost:6060";
 
 export const getApiUrl = (route: string) => {
-  return `localhost:${port}/${route}`;
+  return `${API__URL}/${route}`;
 };
