@@ -1,0 +1,25 @@
+.button-field {
+  border: 2px solid rgba(169,174,184,.2);
+  background-color:rgba(161, 159, 159, 0.2) ;
+  border-radius: 5px;
+  padding: 25px 150px;
+  cursor: pointer;
+  font-size: 19px;
+  margin-bottom: 20px;
+  &:hover {
+    transition: 0.5s ease;
+    background: grey;
+    color: white;
+  }
+}
+
+.registre-button-disabled{
+  border: 2px solid rgba(169,174,184,.2);
+  background-color:rgba(195, 195, 195, 0.2) ;
+  color: rgb(181, 178, 178);
+  border-radius: 5px;
+  padding: 25px 150px;
+  cursor: pointer;
+  font-size: 19px;
+  margin-bottom: 20px;
+}

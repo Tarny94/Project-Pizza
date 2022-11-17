@@ -104,19 +104,13 @@ const Register = () => {
           <label htmlFor="terms"></label>I am agree with terms and condition
         </p>
       </div>
-      {terms ? (
-        <button className="registre-button" onClick={handleSubmit}>
-          SUBMIT
-        </button>
-      ) : (
-        <button
-          className="registre-button-disabled"
-          disabled
-          onClick={handleSubmit}
-        >
-          SUBMIT
-        </button>
-      )}
+      <Button
+        title={"SUBMIT"}
+        event={handleSubmit}
+        disable={terms}
+        width={undefined}
+        high={undefined}
+      />
       <Snackbar open={open} setOpen={setOpen} fail={fail} />
     </div>
   );

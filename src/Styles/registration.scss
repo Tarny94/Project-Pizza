@@ -27,27 +27,6 @@
         
         }
     }
-    .registre-button{
-      border: 2px solid rgba(169,174,184,.2);
-    border-radius: 5px;
-    padding: 25px 150px;
-    cursor: pointer;
-    font-size: 19px;
-    margin-bottom: 20px;
-      &:hover {
-        transition: 0.5s ease;
-        background: grey;
-        color: white;
-      }
-    }
-    .registre-button-disabled{
-      border: 2px solid rgba(169,174,184,.2);
-      border-radius: 5px;
-      padding: 25px 150px;
-      cursor: pointer;
-      font-size: 19px;
-      margin-bottom: 20px;
-    }
     
     .response-field{
       color: red;
