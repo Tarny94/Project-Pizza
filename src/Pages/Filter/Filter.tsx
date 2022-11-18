@@ -78,7 +78,7 @@ const Filter = () => {
         })}
         <div className="filter-login acces-filters">LOGIN</div>
       </div>
-      <div className="menu-container">{click ? handleIconMenu() : ""}</div>
+      <div className="pages-container">{click ? handleIconMenu() : ""}</div>
     </div>
   );
 };

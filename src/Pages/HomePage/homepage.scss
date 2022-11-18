@@ -2,16 +2,18 @@
 
 .home-container{
   margin: 0 auto;
-  
+  width: 100%;
   .home-image{
+    margin: 0 auto;
     height: 100vh;
     background-image: url("../../Images/pizza6.jpg");
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: top ;
     transition: 0.8s;
  
   }
   .intro-container{
+    
     color: $usual_200;
     display: flex;
     align-items: center;
@@ -20,7 +22,8 @@
     flex-direction: column;
     animation-name: chan;
     animation-duration: 5s;
-   
+
+   position: relative;
 
   }
   @keyframes chan {
@@ -32,15 +35,17 @@
     }
   }
   .intro-title{
-    font-size: 750%;
+    margin: 0 auto;
+    font-size: 600%;
     margin-top: 35%;
-    color: $orange_200;
+    color: $orange_100;
     font-family:cursive;
     letter-spacing: 14px;
     transform: skew(10deg, 10deg);
   
   }
   .intro-description{
+    margin: 0 auto;
     font-family:'Courier New', Courier, monospace;
     font-size: 21px;
     color: $usual_300;
@@ -48,6 +53,7 @@
     margin: 10px auto;
   }
   .intro-buttons{
+    margin: 0 auto;
     margin-top: 2%;
     animation-name: chan;
     animation-duration: 9s;

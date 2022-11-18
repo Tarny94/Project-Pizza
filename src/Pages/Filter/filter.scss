@@ -1,10 +1,11 @@
 @import "../../Styles/vars";
 
 .container {
-  margin: 0 auto;
- position: fixed;
+ margin: auto;
+  position: fixed;
   width: 100%;
   opacity: 0.8;
+  height: 9vh;
   animation-duration: 4s;
   animation-name: cha;
 
@@ -118,7 +119,7 @@
     }  
   } 
 
-  .menu-container {
+  .pages-container {
     color: $usual_200;
     background-color: $usual_800;
     width: 100%;
@@ -140,7 +141,7 @@
     
   }
   @media screen and (min-width: 1200px) { 
-    .menu-container{
+    .pages-container{
       display: none;
     }
   }

@@ -66,7 +66,7 @@ const Login = () => {
         </div>
         <div>
           <Button
-            className=""
+            className="button-field"
             title={"Authenticate"}
             event={() => {
               authentificate();

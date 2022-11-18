@@ -1,10 +1,11 @@
 @import "../Styles/vars";
 
 .input-field {
+  margin: 20px auto;
   border: 2px solid $prim_2;
   border-radius: 10px;
-  padding: 23px 155px;
-  margin: 25px 0;
+  padding: 2% 10%;
+ 
   font-size: 24px;
   text-align: center;
   cursor:pointer;
