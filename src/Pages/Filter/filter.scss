@@ -5,7 +5,7 @@
  position: fixed;
   width: 100%;
   opacity: 0.8;
-  animation-duration: 7s;
+  animation-duration: 4s;
   animation-name: cha;
 
 .filter-container{
@@ -23,7 +23,7 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   .filter-title {
     margin-left: 2%;
-    color: $usual_100;
+    color: $orange_100;
     transition: 0.7s ease;
     cursor: pointer;
     font-family:cursive;

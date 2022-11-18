@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../Filter/filter.scss";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Box from "@mui/material/Box";
+
 
 const Filter = () => {
   const nav = ["Home", "menu", "About us", "Contact"];
