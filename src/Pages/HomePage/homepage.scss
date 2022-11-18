@@ -1,14 +1,57 @@
+@import "../../Styles/vars";
+
 .home-container{
   margin: 0 auto;
-  height: 200vh;
+  
   .home-image{
- 
     height: 100vh;
     background-image: url("../../Images/pizza6.jpg");
-    background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: top ;
+    transition: 0.8s;
  
   }
+  .intro-container{
+    color: $usual_200;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    animation-name: chan;
+    animation-duration: 5s;
+   
 
+  }
+  @keyframes chan {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .intro-title{
+    font-size: 750%;
+    margin-top: 35%;
+    color: $orange_200;
+    font-family:cursive;
+    letter-spacing: 14px;
+    transform: skew(10deg, 10deg);
+  
+  }
+  .intro-description{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 21px;
+    color: $usual_300;
+    background-color: $usual_900;
+    margin: 10px auto;
+  }
+  .intro-buttons{
+    margin-top: 2%;
+    animation-name: chan;
+    animation-duration: 9s;
+  } 
 }
+
+

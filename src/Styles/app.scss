@@ -1,3 +1,4 @@
+@import "./vars";
 
 *{
 box-sizing: border-box;
@@ -8,5 +9,17 @@ box-sizing: border-box;
 
 .App{
 
+  animation-name: change;
+  animation-duration: 2s;
+
+  
+@keyframes change {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 }
 

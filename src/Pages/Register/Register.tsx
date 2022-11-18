@@ -103,13 +103,14 @@ const Register = () => {
         </p>
       </div>
       <Button
+        className={!terms ? "registre-button-disabled" : "button-field"}
         title={"SUBMIT"}
         event={() => {
           handleSubmit();
         }}
         disabled={!terms ? true : false}
-        width={undefined}
-        high={undefined}
+        widths={undefined}
+        highs={undefined}
       />
       <Snackbar open={open} setOpen={setOpen} fail={fail} />
     </div>

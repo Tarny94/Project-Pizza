@@ -5,17 +5,28 @@ type iProp = {
   title: string;
   event: any;
   disabled: boolean;
-  width: number | undefined;
-  high: number | undefined;
+  widths: number | undefined;
+  highs: number | undefined;
+  className: string;
 };
 
-const Button = ({ title, event, disabled, width, high }: iProp) => {
+const Button = ({
+  className,
+  title,
+  event,
+  disabled,
+  widths,
+  highs,
+}: iProp) => {
   return (
     <button
-      className={disabled ? "registre-button-disabled" : "button-field"}
+      className={className}
       onClick={event}
       disabled={disabled}
-      style={{ width: width, height: high }}
+      style={{
+        width: widths,
+        height: highs,
+      }}
     >
       {title}
     </button>

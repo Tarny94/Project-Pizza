@@ -41,44 +41,47 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1 className="login-title">Sign in</h1>
-      <Input
-        placeholder={"EMAIL"}
-        title={"Email is require"}
-        type={"text"}
-        setValue={setEmail}
-      />
-      <Input
-        placeholder={"PASSWORD"}
-        title={"Password is require"}
-        type={"password"}
-        setValue={setPassword}
-      />
-
-      <div>
-        <div className="error-message"></div>
-      </div>
-      <div className="response-field">{response ? response : ""}</div>
-      <div className="password-word">
-        <p>I forgot the password</p>
-      </div>
-      <div>
-        <Button
-          title={"Authenticate"}
-          event={() => {
-            authentificate();
-          }}
-          disabled={false}
-          width={undefined}
-          high={undefined}
+    <div className="login-app-container">
+      <div className="login-container">
+        <h1 className="login-title">Sign in</h1>
+        <Input
+          placeholder={"EMAIL"}
+          title={"Email is require"}
+          type={"text"}
+          setValue={setEmail}
         />
-        <Snackbar open={open} setOpen={setOpen} fail={fail} />
-      </div>
-      <div className="account-create-field">
-        <Link to={"/register"} className="account-create-field">
-          Create a new account
-        </Link>
+        <Input
+          placeholder={"PASSWORD"}
+          title={"Password is require"}
+          type={"password"}
+          setValue={setPassword}
+        />
+
+        <div>
+          <div className="error-message"></div>
+        </div>
+        <div className="response-field">{response ? response : ""}</div>
+        <div className="password-word">
+          <p>I forgot the password</p>
+        </div>
+        <div>
+          <Button
+            className=""
+            title={"Authenticate"}
+            event={() => {
+              authentificate();
+            }}
+            disabled={false}
+            widths={undefined}
+            highs={undefined}
+          />
+          <Snackbar open={open} setOpen={setOpen} fail={fail} />
+        </div>
+        <div className="account-create-field">
+          <Link to={"/register"} className="account-create-field">
+            Create a new account
+          </Link>
+        </div>
       </div>
     </div>
   );

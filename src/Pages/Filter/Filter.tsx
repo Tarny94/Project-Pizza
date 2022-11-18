@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
 
 const Filter = () => {
-  const nav = ["Home", "Order", "About us", "Contact"];
+  const nav = ["Home", "menu", "About us", "Contact"];
   const [language, setLanguage] = useState(false);
   const [languageSelector, setLanguageSelector] = useState(false);
   const [click, setClick] = useState(false);

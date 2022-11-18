@@ -5,8 +5,12 @@
  position: fixed;
   width: 100%;
   opacity: 0.8;
+  animation-duration: 7s;
+  animation-name: cha;
 
 .filter-container{
+  
+  transition: 0.8s ease;
   margin: 0 auto;
   width: 100%;
   height: 9vh;
@@ -27,7 +31,9 @@
       font-size: 33px;
       transition: 0.7s ease;
     }
+    
   }
+ 
 
   .select-language {
     color: $usual_100;
@@ -107,8 +113,7 @@
           &:hover {
             margin-bottom: 10px;
             transition: 0.7s ease;
-          }
-          
+        }
       }
     }  
   } 
@@ -139,5 +144,13 @@
       display: none;
     }
   }
-  
+}
+
+@keyframes cha {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
 }
