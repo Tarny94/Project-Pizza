@@ -1,43 +1,44 @@
 @import "../../Styles/vars";
 
+
+
 .home-container{
-  margin: 0 auto;
+ 
   width: 100%;
+ 
   .home-image{
-    margin: 0 auto;
     height: 100vh;
-    background-image: url("../../Images/pizza6.jpg");
+    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url( "../../Images/pizza6.jpg");
     background-size: cover;
     background-position: top ;
     transition: 0.8s;
  
   }
   .intro-container{
-    
+    margin: 0 10%;
+    width: 30%;
     color: $usual_200;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    text-align: center;
     height: 100%;
-    width: 50%;
     flex-direction: column;
-    animation-name: chan;
-    animation-duration: 5s;
-
-   position: relative;
-
+    animation-name: chany;
+    animation-duration: 1.5s;
+   
   }
-  @keyframes chan {
+  @keyframes chany {
     from {
+      margin-left: 0;
       opacity: 0;
     }
     to {
+      margin-left: 10%;
       opacity: 1;
     }
   }
   .intro-title{
-    margin: 0 auto;
     font-size: 600%;
-    margin-top: 35%;
     color: $orange_100;
     font-family:cursive;
     letter-spacing: 14px;
@@ -45,19 +46,38 @@
   
   }
   .intro-description{
-    margin: 0 auto;
+    font-weight: bold;
+    margin-top: 13%;
     font-family:'Courier New', Courier, monospace;
-    font-size: 21px;
+    font-size: 23px;
     color: $usual_300;
-    background-color: $usual_900;
-    margin: 10px auto;
+ 
   }
   .intro-buttons{
-    margin: 0 auto;
-    margin-top: 2%;
-    animation-name: chan;
-    animation-duration: 9s;
+ 
+  
   } 
 }
+
+@media only screen and (max-width: 900px) {
+.home-container{
+
+  .intro-container{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+      .intro-title{
+        margin:0 auto;
+        transform: skew(2deg, 2deg);
+        font-size: 500%;
+      }
+     .intro-description{
+      
+      }
+    }
+  }
+} 
 
 

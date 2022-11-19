@@ -4,6 +4,7 @@ import Button from "../../Design/Button";
 import Menu from "../Menu/Menu";
 import AboutUs from "../AboutUs/AboutUs";
 
+
 const HomePage = () => {
   return (
     <>
@@ -12,7 +13,7 @@ const HomePage = () => {
           <div className="intro-container">
             <h1 className="intro-title">PIZZA</h1>
             <p className="intro-description">
-              Best homemade pizza you'll ever eat
+              Best homemade pizza you will ever eat
             </p>
             <div className="intro-buttons">
               <Button
@@ -36,7 +37,6 @@ const HomePage = () => {
         </div>
       </div>
       <AboutUs />
-      <Menu />
     </>
   );
 };
