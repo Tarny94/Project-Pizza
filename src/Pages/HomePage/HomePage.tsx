@@ -25,7 +25,7 @@ const HomePage = () => {
               />
               <Button
                 className="button-intro"
-                title={"HISTORY"}
+                title={"CONTACT US"}
                 event={undefined}
                 disabled={false}
                 widths={200}

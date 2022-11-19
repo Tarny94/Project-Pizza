@@ -1,5 +1,44 @@
 @import "../../Styles/vars";
 
 .about-container{
-  height: 30vh;
+  width: 100%;
+  font-size: 160%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background-color: $prim_2;
+}
+.about-title {
+  margin: 0 auto;
+  font-family: 'Courgette', cursive;
+  width: 50%;
+  padding: 30px 0;
+  font-style: italic;
+  color: $orange_100;
+  border-bottom: 1px solid $usual_300;
+}
+
+.about-introduction-container{
+  margin: 5% 13%;
+
+  
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: $usual_800;
+}
+
+.about-introduction {
+  margin: 0 3%;
+  margin-top: 5%;
+  padding-bottom: 4%;
+  border-bottom: 1px solid $usual_300;
+}
+
+.icons-container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.about-icon{
+  margin: 3%;
 }
