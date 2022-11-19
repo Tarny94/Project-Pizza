@@ -1,9 +1,8 @@
 import React from "react";
 import "./homepage.scss";
 import Button from "../../Design/Button";
-import Menu from "../Menu/Menu";
 import AboutUs from "../AboutUs/AboutUs";
-
+import Contact from "../Contact/Contact";
 
 const HomePage = () => {
   return (
@@ -37,6 +36,7 @@ const HomePage = () => {
         </div>
       </div>
       <AboutUs />
+      <Contact />
     </>
   );
 };

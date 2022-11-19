@@ -31,12 +31,14 @@
     &:hover{
       font-size: 33px;
       transition: 0.7s ease;
+      color: $yellow_100;
     }
     
   }
  
 
   .select-language {
+    
     color: $usual_100;
     cursor: pointer;
     margin-right: 8%;
@@ -90,7 +92,7 @@
       &:hover{
       transition: 0.5s;
         border-radius: 5px;
-        background-position: left;
+      
         background: linear-gradient(to left,$orange_200  55%, $usual_800 70%) right;
         background-size: 200% 100%;
         transition: 1s ease; 

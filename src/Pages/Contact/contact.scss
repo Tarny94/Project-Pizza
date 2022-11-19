@@ -1,0 +1,134 @@
+@import "../../Styles/vars";
+
+.contact-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  color: $usual_300;
+  background-color: $usual_800;
+ 
+.contact-elemnts{
+  width: 60%;
+  margin: 0 auto;
+  .contact-title {
+    margin: 3% auto 2% auto;
+    padding-bottom: 1.5%;
+    border-bottom: 1px solid $usual_600;
+    font-size: 350%;
+    font-family: cursive;
+    color: $orange_200; 
+    transition: 0.5s ease;
+    .title-name{
+      width:100% ;
+      margin: 0 auto;
+     
+    }
+
+    &:hover{
+      color: $orange_100;
+      transition: 0.5s ease;
+      border-bottom: 1.5px solid $usual_400;
+    }
+  }
+
+  .contact-icons-social{
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 1.5% ;
+    border-bottom: 1px solid $usual_600;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease;
+      &:hover{
+        border-bottom: 1px solid $usual_400;
+        transition: 0.5s ease;
+      }
+      .ifb {
+        padding: 0 1% 0 1%;
+        cursor: pointer;
+      }
+      .icon{
+        margin: 0 1%;
+        &:hover{
+          transform: rotate(360deg);
+          transition: 1s ease;
+          font-size: 300%;
+        }
+      }
+    }
+
+    .contact-terms{
+      font-size: 130%;
+      padding: 3% 0;
+      border-bottom: 1px solid $usual_600;
+      transition: 0.5s ease;
+      &:hover{
+        border-bottom: 1px solid $usual_400;
+        transition: 0.5s ease;
+      }
+      .contact-terms-name{
+        width: 25%;
+        margin: 0 auto;
+        cursor: pointer;
+        &:hover {
+          color: $usual_200;
+        }
+      }
+    }
+
+    .contact-data{
+      padding: 2.5% 0 4% 0;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    
+      .contact-data-title{
+        font-size: 200%;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding: 0 0 4% 0;
+      }
+      .contact-data-location{
+        display: flex;
+        justify-content: center;
+        font-size: 130%;
+        margin-bottom: 1%;
+      }
+      .contact-icon {
+        margin-right: 1%;
+      }
+      .contact-timetable{
+        width: 30%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .contact-container{ 
+  
+    .contact-elemnts{
+      width: 100%;
+      margin: 0 auto;
+      .contact-data{
+       
+      .contact-data-location{
+      
+      }
+        .contact-details{
+         
+          .contact-timetable{
+          
+      
+          
+          }
+        }
+      }
+    }
+  }
+}
