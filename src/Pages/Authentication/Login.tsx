@@ -26,7 +26,7 @@ const Login = () => {
 
   const handleSuccesLogin = (res: any) => {
     setFail(false);
-    setResponse("");
+
     setOpen(true);
     setIsLogin(true);
     cookies.set("token", {

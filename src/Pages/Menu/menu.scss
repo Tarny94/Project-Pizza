@@ -1,12 +1,46 @@
 @import "../../Styles/vars";
 
-.menu-container{
+.page-menu-container{
   width: 100%;
-  height: 100vh;
-  .menu-background{
-   height: 100%;
-    background-image: url("../../Images/menu_pizza.jpg");
-    background-size: cover;
-    background-position: top ;
+ 
+  background-color: $usual_100;
+  
+ 
+  .menu-container{
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      
+    .menu-title-decriptions{ 
+    
+      margin: 0 auto;
+      margin-top: 9%;
+      width: 50%;
+      border: 1px solid $usual_800;
+      border-radius: 10px ;
+      box-shadow: 5px 5px 15px ;
+      color: $usual_700;
+      .menu-title{
+        font-size: 300%;
+        font-weight:bolder ;
+        font-family:cursive;
+        font-style: oblique;
+
+      }
+      .menu-description{
+        font-size:120%;
+        font-family: cursive;
+        padding: 0px 2% 1% 2%;
+        font-style: oblique;
+  
+      }
+    }
+    .menu-with-dish{
+      width: 100%;
+      margin: 5% auto;
+    }
   }
 }

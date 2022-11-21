@@ -57,25 +57,21 @@ const Register = () => {
         <Input
           placeholder={"FULL NAME *"}
           title={"Name is require"}
-          type={""}
           setValue={setFullName}
         />
         <Input
           placeholder="ADDRES *"
           title={"Address is require"}
-          type={""}
           setValue={setAddress}
         ></Input>
         <Input
           placeholder="PHONE"
           title={"Phone is not require"}
-          type={""}
           setValue={setPhone}
         ></Input>
         <Input
           placeholder="EMAIL *"
           title={"Email is require"}
-          type={""}
           setValue={setEmail}
         ></Input>
         <Input
@@ -93,7 +89,6 @@ const Register = () => {
               else setTerms(false);
             }}
           >
-            {" "}
             <input
               type="checkbox"
               id="terms"
@@ -111,8 +106,6 @@ const Register = () => {
             handleSubmit();
           }}
           disabled={!terms ? true : false}
-          width={undefined}
-          height={undefined}
         />
         <Snackbar open={open} setOpen={setOpen} fail={fail} />
       </div>
