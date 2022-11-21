@@ -21,10 +21,38 @@ const Filter = () => {
   const handleIconMenu = () => {
     return (
       <div className="pages-container">
-        <div className="page-home pages">{pages.home.toUpperCase()}</div>
-        <div className="page-menu pages">{pages.menu.toUpperCase()}</div>
-        <div className="page-about pages">{pages.about.toUpperCase()}</div>
-        <div className="page-contact pages">{pages.contact.toUpperCase()}</div>
+        <div
+          className="page-home pages"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          {pages.home.toUpperCase()}
+        </div>
+        <div
+          className="page-menu pages"
+          onClick={() => {
+            navigate("/menu");
+          }}
+        >
+          {pages.menu.toUpperCase()}
+        </div>
+        <div
+          className="page-about pages"
+          onClick={() => {
+            navigate("/about");
+          }}
+        >
+          {pages.about.toUpperCase()}
+        </div>
+        <div
+          className="page-contact pages"
+          onClick={() => {
+            navigate("/contact");
+          }}
+        >
+          {pages.contact.toUpperCase()}
+        </div>
         {!isLogin ? (
           <div className="page-home pages">
             <span
