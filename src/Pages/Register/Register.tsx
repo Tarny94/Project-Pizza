@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import "./registration.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../../Api/api";
 import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
-
+import "./Registration.scss";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");

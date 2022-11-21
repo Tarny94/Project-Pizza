@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Menu/dish.scss";
+import "../Menu/Dish.scss";
 
 const Dish = () => {
   const [discount, setDiscount] = useState(true);

@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/input.scss";
+import "../Styles/Input.scss";
 
 type iProp = {
   placeholder?: string;
