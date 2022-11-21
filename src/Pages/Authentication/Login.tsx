@@ -33,7 +33,6 @@ const Login = () => {
       _id: res.data.user._id,
       token: res.data.user.token,
     });
-    console.log(res);
     setTimeout(() => {
       navigate("/");
     }, 1000);
