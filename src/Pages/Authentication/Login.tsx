@@ -10,7 +10,7 @@ import Cookies from "universal-cookie";
 import { Context } from "../Provider";
 
 const Login = () => {
-  const { setIsLogin } = useContext(Context);
+  const { setIsLoggedIn } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");
@@ -28,7 +28,7 @@ const Login = () => {
     setFail(false);
 
     setOpen(true);
-    setIsLogin(true);
+    setIsLoggedIn(true);
     cookies.set("token", {
       _id: res.data.user._id,
       token: res.data.user.token,

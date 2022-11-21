@@ -14,7 +14,7 @@ const Filter = () => {
     contact: "Contact",
     login: "login",
   };
-  const { isLogin } = useContext(Context);
+  const { isLoggedIn } = useContext(Context);
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const Filter = () => {
         >
           {pages.contact.toUpperCase()}
         </div>
-        {!isLogin ? (
+        {!isLoggedIn ? (
           <div className="page-home pages">
             <span
               onClick={() => {
@@ -137,7 +137,7 @@ const Filter = () => {
             navigate("/login");
           }}
         >
-          {!isLogin ? (
+          {!isLoggedIn ? (
             <div className="page-login pages">
               <span>{pages.login.toUpperCase()}</span>
             </div>
