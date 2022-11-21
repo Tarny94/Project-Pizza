@@ -1,5 +1,5 @@
 import React from "react";
-import "./homepage.scss";
+import "./Homepage.scss";
 import Button from "../../Design/Button";
 import AboutUs from "../AboutUs/AboutUs";
 import Contact from "../Contact/Contact";

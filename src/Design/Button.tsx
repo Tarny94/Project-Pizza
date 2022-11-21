@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../Styles/button.scss";
+import "../Styles/Button.scss";
 
 type iProp = {
   title: string;

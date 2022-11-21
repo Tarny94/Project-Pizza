@@ -1,6 +1,6 @@
 import React from "react";
 import Dish from "./Dish";
-import "./menu.scss";
+import "./Menu.scss";
 
 const Menu = () => {
   return (
