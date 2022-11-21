@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Authentication/Login";
 import Register from "./Register/Register";
@@ -10,25 +10,22 @@ import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
 import { Provider } from "./Provider";
 import Contact from "./Contact/Contact";
-import { Context } from "./Provider";
 
 const Navigation = () => {
-  const { isLoggedIn } = useContext(Context);
-
   return (
-    <>
+    <Provider>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={!isLoggedIn ? <Login /> : <NotFound />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </Provider>
   );
 };
 
