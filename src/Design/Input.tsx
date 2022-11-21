@@ -2,9 +2,9 @@ import React from "react";
 import "../Styles/input.scss";
 
 type iProp = {
-  placeholder: string;
-  title: string;
-  type: string;
+  placeholder?: string;
+  title?: string;
+  type?: string;
   setValue: any;
 };
 

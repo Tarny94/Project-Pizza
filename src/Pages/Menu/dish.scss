@@ -1,0 +1,110 @@
+@import "../../Styles/vars";
+
+.dish-container{
+  width: 300px;
+  height: 410px;
+  border: 1px solid $usual_800;
+  border-radius: 10px;
+  box-shadow: 8px 2px 15px -5px;
+  background: $usual_100;
+
+  &:hover {
+    .dish-image-container{
+    background-size: 120% 120%;
+    transition: 0.6s ease;
+    }
+    .dish-components{
+     
+      .dish-description{
+        visibility: visible;
+        animation-name: description;
+        animation-duration: 1.5s;
+      }
+      @keyframes description {
+        from {opacity: 0;}
+        to {opacity: 1;}
+      }
+    }
+  }
+  .dish-image-container{
+    border-radius: 10px;
+    width: 100%;
+    height: 190px;
+    background-image: url("https://pizzaka.ro/wp-content/uploads/2018/04/PIZZA-CAPRICIOSA-PRET-16_21_35-LEI-.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    transition: 0.6s ease;
+    cursor: pointer;
+  }
+  .dish-components{
+    width: 100%;
+    
+    .dish-title{
+      padding: 4px 0;
+      font-size: 170%;
+      font-weight: lighter;
+      color:$usual_800 ;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-style: italic;
+      margin-bottom: 7px;
+      
+    }
+    .dish-description{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+              line-clamp: 2; 
+      -webkit-box-orient: vertical;
+      font-family:sans-serif;
+      border-bottom: 0.5px solid $usual_400;
+      font-size: 110%;
+      text-decoration:dashed;
+      text-align:inherit;
+      color: $usual_600;
+      height: 61px;
+      visibility: hidden;
+
+    }
+  }
+  .dish-prices-discount{
+    padding: 15px 0 0 0;
+    border-bottom: 0.5px solid $usual_400;
+    font-family:fantasy;
+    display: flex;
+    justify-content: space-around;
+    font-size: 150%;
+    .discount-price{
+      color: $red_100;
+     
+    }
+    .normal-price{
+      text-decoration: line-through;
+      color: $usual_700;
+    }
+  }
+  .dish-order{
+      height: 65px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-weight: lighter;
+      font-size: 140%;
+      transition: 0.5s;
+      &:hover {
+        transition: 0.5s;
+        background: linear-gradient(to left,$orange_200  35%, $usual_800 70%) right;
+        background-size: 200% 100%;
+        color: $usual_700;
+        transition: 0.5s ease; 
+      }
+      .dish-title-order{
+          
+      }
+  }
+}
