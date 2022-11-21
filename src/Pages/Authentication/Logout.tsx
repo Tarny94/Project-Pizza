@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Cookies from "universal-cookie";
 import { Context } from "../Provider";
 import { useNavigate } from "react-router-dom";
-import "../Filter/filter.scss";
+import "../Header/Header.scss";
 
 type iProp = {
   className?: string;

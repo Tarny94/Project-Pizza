@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import "../Filter/filter.scss";
+import "../Header/Header.scss";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "../Authentication/Logout";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../Provider";
 
-const Filter = () => {
+const Header = () => {
   const pages = {
     home: "Home",
     menu: "menu",
@@ -167,4 +167,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default Header;
