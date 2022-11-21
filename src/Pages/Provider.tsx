@@ -19,6 +19,7 @@ export const Context = createContext(initialState);
 
 export const Provider = (props: any) => {
   const [isLogin, setIsLogin] = useState(false);
+  const testmodification = "";
   const cookies = new Cookies();
   let user = cookies.get("token");
   useEffect(() => {
