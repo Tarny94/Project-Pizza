@@ -37,43 +37,43 @@
   }
  
 
-  .select-language {
+  // .select-language {
     
-    color: $usual_100;
-    cursor: pointer;
-    margin-right: 8%;
-    display: flex;
-    justify-content: start;
-    font-size: 17px;
-    padding: 10px 0;
-    transition: 0.7s ease;
-    &:hover{
+  //   color: $usual_100;
+  //   cursor: pointer;
+  //   margin-right: 8%;
+  //   display: flex;
+  //   justify-content: start;
+  //   font-size: 17px;
+  //   padding: 10px 0;
+  //   transition: 0.7s ease;
+  //   &:hover{
    
-      transition: 0.7s ease;
-    }
-    .lang-button {
-      &:hover{
-        background: $orange_200;
-        transition: 0.7s ease;
-      }
-    }
-  }
+  //     transition: 0.7s ease;
+  //   }
+  //   .lang-button {
+  //     &:hover{
+  //       background: $orange_200;
+  //       transition: 0.7s ease;
+  //     }
+  //   }
+  // }
   
-  .selected-language{
-    margin-top: 1px;
-    margin-right: 7px;
+  // .selected-language{
+  //   margin-top: 1px;
+  //   margin-right: 7px;
     
-  }
-  .choose-language {
-    position: absolute;
+  // }
+  // .choose-language {
+  //   position: absolute;
     
-    margin: 35px auto;
-    transition: 0.6s ease;
-    text-align: center;
-    width: 7%;
-    background: $usual_800;
-    border-radius: 5%;
-  }
+  //   margin: 35px auto;
+  //   transition: 0.6s ease;
+  //   text-align: center;
+  //   width: 7%;
+  //   background: $usual_800;
+  //   border-radius: 5%;
+  // }
 
   
   @media screen and (min-width: 1200px) { 
@@ -106,9 +106,9 @@
   }
     @media screen and (max-width: 1200px) {
       
-        .select-language {
-          margin-right: 0;
-        }
+        // .select-language {
+        //   margin-right: 0;
+        // }
         
         .acces-filters{
           display: none;

@@ -7,20 +7,51 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../Provider";
 
 const Filter = () => {
-  const nav = ["Home", "menu", "About us", "Contact"];
+  const pages = {
+    home: "Home",
+    menu: "menu",
+    about: "About us",
+    contact: "Contact",
+    login: "login",
+  };
   const { isLogin } = useContext(Context);
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
 
   const handleIconMenu = () => {
-    return nav.map((page) => {
-      return <div className="pages">{page.toUpperCase()}</div>;
-    });
+    return (
+      <div className="pages-container">
+        <div className="page-home pages">{pages.home.toUpperCase()}</div>
+        <div className="page-menu pages">{pages.menu.toUpperCase()}</div>
+        <div className="page-about pages">{pages.about.toUpperCase()}</div>
+        <div className="page-contact pages">{pages.contact.toUpperCase()}</div>
+        {!isLogin ? (
+          <div className="page-home pages">
+            <span
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              {pages.login.toUpperCase()}
+            </span>
+          </div>
+        ) : (
+          <Logout className="page-contact pages" />
+        )}
+      </div>
+    );
   };
   return (
     <div className="container">
       <div className="filter-container">
-        <h1 className="filter-title">PIZZA</h1>
+        <h1
+          className="filter-title"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          PIZZA
+        </h1>
 
         <IconButton
           className="icon-menu"
@@ -38,10 +69,55 @@ const Filter = () => {
         >
           <MenuIcon />
         </IconButton>
-        {nav.map((item) => {
-          return <div className="acces-filters">{item.toUpperCase()}</div>;
-        })}
-        <div className="acces-filters">
+        <div
+          className="acces-filters"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <div className="page-home pages">{pages.home.toUpperCase()}</div>
+        </div>
+        <div
+          className="acces-filters"
+          onClick={() => {
+            navigate("/menu");
+          }}
+        >
+          <div className="page-menu pages">{pages.menu.toUpperCase()}</div>
+        </div>
+        <div
+          className="acces-filters"
+          onClick={() => {
+            navigate("/about");
+          }}
+        >
+          <div className="page-about pages">{pages.about.toUpperCase()}</div>
+        </div>
+        <div
+          className="acces-filters"
+          onClick={() => {
+            navigate("/contact");
+          }}
+        >
+          <div className="page-contact pages">
+            {pages.contact.toUpperCase()}
+          </div>
+        </div>
+        <div
+          className="acces-filters"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          {!isLogin ? (
+            <div className="page-login pages">
+              <span>{pages.login.toUpperCase()}</span>
+            </div>
+          ) : (
+            <Logout className="page-contact pages" />
+          )}
+        </div>
+        {/* <div className="acces-filters">
           {!isLogin ? (
             <div>
               <span
@@ -54,11 +130,11 @@ const Filter = () => {
               </span>
             </div>
           ) : (
-            <Logout />
+            <Logout className={"page-menu pages"} />
           )}
-        </div>
+        </div> */}
       </div>
-      <div className="pages-container">{click ? handleIconMenu() : ""}</div>
+      {click ? handleIconMenu() : ""}
     </div>
   );
 };

@@ -9,6 +9,7 @@ import Filter from "./Filter/Filter";
 import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
 import { Provider } from "./Provider";
+import Contact from "./Contact/Contact";
 
 const Navigation = () => {
   return (
@@ -18,6 +19,7 @@ const Navigation = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
