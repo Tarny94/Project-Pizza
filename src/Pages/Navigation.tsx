@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Login from "./Login/Login";
+import Login from "./Authentication/Login";
 import Register from "./Register/Register";
 import HomePage from ".//HomePage/HomePage";
 import NotFound from "./NotFound/NotFound";
@@ -8,10 +8,11 @@ import Terms from "./Terms";
 import Filter from "./Filter/Filter";
 import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
+import { Provider } from "./Provider";
 
 const Navigation = () => {
   return (
-    <>
+    <Provider>
       <Filter />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -22,7 +23,7 @@ const Navigation = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </Provider>
   );
 };
 

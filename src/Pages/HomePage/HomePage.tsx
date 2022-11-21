@@ -4,6 +4,7 @@ import Button from "../../Design/Button";
 import AboutUs from "../AboutUs/AboutUs";
 import Contact from "../Contact/Contact";
 
+
 const HomePage = () => {
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import "./login.scss";
@@ -6,8 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
+import Cookies from "universal-cookie";
+import { Context } from "../Provider";
 
 const Login = () => {
+  const { setIsLogin } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");
@@ -15,9 +18,25 @@ const Login = () => {
   const [fail, setFail] = useState(false);
 
   const navigate = useNavigate();
+  const cookies = new Cookies();
   const loginUser = {
     email,
     password,
+  };
+
+  const handleSuccesLogin = (res: any) => {
+    setFail(false);
+    setResponse("");
+    setOpen(true);
+    setIsLogin(true);
+    cookies.set("token", {
+      _id: res.data.user._id,
+      token: res.data.user.token,
+    });
+    console.log(res);
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   const authentificate = async () => {
@@ -25,13 +44,7 @@ const Login = () => {
     axios
       .post(getApiUrl("login"), loginUser)
       .then((res) => {
-        setFail(false);
-        setResponse("");
-        setOpen(true);
-
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
+        handleSuccesLogin(res);
       })
       .catch((e) => {
         setFail(true);
