@@ -2,7 +2,7 @@
 
 .contact-container{
   width: 100%;
-  height: 100vh;
+  
   display: flex;
   justify-content: center;
   text-align: center;
@@ -13,6 +13,7 @@
 .contact-elemnts{
   width: 60%;
   margin: 0 auto;
+  margin-top: 15%;
   .contact-title {
     margin: 3% auto 2% auto;
     padding-bottom: 1.5%;
@@ -23,6 +24,7 @@
     transition: 0.5s ease;
     .title-name{
       width:100% ;
+      
       margin: 0 auto;
      
     }
