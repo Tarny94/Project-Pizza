@@ -30,7 +30,8 @@ export const Provider = (props: any) => {
     }
     setIsLoggedIn(true);
   }, [user.token]);
-
+  console.log(isLoggedIn);
+  
   return (
     <Context.Provider
       value={{

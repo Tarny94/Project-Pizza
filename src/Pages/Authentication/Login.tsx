@@ -34,9 +34,7 @@ const Login = () => {
       _id: res.data.user._id,
       token: res.data.user.token,
     });
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    navigate("/");
   };
 
   const authentificate = async () => {
