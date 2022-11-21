@@ -9,7 +9,7 @@ type iProp = {
 };
 
 const Logout = ({ className }: iProp) => {
-  const { setIsLogin } = useContext(Context);
+  const { setIsLoggedIn } = useContext(Context);
   const cookies = new Cookies();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Logout = ({ className }: iProp) => {
       className={className}
       onClick={() => {
         cookies.set("token", { token: undefined });
-        setIsLogin(false);
+        setIsLoggedIn(false);
         navigate("/login");
       }}
     >

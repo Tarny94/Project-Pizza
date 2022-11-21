@@ -5,11 +5,11 @@ const initialState = {
   category: "",
   query: "",
   loading: true,
-  isLogin: false,
+  isLoggedIn: false,
   user: "",
 
   setUser: useState,
-  setIsLogin: useState,
+  setIsLoggedIn: useState,
   setCategory: () => {},
   setQuery: () => {},
   setLoading: () => {},
@@ -18,23 +18,24 @@ const initialState = {
 export const Context = createContext(initialState);
 
 export const Provider = (props: any) => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const cookies = new Cookies();
   let user = cookies.get("token");
   useEffect(() => {
     let token = JSON.stringify(user.token);
 
     if (!token) {
-      return setIsLogin(false);
+      return setIsLoggedIn(false);
     }
-    setIsLogin(true);
+    setIsLoggedIn(true);
   }, [user.token]);
 
   return (
     <Context.Provider
       value={{
-        isLogin,
-        setIsLogin,
+        isLoggedIn,
+        setIsLoggedIn,
       }}
       {...props}
     />
