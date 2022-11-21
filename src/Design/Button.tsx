@@ -1,31 +1,32 @@
 import React from "react";
+
 import "../Styles/button.scss";
 
 type iProp = {
   title: string;
-  event: any;
-  disabled: boolean;
-  widths: number | undefined;
-  highs: number | undefined;
-  className: string;
+  onClick: any;
+  disabled?: boolean;
+  width?: number;
+  height?: number;
+  className?: string;
 };
 
 const Button = ({
   className,
   title,
-  event,
+  onClick,
   disabled,
-  widths,
-  highs,
+  width,
+  height,
 }: iProp) => {
   return (
     <button
       className={className}
-      onClick={event}
+      onClick={onClick}
       disabled={disabled}
       style={{
-        width: widths,
-        height: highs,
+        width: width,
+        height: height,
       }}
     >
       {title}

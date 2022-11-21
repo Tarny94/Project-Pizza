@@ -60,8 +60,7 @@ const AboutUs = () => {
           color="warning"
           className="about-icon"
           fontSize="large"
-          titleAccess="
-          Oven pizza"
+          titleAccess="Oven pizza"
         />
         <MenuBookIcon
           color="warning"

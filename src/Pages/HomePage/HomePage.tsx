@@ -19,18 +19,18 @@ const HomePage = () => {
               <Button
                 className="button-intro"
                 title={"ORDER NOW"}
-                event={undefined}
+                onClick={undefined}
                 disabled={false}
-                widths={200}
-                highs={50}
+                width={200}
+                height={50}
               />
               <Button
                 className="button-intro"
                 title={"CONTACT US"}
-                event={undefined}
+                onClick={undefined}
                 disabled={false}
-                widths={200}
-                highs={50}
+                width={200}
+                height={50}
               />
             </div>
           </div>

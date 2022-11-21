@@ -95,7 +95,7 @@
       
         background: linear-gradient(to left,$orange_200  55%, $usual_800 70%) right;
         background-size: 200% 100%;
-        transition: 1s ease; 
+        transition: 0.5s ease; 
       }
     }  
    
@@ -116,10 +116,10 @@
   
         .icon-menu{
           color: $usual_200;
-          transition: 0.7s ease;
+          transition: 0.5s ease;
           &:hover {
             margin-bottom: 10px;
-            transition: 0.7s ease;
+            transition: 0.5s ease;
         }
       }
     }  

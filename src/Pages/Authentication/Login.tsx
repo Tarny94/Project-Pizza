@@ -59,13 +59,13 @@ const Login = () => {
         <h1 className="login-title">Sign in</h1>
         <Input
           placeholder={"EMAIL"}
-          title={"Email is require"}
+          title={"Email is required"}
           type={"text"}
           setValue={setEmail}
         />
         <Input
           placeholder={"PASSWORD"}
-          title={"Password is require"}
+          title={"Password is required"}
           type={"password"}
           setValue={setPassword}
         />
@@ -81,12 +81,12 @@ const Login = () => {
           <Button
             className="button-field"
             title={"Authenticate"}
-            event={() => {
+            onClick={() => {
               authentificate();
             }}
             disabled={false}
-            widths={undefined}
-            highs={undefined}
+            width={undefined}
+            height={undefined}
           />
           <Snackbar open={open} setOpen={setOpen} fail={fail} />
         </div>

@@ -6,8 +6,7 @@ import { getApiUrl } from "../../Api/api";
 import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -108,12 +107,12 @@ const Register = () => {
         <Button
           className={!terms ? "registre-button-disabled" : "button-field"}
           title={"SUBMIT"}
-          event={() => {
+          onClick={() => {
             handleSubmit();
           }}
           disabled={!terms ? true : false}
-          widths={undefined}
-          highs={undefined}
+          width={undefined}
+          height={undefined}
         />
         <Snackbar open={open} setOpen={setOpen} fail={fail} />
       </div>
