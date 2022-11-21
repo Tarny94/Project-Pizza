@@ -1,0 +1,85 @@
+@import "../../Styles/vars";
+
+
+
+.home-container{
+ 
+  width: 100%;
+ 
+  .home-image{
+    height: 100vh;
+    background-image: url( "../../Images/pizza6.jpg");
+    //linear-gradient( rgba(50, 50, 50, 0.5), rgba(0, 0, 0, 0.5) ),
+    background-size: cover;
+    background-position: top ;
+    transition: 0.8s;
+ 
+  }
+  .intro-container{
+    margin: 0 10%;
+    width: 30%;
+    color: $usual_200;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    flex-direction: column;
+    animation-name: chany;
+    animation-duration: 1.5s;
+   
+  }
+  @keyframes chany {
+    from {
+      margin-left: 0;
+      opacity: 0;
+    }
+    to {
+      margin-left: 10%;
+      opacity: 1;
+    }
+  }
+  .intro-title{
+    font-size: 600%;
+    color: $orange_100;
+    font-family:cursive;
+    letter-spacing: 14px;
+    transform: skew(10deg, 10deg);
+  
+  }
+  .intro-description{
+    font-weight: bold;
+    margin-top: 13%;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 23px;
+    color: $usual_300;
+ 
+  }
+  .intro-buttons{
+ 
+  
+  } 
+}
+
+@media only screen and (max-width: 900px) {
+.home-container{
+
+  .intro-container{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    animation: none;
+      .intro-title{
+        margin:0 auto;
+       transform: none;
+        font-size: 500%;
+      }
+     .intro-description{
+      
+      }
+    }
+  }
+} 
+
+

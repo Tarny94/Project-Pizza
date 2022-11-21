@@ -1,21 +1,33 @@
 import React from "react";
+
 import "../Styles/button.scss";
 
 type iProp = {
   title: string;
-  event: any;
-  terms: boolean;
-  width: number | undefined;
-  high: number | undefined;
+  onClick: any;
+  disabled?: boolean;
+  width?: number;
+  height?: number;
+  className?: string;
 };
 
-const Button = ({ title, event, terms, width, high }: iProp) => {
+const Button = ({
+  className,
+  title,
+  onClick,
+  disabled,
+  width,
+  height,
+}: iProp) => {
   return (
     <button
-      className={!terms ? "registre-button-disabled" : "button-field"}
-      onClick={terms ? event : undefined}
-      disabled={!terms ? true : false}
-      style={{ width: width, height: high }}
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        width: width,
+        height: height,
+      }}
     >
       {title}
     </button>

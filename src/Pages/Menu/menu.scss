@@ -1,0 +1,12 @@
+@import "../../Styles/vars";
+
+.menu-container{
+  width: 100%;
+  height: 100vh;
+  .menu-background{
+   height: 100%;
+    background-image: url("../../Images/menu_pizza.jpg");
+    background-size: cover;
+    background-position: top ;
+  }
+}

@@ -7,6 +7,7 @@ import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 
+
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,69 +50,72 @@ const Register = () => {
   };
 
   return (
-    <div className="registration-container">
-      <h1 className="registration-title">CREATE AN ACCOUNT</h1>
+    <div className="register-app-container">
+      <div className="registration-container">
+        <h1 className="registration-title">CREATE AN ACCOUNT</h1>
 
-      <Input
-        placeholder={"FULL NAME *"}
-        title={"Name is require"}
-        type={""}
-        setValue={setFullName}
-      />
-      <Input
-        placeholder="ADDRES *"
-        title={"Address is require"}
-        type={""}
-        setValue={setAddress}
-      ></Input>
-      <Input
-        placeholder="PHONE"
-        title={"Phone is not require"}
-        type={""}
-        setValue={setPhone}
-      ></Input>
-      <Input
-        placeholder="EMAIL *"
-        title={"Email is require"}
-        type={""}
-        setValue={setEmail}
-      ></Input>
-      <Input
-        placeholder="PASSWORD *"
-        type="password"
-        title={"Password is require"}
-        setValue={setPassword}
-      ></Input>
-      <div className="response-field">{response ? response : ""}</div>
-      <div className="term-cont-field">
-        <p
-          className="term-cont"
+        <Input
+          placeholder={"FULL NAME *"}
+          title={"Name is require"}
+          type={""}
+          setValue={setFullName}
+        />
+        <Input
+          placeholder="ADDRES *"
+          title={"Address is require"}
+          type={""}
+          setValue={setAddress}
+        ></Input>
+        <Input
+          placeholder="PHONE"
+          title={"Phone is not require"}
+          type={""}
+          setValue={setPhone}
+        ></Input>
+        <Input
+          placeholder="EMAIL *"
+          title={"Email is require"}
+          type={""}
+          setValue={setEmail}
+        ></Input>
+        <Input
+          placeholder="PASSWORD *"
+          type="password"
+          title={"Password is require"}
+          setValue={setPassword}
+        ></Input>
+        <div className="response-field">{response ? response : ""}</div>
+        <div className="term-cont-field">
+          <p
+            className="term-cont"
+            onClick={() => {
+              if (!terms) setTerms(true);
+              else setTerms(false);
+            }}
+          >
+            {" "}
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              value="terms"
+              checked={terms}
+            ></input>
+            <label htmlFor="terms"></label>I am agree with terms and condition
+          </p>
+        </div>
+        <Button
+          className={!terms ? "registre-button-disabled" : "button-field"}
+          title={"SUBMIT"}
           onClick={() => {
-            if (!terms) setTerms(true);
-            else setTerms(false);
+            handleSubmit();
           }}
-        >
-          {" "}
-          <input
-            type="checkbox"
-            id="terms"
-            name="terms"
-            value="terms"
-            checked={terms}
-          ></input>
-          <label htmlFor="terms"></label>I am agree with terms and condition
-        </p>
+          disabled={!terms ? true : false}
+          width={undefined}
+          height={undefined}
+        />
+        <Snackbar open={open} setOpen={setOpen} fail={fail} />
       </div>
-      <Button
-        title={"SUBMIT"}
-        event={() => {
-          handleSubmit();
-        }}
-        terms={terms}
-        width={undefined}
-        high={undefined}
-      />
-      <Snackbar open={open} setOpen={setOpen} fail={fail} />
     </div>
   );
 };
