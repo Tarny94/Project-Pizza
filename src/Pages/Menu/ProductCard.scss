@@ -16,7 +16,7 @@
     .card-components{
      
       .card-description{
-        visibility: visible;
+     
         animation-name: description;
         animation-duration: 1.5s;
       }
@@ -58,12 +58,11 @@
       -webkit-box-orient: vertical;
       font-family:sans-serif;
       border-bottom: 0.5px solid $usual_400;
-      font-size: 110%;
       text-decoration:dashed;
       text-align:inherit;
       color: $usual_600;
       height: 61px;
-      visibility: hidden;
+  
 
     }
   }
