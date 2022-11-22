@@ -9,6 +9,7 @@ type iProp = {
   width?: number;
   height?: number;
   className?: string;
+  onKeyDown?: any;
 };
 
 const Button = ({
@@ -18,6 +19,7 @@ const Button = ({
   disabled,
   width,
   height,
+  onKeyDown,
 }: iProp) => {
   return (
     <button
@@ -28,6 +30,7 @@ const Button = ({
         width: width,
         height: height,
       }}
+      onKeyDown={onKeyDown}
     >
       {title}
     </button>
