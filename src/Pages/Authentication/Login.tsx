@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
-import { setCoockie } from "../../Util/Cookies/Coockie";
+import { setTokenCoockie } from "../../Util/Cookies/Coockie";
 import { Context } from "../Provider";
 import "./Login.scss";
 
@@ -25,7 +25,10 @@ const Login = () => {
 
   const handleSuccesLogin = (res: any) => {
     setFail(false);
-    setCoockie(res);
+    setTokenCoockie({
+      _id: res.data.user._id,
+      token: res.data.user.token,
+    });
     setOpen(true);
     setIsLoggedIn(true);
     setTimeout(() => {

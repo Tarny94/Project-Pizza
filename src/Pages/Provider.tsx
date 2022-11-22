@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getCoockie } from "../Util/Cookies/Coockie";
+import { getTokenCoockie } from "../Util/Cookies/Coockie";
 
 const initialState = {
   category: "",
@@ -19,10 +19,11 @@ export const Context = createContext(initialState);
 
 export const Provider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  let user = getCoockie();
+  let user = getTokenCoockie();
 
   useEffect(() => {
     let token = JSON.stringify(user.token);
+
     if (!token) {
       return setIsLoggedIn(false);
     }
