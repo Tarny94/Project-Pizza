@@ -25,9 +25,14 @@ const Login = () => {
     password,
   };
 
+  onkeydown = function (e) {
+    if (e.key === "Enter") {
+      !open && authentificate();
+    }
+  };
+
   const handleSuccesLogin = (res: any) => {
     setFail(false);
-
     setOpen(true);
     setIsLoggedIn(true);
     cookies.set("token", {
@@ -87,11 +92,6 @@ const Login = () => {
             disabled={false}
             width={undefined}
             height={undefined}
-            onKeyDown={(event: any) => {
-              if (event.key === "Enter") {
-                authentificate();
-              }
-            }}
           />
           <Snackbar open={open} setOpen={setOpen} fail={fail} />
         </div>
