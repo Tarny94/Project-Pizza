@@ -10,3 +10,7 @@ export const setCoockie = (res: any) => {
     token: res.data.user.token,
   });
 };
+
+export const getCoockie = () => {
+  return coockie.get(coockieKey);
+};
