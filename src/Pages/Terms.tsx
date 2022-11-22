@@ -24,7 +24,7 @@ const Terms = () => {
       <h3
         onClick={(e) => {
           e.preventDefault();
-          navigate("/registre");
+          navigate("/");
         }}
         style={{ cursor: "pointer" }}
       >

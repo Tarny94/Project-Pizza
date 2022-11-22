@@ -6,6 +6,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import { useNavigate } from "react-router-dom";
 
 type iProp = {
   title: string;
@@ -25,6 +26,7 @@ const contactInfo: iProp = {
 };
 
 const Contact = () => {
+  const navigate = useNavigate();
   return (
     <div className="contact-container">
       <div className="contact-elemnts">
@@ -41,7 +43,14 @@ const Contact = () => {
           </div>
         </div>
         <div className="contact-terms">
-          <div className="contact-terms-name">Terms and conditions</div>
+          <div
+            className="contact-terms-name"
+            onClick={() => {
+              navigate("/terms");
+            }}
+          >
+            Terms and conditions
+          </div>
         </div>
         <div className="contact-data">
           <div className="contact-data-title">CONTACT</div>
