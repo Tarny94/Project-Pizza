@@ -24,7 +24,6 @@ export const Provider = (props: any) => {
   let user = cookies.get("token");
   useEffect(() => {
     let token = JSON.stringify(user.token);
-
     if (!token) {
       return setIsLoggedIn(false);
     }
