@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Context } from "../Provider";
 import { useNavigate } from "react-router-dom";
 import "../Header/Header.scss";
-import { setTokenCoockie } from "../../Util/Cookies/Coockie";
+import { setCoockie } from "../../Util/Cookies/Coockie";
+import { tokenKey } from "../../Constant";
 
 type iProp = {
   className?: string;
@@ -13,7 +14,7 @@ const Logout = ({ className }: iProp) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setTokenCoockie({ token: undefined });
+    setCoockie(tokenKey, { token: undefined });
     setIsLoggedIn(false);
     navigate("/login");
   };
