@@ -95,7 +95,7 @@ const Register = () => {
               value="terms"
               checked={terms}
             ></input>
-            <label htmlFor="terms"></label>I am agree with terms and condition
+            <label htmlFor="terms"></label> I agree with terms and condition
           </p>
         </div>
         <Button
