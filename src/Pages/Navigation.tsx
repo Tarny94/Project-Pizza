@@ -9,7 +9,7 @@ import Header from "./Header/Header";
 import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
-import ProtectedRoutes from "./ProtectedRoutes";
+import PublicRoutes from "./PublicRoutes";
 
 const Navigation = () => {
   return (
@@ -23,9 +23,9 @@ const Navigation = () => {
         <Route
           path="/login"
           element={
-            <ProtectedRoutes>
+            <PublicRoutes>
               <Login />
-            </ProtectedRoutes>
+            </PublicRoutes>
           }
         />
         <Route path="/register" element={<Register />} />
