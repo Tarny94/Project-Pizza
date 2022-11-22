@@ -87,6 +87,11 @@ const Login = () => {
             disabled={false}
             width={undefined}
             height={undefined}
+            onKeyDown={(event: any) => {
+              if (event.key === "Enter") {
+                authentificate();
+              }
+            }}
           />
           <Snackbar open={open} setOpen={setOpen} fail={fail} />
         </div>
