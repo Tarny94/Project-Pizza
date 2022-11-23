@@ -7,6 +7,7 @@ import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 import "./Registration.scss";
 
+
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,6 +29,11 @@ const Register = () => {
     password,
   };
 
+  onkeydown = function (e: any) {
+    if (e.key === "Enter") {
+      terms && handleSubmit();
+    }
+  };
   const handleSubmit = async () => {
     setResponse("");
     await axios
@@ -36,6 +42,7 @@ const Register = () => {
         setFail(false);
         setResponse("");
         setOpen(true);
+        setTerms(false);
         setTimeout(() => {
           navigate("/login");
         }, 1000);
@@ -44,7 +51,6 @@ const Register = () => {
         setFail(true);
         setOpen(true);
         setResponse(error.response.data.error);
-        console.log(error);
       });
   };
 
@@ -95,7 +101,7 @@ const Register = () => {
               value="terms"
               checked={terms}
             ></input>
-            <label htmlFor="terms"></label>I am agree with terms and condition
+            <label htmlFor="terms"></label> I agree with terms and condition
           </p>
         </div>
         <Button

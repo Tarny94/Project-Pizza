@@ -22,7 +22,7 @@ const Header = () => {
     return (
       <div className="pages-container">
         <div
-          className="page-home pages"
+          className="page-home page"
           onClick={() => {
             navigate("/");
           }}
@@ -30,7 +30,7 @@ const Header = () => {
           {pages.home.toUpperCase()}
         </div>
         <div
-          className="page-menu pages"
+          className="page-menu page"
           onClick={() => {
             navigate("/menu");
           }}
@@ -38,7 +38,7 @@ const Header = () => {
           {pages.menu.toUpperCase()}
         </div>
         <div
-          className="page-about pages"
+          className="page-about page"
           onClick={() => {
             navigate("/about");
           }}
@@ -46,7 +46,7 @@ const Header = () => {
           {pages.about.toUpperCase()}
         </div>
         <div
-          className="page-contact pages"
+          className="page-contact page"
           onClick={() => {
             navigate("/contact");
           }}
@@ -54,7 +54,7 @@ const Header = () => {
           {pages.contact.toUpperCase()}
         </div>
         {!isLoggedIn ? (
-          <div className="page-home pages">
+          <div className="page-home page">
             <span
               onClick={() => {
                 navigate("/login");
@@ -64,16 +64,17 @@ const Header = () => {
             </span>
           </div>
         ) : (
-          <Logout className="page-contact pages" />
+          <Logout className="page-contact page" />
         )}
       </div>
     );
   };
+
   return (
-    <div className="container">
-      <div className="filter-container">
+    <div className="header-app-container">
+      <div className="header-container">
         <h1
-          className="filter-title"
+          className="header-title"
           onClick={() => {
             navigate("/");
           }}
@@ -97,70 +98,56 @@ const Header = () => {
         >
           <MenuIcon />
         </IconButton>
-        <div
-          className="acces-filters"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          <div className="page-home pages">{pages.home.toUpperCase()}</div>
-        </div>
-        <div
-          className="acces-filters"
-          onClick={() => {
-            navigate("/menu");
-          }}
-        >
-          <div className="page-menu pages">{pages.menu.toUpperCase()}</div>
-        </div>
-        <div
-          className="acces-filters"
-          onClick={() => {
-            navigate("/about");
-          }}
-        >
-          <div className="page-about pages">{pages.about.toUpperCase()}</div>
-        </div>
-        <div
-          className="acces-filters"
-          onClick={() => {
-            navigate("/contact");
-          }}
-        >
-          <div className="page-contact pages">
+        <div className="acces-header">
+          <div
+            className="page-home page-header"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            {pages.home.toUpperCase()}
+          </div>
+
+          <div
+            className="page-menu page-header"
+            onClick={() => {
+              navigate("/menu");
+            }}
+          >
+            {pages.menu.toUpperCase()}
+          </div>
+
+          <div
+            className="page-about page-header"
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            {pages.about.toUpperCase()}
+          </div>
+
+          <div
+            className="page-contact page-header"
+            onClick={() => {
+              navigate("/contact");
+            }}
+          >
             {pages.contact.toUpperCase()}
           </div>
-        </div>
-        <div
-          className="acces-filters"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
+
           {!isLoggedIn ? (
-            <div className="page-login pages">
+            <div
+              className="page-login page-header"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
               <span>{pages.login.toUpperCase()}</span>
             </div>
           ) : (
-            <Logout className="page-contact pages" />
+            <Logout className="page-contact page-header" />
           )}
         </div>
-        {/* <div className="acces-filters">
-          {!isLogin ? (
-            <div>
-              <span
-                onClick={() => {
-                  navigate("/login");
-                }}
-              >
-                {" "}
-                LOGIN
-              </span>
-            </div>
-          ) : (
-            <Logout className={"page-menu pages"} />
-          )}
-        </div> */}
       </div>
       {click ? handleIconMenu() : ""}
     </div>

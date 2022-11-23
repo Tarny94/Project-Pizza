@@ -25,9 +25,14 @@ const Login = () => {
     password,
   };
 
+  onkeydown = function (e) {
+    if (e.key === "Enter") {
+      !open && authentificate();
+    }
+  };
+
   const handleSuccesLogin = (res: any) => {
     setFail(false);
-
     setOpen(true);
     setIsLoggedIn(true);
     cookies.set("token", {

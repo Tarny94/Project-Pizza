@@ -2,10 +2,8 @@
 
 .page-menu-container{
   width: 100%;
- 
   background-color: $usual_100;
   
- 
   .menu-container{
       width: 100%;
       min-height: 100vh;
@@ -15,11 +13,9 @@
       flex-direction: column;
       
     .menu-title-decriptions{ 
-    
       margin: 0 auto;
       margin-top: 9%;
       width: 50%;
-      border: 1px solid $usual_800;
       border-radius: 10px ;
       box-shadow: 5px 5px 15px ;
       color: $usual_700;
@@ -35,7 +31,6 @@
         font-family: cursive;
         padding: 0px 2% 1% 2%;
         font-style: oblique;
-  
       }
     }
     .menu-with-dish{
