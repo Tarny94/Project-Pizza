@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Input from "../../Design/Input";
 import Button from "../../Design/Button";
 import "../Admin/Products.scss";
+import { getApiUrl } from "../../Api/api";
+import axios from "axios";
 
 const AddProduct = () => {
   const [image, setImage] = useState("");
@@ -16,6 +18,14 @@ const AddProduct = () => {
     description,
     price,
     discount,
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post(getApiUrl("admin/add"), product);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -33,7 +43,9 @@ const AddProduct = () => {
           <Button
             className="button-field"
             title={"SUBMIT"}
-            onClick={undefined}
+            onClick={() => {
+              handleSubmit();
+            }}
           />
         </div>
       </div>
