@@ -10,6 +10,8 @@ import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
+import ProductControl from "./Admin/ProductsControl";
+import AddProduct from "./Admin/AddProduct";
 
 const Navigation = () => {
   return (
@@ -30,6 +32,8 @@ const Navigation = () => {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/admin" element={<ProductControl />} />
+        <Route path="/admin/add" element={<AddProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
