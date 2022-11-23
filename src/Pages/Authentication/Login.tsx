@@ -7,7 +7,7 @@ import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 import { setCoockie } from "../../Util/Cookies/Coockie";
 import { Context } from "../Provider";
-import { tokenKey } from "../../Constant";
+import { TOKEN_KEY } from "../../Constant";
 import "./Login.scss";
 
 const Login = () => {
@@ -26,7 +26,7 @@ const Login = () => {
 
   const handleSuccesLogin = (res: any) => {
     setFail(false);
-    setCoockie(tokenKey, {
+    setCoockie(TOKEN_KEY, {
       _id: res.data.user._id,
       token: res.data.user.token,
     });

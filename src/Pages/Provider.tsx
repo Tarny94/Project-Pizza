@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCoockie } from "../Util/Cookies/Coockie";
-import { tokenKey } from "../Constant";
+import { TOKEN_KEY } from "../Constant";
 
 const initialState = {
   category: "",
@@ -19,7 +19,7 @@ const initialState = {
 export const Context = createContext(initialState);
 export const Provider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  let user = getCoockie(tokenKey);
+  let user = getCoockie(TOKEN_KEY);
 
   useEffect(() => {
     let token = JSON.stringify(user.token);
