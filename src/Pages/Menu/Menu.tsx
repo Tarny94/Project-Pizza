@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import "./Menu.scss";
 
 const Menu = () => {
+  useEffect(() => {});
+
   return (
     <div className="page-menu-container">
       <div className="menu-container">
@@ -15,11 +17,13 @@ const Menu = () => {
           </div>
         </div>
         <div className="menu-with-productCards">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard
+            image={""}
+            title={""}
+            description={""}
+            price={0}
+            discount={0}
+          />
         </div>
       </div>
     </div>

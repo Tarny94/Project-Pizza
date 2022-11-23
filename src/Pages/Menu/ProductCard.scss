@@ -29,7 +29,7 @@
       border-radius: 10px;
       width: 100%;
       height: 190px;
-      background-image: url("https://pizzaka.ro/wp-content/uploads/2018/04/PIZZA-CAPRICIOSA-PRET-16_21_35-LEI-.jpg");
+      // background-image: url("https://pizzaka.ro/wp-content/uploads/2018/04/PIZZA-CAPRICIOSA-PRET-16_21_35-LEI-.jpg");
       background-size: 100% 100%;
       background-position: center;
       transition: 0.6s ease;
@@ -40,6 +40,7 @@
       
       .card-title{
         padding: 4px 0;
+        height: 41px;
         font-size: 170%;
         font-weight: lighter;
         color:$usual_800 ;
@@ -51,6 +52,7 @@
       .card-description{
         overflow: hidden;
         text-overflow: ellipsis;
+        height: 62px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
                 line-clamp: 2; 
@@ -60,8 +62,6 @@
         text-decoration:dashed;
         text-align:inherit;
         color: $usual_600;
-        height: 62px;
-    
 
       }
     }

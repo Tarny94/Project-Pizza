@@ -1,27 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import "../Menu/ProductCard.scss";
 
-const ProductCard = () => {
-  const [discount, setDiscount] = useState(true);
+type iProp = {
+  image?: string;
+  title: string;
+  description?: string;
+  price: number;
+  discount?: number;
+};
+
+const ProductCard = ({ image, title, description, price, discount }: iProp) => {
   return (
     <div className="card-component">
       <div className="card-container">
-        <div className="card-image-container"></div>
+        <div
+          className="card-image-container"
+          style={{
+            backgroundImage: `url(${image})`,
+          }}
+        ></div>
         <div className="card-components">
-          <div className="card-title">Pizza Capricioasa</div>
-          <div className="card-description">
-            Pizza made with mozzarella cheese, baked Italian ham, mushrooms,
-            artichokes and tomatoes
-          </div>
+          <div className="card-title">{title}</div>
+          <div className="card-description">{description}</div>
         </div>
         <div className="card-prices-discount">
           {discount ? (
             <>
-              <div className="discount-price">$11.00</div>
-              <div className="normal-price">$14.30</div>
+              <div className="discount-price">{price}</div>
+              <div className="normal-price">{price}</div>
             </>
           ) : (
-            <div className="price">$11</div>
+            <div className="price">{price}</div>
           )}
         </div>
 
