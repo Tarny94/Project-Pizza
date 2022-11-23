@@ -8,24 +8,31 @@ import Terms from "./Terms";
 import Header from "./Header/Header";
 import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
-import { Provider } from "./Provider";
 import Contact from "./Contact/Contact";
+import PublicRoutes from "./PublicRoutes";
 
 const Navigation = () => {
   return (
-    <Provider>
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoutes>
+              <Login />
+            </PublicRoutes>
+          }
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Provider>
+    </>
   );
 };
 
