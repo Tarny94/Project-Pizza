@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import Cookies from "universal-cookie";
 import { Context } from "../Provider";
 import { useNavigate } from "react-router-dom";
 import "../Header/Header.scss";
+import { setCoockie } from "../../Util/Cookies/Coockie";
+import { TOKEN_KEY } from "../../Constant";
 
 type iProp = {
   className?: string;
@@ -10,18 +11,16 @@ type iProp = {
 
 const Logout = ({ className }: iProp) => {
   const { setIsLoggedIn } = useContext(Context);
-  const cookies = new Cookies();
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    setCoockie(TOKEN_KEY, { token: undefined });
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+
   return (
-    <div
-      className={className}
-      onClick={() => {
-        cookies.set("token", { token: undefined });
-        setIsLoggedIn(false);
-        navigate("/login");
-      }}
-    >
+    <div className={className} onClick={handleLogout}>
       LOGOUT
     </div>
   );

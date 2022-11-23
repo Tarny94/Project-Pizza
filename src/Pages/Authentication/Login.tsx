@@ -4,9 +4,11 @@ import { getApiUrl } from "../../Api/api";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
-import Cookies from "universal-cookie";
+import { setCoockie } from "../../Util/Cookies/Coockie";
 import { Context } from "../Provider";
+import { TOKEN_KEY } from "../../Constant";
 import "./Login.scss";
+
 
 const Login = () => {
   const { setIsLoggedIn } = useContext(Context);
@@ -16,7 +18,6 @@ const Login = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-  const cookies = new Cookies();
   const loginUser = {
     email,
     password,
@@ -29,13 +30,13 @@ const Login = () => {
   };
 
   const handleSuccesLogin = (res: any) => {
-    setOpen(true);
-    setIsLoggedIn(true);
-    cookies.set("token", {
+   
+    setCoockie(TOKEN_KEY, {
       _id: res.data.user._id,
       token: res.data.user.token,
     });
-
+    setOpen(true);
+    setIsLoggedIn(true);
     navigate("/");
   };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Dish from "./ProductCard";
+import ProductCard from "./ProductCard";
 import "./Menu.scss";
 
 const Menu = () => {
@@ -14,8 +14,12 @@ const Menu = () => {
             you can visit us at the location.
           </div>
         </div>
-        <div className="menu-with-dish">
-          <Dish />
+        <div className="menu-with-productCards">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </div>
     </div>
