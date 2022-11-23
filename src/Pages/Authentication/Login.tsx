@@ -24,6 +24,12 @@ const Login = () => {
     password,
   };
 
+  onkeydown = function (e) {
+    if (e.key === "Enter") {
+      !open && authentificate();
+    }
+  };
+
   const handleSuccesLogin = (res: any) => {
     setFail(false);
     setCoockie(TOKEN_KEY, {
@@ -32,9 +38,7 @@ const Login = () => {
     });
     setOpen(true);
     setIsLoggedIn(true);
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    navigate("/");
   };
 
   const authentificate = async () => {
