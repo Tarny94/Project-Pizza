@@ -3,7 +3,6 @@
 .page-menu-container{
   width: 100%;
   background-color: $usual_100;
-  
   .menu-container{
       width: 100%;
       min-height: 100vh;
@@ -33,9 +32,36 @@
         font-style: oblique;
       }
     }
-    .menu-with-dish{
+    .menu-with-productCards{
       width: 100%;
       margin: 5% auto;
+      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 22rem);
+      gap:60px
+      ;
+    }
+  }
+}
+@media screen and (max-width: 780px) { 
+  .page-menu-container{
+    .menu-container{
+      .menu-title-decriptions{
+        width: 100%;
+        margin-top: 30%;
+        
+        border-radius: 0;
+
+      }
+      .menu-with-productCards{
+        width: 100%;
+        margin: 5% auto;
+        display: flex;
+        flex-direction: column; 
+        grid-template-columns: repeat(auto-fit, 22rem);
+        gap:60px
+        ;
+      }
     }
   }
 }
