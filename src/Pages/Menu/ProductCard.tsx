@@ -6,12 +6,6 @@ const ProductCard = () => {
   return (
     <div className="card-container">
       <div className="card-image-container"></div>
-      {/* <img
-        src="https://pizzaka.ro/wp-content/uploads/2018/04/PIZZA-CAPRICIOSA-PRET-16_21_35-LEI-.jpg"
-        alt=""
-        width={200}
-        className="card-image"
-      /> */}
       <div className="card-components">
         <div className="card-title">Pizza Capricioasa</div>
         <div className="card-description">

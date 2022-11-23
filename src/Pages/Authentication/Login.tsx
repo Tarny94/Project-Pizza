@@ -22,6 +22,12 @@ const Login = () => {
     password,
   };
 
+  onkeydown = function (e) {
+    if (e.key === "Enter") {
+      !open && authentificate();
+    }
+  };
+
   const handleSuccesLogin = (res: any) => {
     setOpen(true);
     setIsLoggedIn(true);
@@ -29,9 +35,8 @@ const Login = () => {
       _id: res.data.user._id,
       token: res.data.user.token,
     });
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+
+    navigate("/");
   };
 
   const authentificate = async () => {
