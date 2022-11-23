@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Menu/ProductCard.scss";
 
 type iProp = {
@@ -10,6 +10,14 @@ type iProp = {
 };
 
 const ProductCard = ({ image, title, description, price, discount }: iProp) => {
+  const [discountPrice, setDiscountPrice] = useState(NaN);
+
+  useEffect(() => {
+    if (discount) {
+      setDiscountPrice(Math.trunc((price * discount) / 100 + price));
+    }
+  }, [discount, price]);
+
   return (
     <div className="card-component">
       <div className="card-container">
@@ -26,7 +34,7 @@ const ProductCard = ({ image, title, description, price, discount }: iProp) => {
         <div className="card-prices-discount">
           {discount ? (
             <>
-              <div className="discount-price">{price}</div>
+              <div className="discount-price">{discountPrice}</div>
               <div className="normal-price">{price}</div>
             </>
           ) : (

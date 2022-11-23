@@ -1,9 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "./Menu.scss";
+import axios from "axios";
+import { getApiUrl } from "../../Api/api";
+
+type iProp = {
+  image?: string;
+  title: string;
+  description?: string;
+  price: number;
+  discount?: number;
+};
 
 const Menu = () => {
-  useEffect(() => {});
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios
+      .get(getApiUrl("admin/get"))
+      .then((res) => {
+        console.log(res);
+        setProducts(res.data);
+      })
+      .catch((e) => {
+        console.log("Err:", e);
+      });
+  }, []);
 
   return (
     <div className="page-menu-container">
@@ -17,6 +38,17 @@ const Menu = () => {
           </div>
         </div>
         <div className="menu-with-productCards">
+          {products.map((product: iProp) => {
+            return (
+              <ProductCard
+                image={product.image}
+                title={product.title}
+                description={product.description}
+                price={product.price}
+                discount={product.discount}
+              />
+            );
+          })}
           <ProductCard
             image={""}
             title={""}
