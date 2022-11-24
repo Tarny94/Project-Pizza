@@ -1,25 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext} from "react";
 import Input from "../../Design/Input";
 import Button from "../../Design/Button";
 import "../Admin/Products.scss";
 import { getApiUrl } from "../../Api/api";
 import axios from "axios";
+import { Context } from "../Provider";
 
 const AddProduct = () => {
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
-
-  const product = {
-    image,
-    title,
-    description,
-    price,
-    discount,
-  };
-
+  const { setImage, setTitle, setDescription, setPrice, setDiscount, product } =
+    useContext(Context);
   const handleSubmit = async () => {
     try {
       await axios.post(getApiUrl("admin/add"), product);

@@ -8,9 +8,22 @@ const initialState = {
   loading: true,
   isLoggedIn: false,
   user: "",
+  image: "",
+  title: "",
+  description: "",
+  price: 0,
+  discount: 0,
+  product: {},
+  allProducts: [],
 
+  setAllProducts: useState,
   setUser: useState,
   setIsLoggedIn: useState,
+  setImage: useState,
+  setTitle: useState,
+  setDescription: useState,
+  setPrice: useState,
+  setDiscount: useState,
   setCategory: () => {},
   setQuery: () => {},
   setLoading: () => {},
@@ -19,8 +32,22 @@ const initialState = {
 export const Context = createContext(initialState);
 export const Provider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  let user = getCoockie(TOKEN_KEY);
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [allProducts, setAllProducts] = useState([]);
 
+  const product = {
+    image,
+    title,
+    description,
+    price,
+    discount,
+  };
+
+  let user = getCoockie(TOKEN_KEY);
   useEffect(() => {
     let token = JSON.stringify(user.token);
 
@@ -35,6 +62,19 @@ export const Provider = (props: any) => {
       value={{
         isLoggedIn,
         setIsLoggedIn,
+        image,
+        setImage,
+        title,
+        setTitle,
+        description,
+        setDescription,
+        price,
+        setPrice,
+        discount,
+        setDiscount,
+        product,
+        allProducts,
+        setAllProducts,
       }}
       {...props}
     />
