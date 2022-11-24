@@ -18,7 +18,6 @@ const Menu = () => {
     axios
       .get(getApiUrl("admin/get"))
       .then((res) => {
-        console.log(res);
         setProducts(res.data);
       })
       .catch((e) => {
