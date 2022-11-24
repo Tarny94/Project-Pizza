@@ -26,7 +26,8 @@ const Menu = () => {
         console.log("Err:", e);
       });
   }, [setAllProducts]);
-
+  console.log(allProducts);
+  
   return (
     <div className="page-menu-container">
       <div className="menu-container">

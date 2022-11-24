@@ -28,3 +28,26 @@
     }   
   }
 }
+
+.admin-delete{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  text-align: start;
+  .admin-delete-container{
+    margin: 0 auto;
+    width: 80%; 
+    .admin-delete-title{
+      margin: 15% 0;
+    }
+    .admin-delete-product{
+      border-bottom: 1px solid $orange_100;
+      margin-bottom: 5%;
+      .date-delete{
+        margin-right: 2%;
+      }
+    }
+  }
+}

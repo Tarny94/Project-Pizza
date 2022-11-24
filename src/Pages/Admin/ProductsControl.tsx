@@ -24,7 +24,9 @@ const ProductControl = () => {
         <Button
           className="button-field"
           title={"DELETE PRODUCT"}
-          onClick={undefined}
+          onClick={() => {
+            navigate("/admin/delete");
+          }}
         />
       </div>
     </div>

@@ -12,6 +12,7 @@ import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
 import ProductControl from "./Admin/ProductsControl";
 import AddProduct from "./Admin/AddProduct";
+import DeleteProduct from "./Admin/DeleteProduct";
 
 const Navigation = () => {
   return (
@@ -34,6 +35,7 @@ const Navigation = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<ProductControl />} />
         <Route path="/admin/add" element={<AddProduct />} />
+        <Route path="/admin/delete" element={<DeleteProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
