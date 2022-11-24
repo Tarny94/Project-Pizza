@@ -10,6 +10,9 @@
   .product-control-buttons{
     margin: 0 auto;
     width: 700px;
+    .product-subtitle{
+      margin-bottom: 5%;
+    }
   }
 }
 
@@ -34,17 +37,22 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-
   text-align: start;
   .admin-delete-container{
     margin: 0 auto;
     width: 80%; 
     .admin-delete-title{
-      margin: 15% 0;
+      margin: 10% 0;
     }
     .admin-delete-product{
-      border-bottom: 1px solid $orange_100;
-      margin-bottom: 5%;
+      //  box-shadow: 3px 6px 17px  ;
+      border: 0.5px solid $usual_600;
+      border-radius: 10px;
+      margin-bottom: 3%;
+      padding: 3% 0;
+      .edit-button{
+        margin-right: 1%;
+      }
       .date-delete{
         margin-right: 2%;
       }

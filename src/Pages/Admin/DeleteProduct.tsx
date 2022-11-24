@@ -15,7 +15,8 @@ type iProp = {
 const DeleteProduct = () => {
   const { allProducts, setAllProducts } = useContext(Context);
 
-  const getProduct = () => {
+ 
+  useEffect(() => {
     axios
       .get(getApiUrl("admin/get"))
       .then((res) => {
@@ -24,9 +25,6 @@ const DeleteProduct = () => {
       .catch((e) => {
         console.log("Err:", e);
       });
-  };
-  useEffect(() => {
-    getProduct();
   }, [setAllProducts]);
 
   const handleDelete = (id: number) => {
@@ -45,10 +43,11 @@ const DeleteProduct = () => {
   return (
     <div className="admin-delete">
       <div className="admin-delete-container">
-        <h1 className="admin-delete-title">DELETE PRODUCT</h1>
+        <h1 className="admin-delete-title">DELETE & EDIT PRODUCT</h1>
         {allProducts.map((product: iProp, id: number) => {
           return (
             <ol className="admin-delete-product" key={id}>
+              <button className="date_delete edit-button">EDIT</button>
               <button
                 className="date-delete"
                 onClick={() => {
@@ -57,9 +56,10 @@ const DeleteProduct = () => {
               >
                 DELETE
               </button>
-              <span className="date-delete"></span>
-              <span className="date-delete">CODE: {product.pizza_id},</span>
+              <span className="date-delete">Crt. {id + 1}:</span>
               <span className="date-delete">TITLE: {product.title},</span>
+              <span className="date-delete">IMAGE: {product.image},</span>
+
               <span className="date-delete">
                 DESCRIPTION: {product.description},
               </span>
@@ -67,6 +67,7 @@ const DeleteProduct = () => {
               <span className="date-delete">
                 DISCOUNT: {product.discount}%,
               </span>
+              <span className="date-delete">CODE: {product.pizza_id}</span>
             </ol>
           );
         })}

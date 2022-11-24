@@ -34,11 +34,11 @@ const ProductCard = ({ image, title, description, price, discount }: iProp) => {
         <div className="card-prices-discount">
           {discount ? (
             <>
-              <div className="discount-price">{discountPrice}</div>
-              <div className="normal-price">{price}</div>
+              <div className="discount-price">${price}</div>
+              <div className="normal-price">${discountPrice}</div>
             </>
           ) : (
-            <div className="price">{price}</div>
+            <div className="price">${price}</div>
           )}
         </div>
 
