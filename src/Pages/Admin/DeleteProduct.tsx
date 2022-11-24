@@ -2,20 +2,32 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../Provider";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
+import { useNavigate } from "react-router-dom";
+import "../Admin/Products.scss";
+import UpdateProduct from "../Admin/UpdateProduct";
 
 type iProp = {
+  pizza_id: number;
   image?: string;
   title: string;
   description?: string;
   price: number;
   discount?: number;
-  pizza_id: number;
 };
 
 const DeleteProduct = () => {
-  const { allProducts, setAllProducts } = useContext(Context);
+  const {
+    allProducts,
+    setAllProducts,
+    setImage,
+    setTitle,
+    setDescription,
+    setPrice,
+    setDiscount,
+    setPizza_id,
+  } = useContext(Context);
+  const navigate = useNavigate();
 
- 
   useEffect(() => {
     axios
       .get(getApiUrl("admin/get"))
@@ -47,7 +59,22 @@ const DeleteProduct = () => {
         {allProducts.map((product: iProp, id: number) => {
           return (
             <ol className="admin-delete-product" key={id}>
-              <button className="date_delete edit-button">EDIT</button>
+              <button
+                className="date_delete edit-button"
+                onClick={() => {
+                  setPizza_id(product.pizza_id);
+                  setImage(product.image);
+                  setTitle(product.title);
+                  setDescription(product.description);
+                  setPrice(product.price);
+                  setDiscount(product.discount);
+
+                  navigate("/admin/update");
+                }}
+              >
+                EDIT
+              </button>
+
               <button
                 className="date-delete"
                 onClick={() => {
@@ -77,7 +104,4 @@ const DeleteProduct = () => {
 };
 
 export default DeleteProduct;
-function reload() {
-  throw new Error("Function not implemented.");
-}
 

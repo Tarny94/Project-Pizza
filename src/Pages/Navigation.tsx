@@ -13,6 +13,7 @@ import PublicRoutes from "./PublicRoutes";
 import ProductControl from "./Admin/ProductsControl";
 import AddProduct from "./Admin/AddProduct";
 import DeleteProduct from "./Admin/DeleteProduct";
+import UpdateProduct from "./Admin/UpdateProduct";
 
 const Navigation = () => {
   return (
@@ -36,6 +37,7 @@ const Navigation = () => {
         <Route path="/admin" element={<ProductControl />} />
         <Route path="/admin/add" element={<AddProduct />} />
         <Route path="/admin/delete" element={<DeleteProduct />} />
+        <Route path="/admin/update" element={<UpdateProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
