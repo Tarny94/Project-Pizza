@@ -9,12 +9,13 @@ type iProp = {
   description?: string;
   price: number;
   discount?: number;
+  pizza_id: number;
 };
 
 const DeleteProduct = () => {
   const { allProducts, setAllProducts } = useContext(Context);
 
-  useEffect(() => {
+  const getProduct = () => {
     axios
       .get(getApiUrl("admin/get"))
       .then((res) => {
@@ -23,20 +24,41 @@ const DeleteProduct = () => {
       .catch((e) => {
         console.log("Err:", e);
       });
+  };
+  useEffect(() => {
+    getProduct();
   }, [setAllProducts]);
 
-  console.log(allProducts[8]);
+  const handleDelete = (id: number) => {
+    axios
+      .post(getApiUrl("admin/delete"), { id })
+      .then((res) => {
+        if (res) {
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    window.location.reload();
+  };
 
   return (
     <div className="admin-delete">
       <div className="admin-delete-container">
         <h1 className="admin-delete-title">DELETE PRODUCT</h1>
-        {allProducts.map((product: iProp) => {
+        {allProducts.map((product: iProp, id: number) => {
           return (
-            <ol className="admin-delete-product">
-              <button className="date-delete" onClick={() => {}}>
+            <ol className="admin-delete-product" key={id}>
+              <button
+                className="date-delete"
+                onClick={() => {
+                  handleDelete(product.pizza_id);
+                }}
+              >
                 DELETE
               </button>
+              <span className="date-delete"></span>
+              <span className="date-delete">CODE: {product.pizza_id},</span>
               <span className="date-delete">TITLE: {product.title},</span>
               <span className="date-delete">
                 DESCRIPTION: {product.description},
@@ -54,3 +76,7 @@ const DeleteProduct = () => {
 };
 
 export default DeleteProduct;
+function reload() {
+  throw new Error("Function not implemented.");
+}
+
