@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCoockie } from "../Util/Cookies/Coockie";
-import { TOKEN_KEY } from "../Constant";
+import { TOKEN_KEY, ADMIN_KEY } from "../Constant";
 
 const initialState = {
   category: "",
@@ -17,7 +17,9 @@ const initialState = {
   allProducts: [],
   openEditor: false,
   pizza_id: "",
+  isAdminLoggedIn: false,
 
+  setIsAdminLoggedIn: useState,
   setPizza_id: useState,
   setOpenEditor: useState,
   setAllProducts: useState,
@@ -36,6 +38,7 @@ const initialState = {
 export const Context = createContext(initialState);
 export const Provider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [pizza_id, setPizza_id] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -54,8 +57,11 @@ export const Provider = (props: any) => {
   };
 
   let user = getCoockie(TOKEN_KEY);
+  let admin = getCoockie(ADMIN_KEY);
   useEffect(() => {
     let token = JSON.stringify(user.token);
+    // let adminLoggedIn = JSON
+    // if(admin)
 
     if (!token) {
       return setIsLoggedIn(false);
@@ -85,6 +91,8 @@ export const Provider = (props: any) => {
         setOpenEditor,
         pizza_id,
         setPizza_id,
+        isAdminLoggedIn,
+        setIsAdminLoggedIn,
       }}
       {...props}
     />
