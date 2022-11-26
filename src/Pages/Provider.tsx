@@ -58,17 +58,30 @@ export const Provider = (props: any) => {
 
   let user = getCoockie(TOKEN_KEY);
   let admin = getCoockie(ADMIN_KEY);
+  console.log(isAdminLoggedIn);
+  console.log(admin);
+
   useEffect(() => {
     let token = JSON.stringify(user.token);
-    // let adminLoggedIn = JSON
-    // if(admin)
-
     if (!token) {
       return setIsLoggedIn(false);
     }
     setIsLoggedIn(true);
   }, [user.token]);
 
+  useEffect(() => {
+    try {
+      if (admin.loggedIn) {
+        setIsAdminLoggedIn(true);
+      }
+    } catch (e: any) {
+      setIsAdminLoggedIn(false);
+      alert("Coockie expired");
+    }
+  }, [admin]);
+
+  console.log("set", isAdminLoggedIn);
+  
   return (
     <Context.Provider
       value={{

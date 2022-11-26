@@ -10,6 +10,7 @@ import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
+import ProtectedRoutes from "./PrivateRoutes";
 import ProductControl from "./Admin/ProductsControl";
 import AddProduct from "./Admin/AddProduct";
 import DeleteUpdateProduct from "./Admin/DeleteUpdateProduct";
@@ -36,10 +37,38 @@ const Navigation = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
-        <Route path="/admin" element={<ProductControl />} />
-        <Route path="/admin/add" element={<AddProduct />} />
-        <Route path="/admin/delete" element={<DeleteUpdateProduct />} />
-        <Route path="/admin/update" element={<UpdateProduct />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoutes>
+              <ProductControl />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/admin/add"
+          element={
+            <ProtectedRoutes>
+              <AddProduct />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/admin/delete"
+          element={
+            <ProtectedRoutes>
+              <DeleteUpdateProduct />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/admin/update"
+          element={
+            <ProtectedRoutes>
+              <UpdateProduct />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
