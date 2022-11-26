@@ -4,7 +4,6 @@ import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { useNavigate } from "react-router-dom";
 import "../Admin/Products.scss";
-import UpdateProduct from "../Admin/UpdateProduct";
 
 type iProp = {
   pizza_id: number;
@@ -15,7 +14,7 @@ type iProp = {
   discount?: number;
 };
 
-const DeleteProduct = () => {
+const DeleteUpdateProduct = () => {
   const {
     allProducts,
     setAllProducts,
@@ -41,13 +40,12 @@ const DeleteProduct = () => {
 
   const handleDelete = (id: number) => {
     axios
-      .post(getApiUrl("admin/delete"), { id })
+      .delete(getApiUrl(`admin/delete${id}`))
       .then((res) => {
-        if (res) {
-        }
+        alert("Succes");
       })
       .catch((err) => {
-        console.log(err);
+        alert("Fail");
       });
     window.location.reload();
   };
@@ -68,7 +66,6 @@ const DeleteProduct = () => {
                   setDescription(product.description);
                   setPrice(product.price);
                   setDiscount(product.discount);
-
                   navigate("/admin/update");
                 }}
               >
@@ -103,5 +100,4 @@ const DeleteProduct = () => {
   );
 };
 
-export default DeleteProduct;
-
+export default DeleteUpdateProduct;

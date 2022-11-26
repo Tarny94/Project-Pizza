@@ -12,7 +12,7 @@ import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
 import ProductControl from "./Admin/ProductsControl";
 import AddProduct from "./Admin/AddProduct";
-import DeleteProduct from "./Admin/DeleteProduct";
+import DeleteUpdateProduct from "./Admin/DeleteUpdateProduct";
 import UpdateProduct from "./Admin/UpdateProduct";
 
 const Navigation = () => {
@@ -36,7 +36,7 @@ const Navigation = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<ProductControl />} />
         <Route path="/admin/add" element={<AddProduct />} />
-        <Route path="/admin/delete" element={<DeleteProduct />} />
+        <Route path="/admin/delete" element={<DeleteUpdateProduct />} />
         <Route path="/admin/update" element={<UpdateProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

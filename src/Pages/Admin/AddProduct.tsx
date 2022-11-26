@@ -12,8 +12,11 @@ const AddProduct = () => {
   const handleSubmit = async () => {
     try {
       await axios.post(getApiUrl("admin/add"), product);
+      alert("Succes");
     } catch (e) {
+
       console.log(e);
+      alert("Fail");
     }
   };
 
@@ -34,6 +37,7 @@ const AddProduct = () => {
             title={"SUBMIT"}
             onClick={() => {
               handleSubmit();
+              window.location.reload();
             }}
           />
         </div>
