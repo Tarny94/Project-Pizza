@@ -14,6 +14,7 @@ import ProductControl from "./Admin/ProductsControl";
 import AddProduct from "./Admin/AddProduct";
 import DeleteUpdateProduct from "./Admin/DeleteUpdateProduct";
 import UpdateProduct from "./Admin/UpdateProduct";
+import AdminLogin from "./Authentication/AdminLogin";
 
 const Navigation = () => {
   return (
@@ -32,6 +33,7 @@ const Navigation = () => {
             </PublicRoutes>
           }
         />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<ProductControl />} />
