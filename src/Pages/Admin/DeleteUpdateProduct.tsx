@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../Provider";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Admin/Products.scss";
 
 type iProp = {
@@ -27,17 +27,6 @@ const DeleteUpdateProduct = () => {
   } = useContext(Context);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get(getApiUrl("admin/get"))
-      .then((res) => {
-        setAllProducts(res.data);
-      })
-      .catch((e) => {
-        console.log("Err:", e);
-      });
-  }, [setAllProducts]);
-
   const handleDelete = (id: number) => {
     axios
       .delete(getApiUrl(`admin/delete${id}`))
@@ -54,6 +43,7 @@ const DeleteUpdateProduct = () => {
     <div className="admin-delete">
       <div className="admin-delete-container">
         <h1 className="admin-delete-title">DELETE & EDIT PRODUCT</h1>
+        <Link to={"/admin"}>Back</Link>
         {allProducts.map((product: iProp, id: number) => {
           return (
             <ol className="admin-delete-product" key={id}>

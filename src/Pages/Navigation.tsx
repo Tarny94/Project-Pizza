@@ -39,36 +39,17 @@ const Navigation = () => {
         <Route path="/terms" element={<Terms />} />
         <Route
           path="/admin"
-          element={
-            <ProtectedRoutes>
-              <ProductControl />
-            </ProtectedRoutes>
-          }
+          // element={
+          //   <ProtectedRoutes>
+          //     <ProductControl />
+          //   </ProtectedRoutes>
+          // }
+          element={<ProductControl />}
         />
-        <Route
-          path="/admin/add"
-          element={
-            <ProtectedRoutes>
-              <AddProduct />
-            </ProtectedRoutes>
-          }
-        />
-        <Route
-          path="/admin/delete"
-          element={
-            <ProtectedRoutes>
-              <DeleteUpdateProduct />
-            </ProtectedRoutes>
-          }
-        />
-        <Route
-          path="/admin/update"
-          element={
-            <ProtectedRoutes>
-              <UpdateProduct />
-            </ProtectedRoutes>
-          }
-        />
+
+        <Route path="/admin/add" element={<AddProduct />} />
+        <Route path="/admin/delete" element={<DeleteUpdateProduct />} />
+        <Route path="/admin/update" element={<UpdateProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

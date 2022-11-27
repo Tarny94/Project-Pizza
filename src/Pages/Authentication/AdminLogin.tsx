@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
@@ -11,9 +11,21 @@ import { ADMIN_KEY } from "../../Constant";
 import { Context } from "../Provider";
 
 const AdminLogin = () => {
-  const { setIsAdminLoggedIn } = useContext(Context);
+  const { setIsAdminLoggedIn, isAdminLoggedIn } = useContext(Context);
   const [code, setCode] = useState("");
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (isAdminLoggedIn) {
+  //     navigate("/admin");
+  //   }
+  // }, [isAdminLoggedIn, navigate]);
+
+  // onkeydown = function (e: any) {
+  //   if (e.key === "Enter") {
+  //     !isAdminLoggedIn && handleAdminLogin();
+  //   }
+  // };
 
   const handleAdminLogin = () => {
     axios

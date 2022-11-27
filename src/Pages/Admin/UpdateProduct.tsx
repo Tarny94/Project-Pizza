@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../Provider";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
+import { Link } from "react-router-dom";
 
 const UpdateProduct = () => {
   const [updateImage, setUpdateImage] = useState("");
@@ -90,6 +91,7 @@ const UpdateProduct = () => {
           UPDATE PRODUCT
         </button>
       </div>
+      <Link to={"/admin/delete"}>Back</Link>
     </div>
   );
 };

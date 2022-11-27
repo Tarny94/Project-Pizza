@@ -5,6 +5,7 @@ import "../Admin/Products.scss";
 import { getApiUrl } from "../../Api/api";
 import axios from "axios";
 import { Context } from "../Provider";
+import { Link } from "react-router-dom";
 
 const AddProduct = () => {
   const { setImage, setTitle, setDescription, setPrice, setDiscount, product } =
@@ -14,7 +15,6 @@ const AddProduct = () => {
       await axios.post(getApiUrl("admin/add"), product);
       alert("Succes");
     } catch (e) {
-
       console.log(e);
       alert("Fail");
     }
@@ -41,6 +41,7 @@ const AddProduct = () => {
             }}
           />
         </div>
+        <Link to={"/admin"}>Back</Link>
       </div>
     </div>
   );

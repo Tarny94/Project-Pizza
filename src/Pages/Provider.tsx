@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCoockie } from "../Util/Cookies/Coockie";
 import { TOKEN_KEY, ADMIN_KEY } from "../Constant";
+import axios from "axios";
+import { getApiUrl } from "../Api/api";
 
 const initialState = {
   category: "",
@@ -33,6 +35,7 @@ const initialState = {
   setCategory: () => {},
   setQuery: () => {},
   setLoading: () => {},
+  handleDelete: (e: any) => {},
 };
 
 export const Context = createContext(initialState);
@@ -58,8 +61,6 @@ export const Provider = (props: any) => {
 
   let user = getCoockie(TOKEN_KEY);
   let admin = getCoockie(ADMIN_KEY);
-  console.log(isAdminLoggedIn);
-  console.log(admin);
 
   useEffect(() => {
     let token = JSON.stringify(user.token);
@@ -80,8 +81,6 @@ export const Provider = (props: any) => {
     }
   }, [admin]);
 
-  console.log("set", isAdminLoggedIn);
-  
   return (
     <Context.Provider
       value={{
