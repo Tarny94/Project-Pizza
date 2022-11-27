@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCoockie } from "../Util/Cookies/Coockie";
 import { TOKEN_KEY, ADMIN_KEY } from "../Constant";
-import axios from "axios";
-import { getApiUrl } from "../Api/api";
 
 const initialState = {
   category: "",
@@ -35,7 +33,6 @@ const initialState = {
   setCategory: () => {},
   setQuery: () => {},
   setLoading: () => {},
-  handleDelete: (e: any) => {},
 };
 
 export const Context = createContext(initialState);
@@ -60,7 +57,7 @@ export const Provider = (props: any) => {
   };
 
   let user = getCoockie(TOKEN_KEY);
-  let admin = getCoockie(ADMIN_KEY);
+  // let admin = getCoockie(ADMIN_KEY);
 
   useEffect(() => {
     let token = JSON.stringify(user.token);
@@ -70,16 +67,16 @@ export const Provider = (props: any) => {
     setIsLoggedIn(true);
   }, [user.token]);
 
-  useEffect(() => {
-    try {
-      if (admin.loggedIn) {
-        setIsAdminLoggedIn(true);
-      }
-    } catch (e: any) {
-      setIsAdminLoggedIn(false);
-      alert("Coockie expired");
-    }
-  }, [admin]);
+  // useEffect(() => {
+  //   try {
+  //     if (admin.loggedIn) {
+  //       setIsAdminLoggedIn(true);
+  //     }
+  //   } catch (e: any) {
+  //     setIsAdminLoggedIn(false);
+  //     alert("Coockie expired");
+  //   }
+  // }, [admin]);
 
   return (
     <Context.Provider

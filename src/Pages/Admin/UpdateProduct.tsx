@@ -91,7 +91,7 @@ const UpdateProduct = () => {
           UPDATE PRODUCT
         </button>
       </div>
-      <Link to={"/admin/delete"}>Back</Link>
+      <Link to={"/admin"}>Back</Link>
     </div>
   );
 };

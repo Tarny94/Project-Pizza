@@ -28,16 +28,16 @@ const AdminLogin = () => {
   // };
 
   const handleAdminLogin = () => {
-    axios
-      .get(getApiUrl(`admin/login${code}`))
-      .then((res) => {
-        setIsAdminLoggedIn(true);
-        setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: true }, 3600);
-        navigate("/admin");
-      })
-      .catch((e) => {
-        alert("Invalid credential");
-      });
+    // axios
+    //   .get(getApiUrl(`admin/login${code}`))
+    //   .then((res) => {
+    //     setIsAdminLoggedIn(true);
+    //     setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: true }, 333600);
+    //     navigate("/admin");
+    //   })
+    //   .catch((e) => {
+    //     alert("Invalid credential");
+    //   });
   };
   return (
     <div className="admin-login">

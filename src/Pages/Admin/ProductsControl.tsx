@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "../../Design/Button";
 import { useNavigate } from "react-router-dom";
 import "../Admin/Products.scss";
@@ -10,10 +10,19 @@ import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 
 const ProductControl = () => {
-  const { setIsAdminLoggedIn, isAdminLoggedIn, allProducts, setAllProducts } =
-    useContext(Context);
+  const {
+    setIsAdminLoggedIn,
+    allProducts,
+    setAllProducts,
+    setPizza_id,
+    pizza_id,
+    setImage,
+    setTitle,
+    setDescription,
+    setPrice,
+    setDiscount,
+  } = useContext(Context);
   const navigate = useNavigate();
-  console.log(isAdminLoggedIn);
 
   const handleDelete = (id: number) => {
     axios
@@ -26,6 +35,33 @@ const ProductControl = () => {
       });
     window.location.reload();
   };
+
+  const handleEdit = async (id: number) => {
+    await axios
+      .get(getApiUrl(`admin/get${id}`))
+      .then((res) => {
+        const product = res.data;
+        setImage(product[0].image);
+        setTitle(product[0].title);
+        setDescription(product[0].description);
+        setPrice(product[0].price);
+        setDiscount(product[0].discount);
+        console.log(product[0]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    setPizza_id(id);
+    navigate("/admin/update");
+  };
+  useEffect(() => {}, [
+    pizza_id,
+    setDescription,
+    setDiscount,
+    setImage,
+    setPrice,
+    setTitle,
+  ]);
 
   useEffect(() => {
     axios
@@ -52,29 +88,26 @@ const ProductControl = () => {
             navigate("/admin/add");
           }}
         />
-        <Button
-          className="button-field"
-          title={"DELETE & EDIT"}
-          onClick={() => {
-            navigate("/admin/delete");
-          }}
-        />
       </div>
-      <button
-        onClick={() => {
-          setCoockie(ADMIN_KEY, undefined);
-          setIsAdminLoggedIn(false);
-        }}
-        style={{ cursor: "pointer" }}
-      >
-        Log out
-      </button>
+
       <BasicTable
         edit={"Edit"}
         columns={columns}
         row={allProducts}
         onClick={handleDelete}
+        onClick2={handleEdit}
+        setPizza_id={setPizza_id}
+        navigate={navigate}
       />
+      <button
+        onClick={() => {
+          setCoockie(ADMIN_KEY, undefined);
+          setIsAdminLoggedIn(false);
+        }}
+        style={{ cursor: "pointer", marginTop: 20 }}
+      >
+        Log out
+      </button>
     </div>
   );
 };

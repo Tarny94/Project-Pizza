@@ -13,7 +13,6 @@ import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./PrivateRoutes";
 import ProductControl from "./Admin/ProductsControl";
 import AddProduct from "./Admin/AddProduct";
-import DeleteUpdateProduct from "./Admin/DeleteUpdateProduct";
 import UpdateProduct from "./Admin/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
 
@@ -48,7 +47,7 @@ const Navigation = () => {
         />
 
         <Route path="/admin/add" element={<AddProduct />} />
-        <Route path="/admin/delete" element={<DeleteUpdateProduct />} />
+
         <Route path="/admin/update" element={<UpdateProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
