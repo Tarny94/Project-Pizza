@@ -1,5 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
+import Cart from "../Cart/Cart";
 import "./Menu.scss";
 
 const Menu = () => {
@@ -21,6 +22,7 @@ const Menu = () => {
           <ProductCard />
           <ProductCard />
         </div>
+        <Cart />
       </div>
     </div>
   );
