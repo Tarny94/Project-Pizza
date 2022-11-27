@@ -8,10 +8,10 @@
   flex-direction: column;
   text-align: center;
   .product-control-buttons{
-    margin: 7% auto;
+    margin: 80px auto;
     width: 700px;
     .product-subtitle{
-      margin-bottom: 5%;
+      margin-bottom: 30px;
     }
   }
 }
@@ -27,36 +27,8 @@
     margin: 0 auto;
      width: 80%;
     .add-product-title{
-      margin-top: 7%;
+      margin-top: 70px;
     }   
-  }
-}
-
-.admin-delete{
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  .admin-delete-container{
-    margin: 0 auto;
-    width: 80%; 
-    .admin-delete-title{
-      margin: 10% 0;
-    }
-    .admin-delete-product{
-      //  box-shadow: 3px 6px 17px  ;
-      border: 0.5px solid $usual_600;
-      border-radius: 10px;
-      margin-bottom: 3%;
-      padding: 3% 0;
-      .edit-button{
-        margin-right: 1%;
-      }
-      .date-delete{
-        margin-right: 2%;
-      }
-    }
   }
 }
 
@@ -69,16 +41,17 @@
   align-items: center;
   flex-direction: column;
   .product-update-title{
-    margin-bottom:3%;
+    margin-top: 7rem
   }
   .product-update-container{
-    margin: 0 auto;
+    margin: 20px auto;
     width: 100%;
     text-align: center;
+
     .product-to-update{
-      padding: 2%;
+      padding: 20px;
       .update-input{
-        margin-left: 2%;
+        margin-left: 1rem;
         padding: 10px 30px;
       }
     }

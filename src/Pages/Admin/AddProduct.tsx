@@ -25,7 +25,7 @@ const AddProduct = () => {
       <div className="add-product-details">
         <h1 className="add-product-title">ADD PRODUCT</h1>
         <div className="add-product-inputs">
-          <Input setValue={setImage} placeholder="Images" />
+          <Input setValue={setImage} placeholder="Image" />
           <Input setValue={setTitle} placeholder="Title" />
           <Input setValue={setDescription} placeholder="Description" />
           <Input setValue={setPrice} placeholder="Price" type="number" />
