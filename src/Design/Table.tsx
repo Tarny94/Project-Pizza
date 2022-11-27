@@ -26,8 +26,12 @@ export default function BasicTable({
         <TableHead>
           <TableRow>
             <TableCell width={130}>{edit}</TableCell>
-            {columns.map((column: any) => {
-              return <TableCell align="center">{column}</TableCell>;
+            {columns.map((column: any, id: number) => {
+              return (
+                <TableCell align="center" key={id}>
+                  {column}
+                </TableCell>
+              );
             })}
           </TableRow>
         </TableHead>

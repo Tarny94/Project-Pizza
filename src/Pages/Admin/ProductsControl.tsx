@@ -103,6 +103,7 @@ const ProductControl = () => {
         onClick={() => {
           setCoockie(ADMIN_KEY, undefined);
           setIsAdminLoggedIn(false);
+          navigate("/admin/login");
         }}
         style={{ cursor: "pointer", marginTop: 20 }}
       >

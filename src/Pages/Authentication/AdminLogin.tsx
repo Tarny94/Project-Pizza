@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
@@ -15,35 +15,29 @@ const AdminLogin = () => {
   const [code, setCode] = useState("");
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isAdminLoggedIn) {
-  //     navigate("/admin");
-  //   }
-  // }, [isAdminLoggedIn, navigate]);
-
-  // onkeydown = function (e: any) {
-  //   if (e.key === "Enter") {
-  //     !isAdminLoggedIn && handleAdminLogin();
-  //   }
-  // };
+  onkeydown = function (e: any) {
+    if (e.key === "Enter") {
+      !isAdminLoggedIn && handleAdminLogin();
+    }
+  };
 
   const handleAdminLogin = () => {
-    // axios
-    //   .get(getApiUrl(`admin/login${code}`))
-    //   .then((res) => {
-    //     setIsAdminLoggedIn(true);
-    //     setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: true }, 333600);
-    //     navigate("/admin");
-    //   })
-    //   .catch((e) => {
-    //     alert("Invalid credential");
-    //   });
+    axios
+      .get(getApiUrl(`admin/login${code}`))
+      .then((res) => {
+        setIsAdminLoggedIn(true);
+        setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: true }, 3600);
+        navigate("/admin");
+      })
+      .catch((e) => {
+        alert("Invalid credential");
+      });
   };
   return (
     <div className="admin-login">
       <div className="admin-login-container">
         <h2 className="admin-title">ENTER ADMIN CODE</h2>
-        <Input setValue={setCode} type="number" />
+        <Input setValue={setCode} type="password" />
         <Button
           className="button-field"
           title={"SUBMIT"}

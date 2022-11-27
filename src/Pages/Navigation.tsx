@@ -16,6 +16,7 @@ import AddProduct from "./Admin/AddProduct";
 import UpdateProduct from "./Admin/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
 
+
 const Navigation = () => {
   return (
     <>
@@ -33,22 +34,36 @@ const Navigation = () => {
             </PublicRoutes>
           }
         />
-        <Route path="/admin/login" element={<AdminLogin />} />
+
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"
-          // element={
-          //   <ProtectedRoutes>
-          //     <ProductControl />
-          //   </ProtectedRoutes>
-          // }
-          element={<ProductControl />}
+          element={
+            <ProtectedRoutes>
+              <ProductControl />
+            </ProtectedRoutes>
+          }
         />
 
-        <Route path="/admin/add" element={<AddProduct />} />
+        <Route
+          path="/admin/add"
+          element={
+            <ProtectedRoutes>
+              <AddProduct />
+            </ProtectedRoutes>
+          }
+        />
 
-        <Route path="/admin/update" element={<UpdateProduct />} />
+        <Route
+          path="/admin/update"
+          element={
+            <ProtectedRoutes>
+              <UpdateProduct />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
