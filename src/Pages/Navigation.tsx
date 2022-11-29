@@ -15,7 +15,7 @@ import ProductControl from "./Admin/Products/ProductsControl";
 import AddProduct from "./Admin/Products/AddProduct";
 import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
-
+import Admin from "./Admin/Admin";
 
 const Navigation = () => {
   return (
@@ -40,6 +40,14 @@ const Navigation = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"
+          element={
+            <ProtectedRoutes>
+              <Admin />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/admin/products"
           element={
             <ProtectedRoutes>
               <ProductControl />

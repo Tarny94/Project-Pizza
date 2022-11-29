@@ -79,15 +79,7 @@ const ProductControl = () => {
   return (
     <div className="product-control-container">
       <div className="product-control-buttons">
-        <h1 className="product-control-title">CONTROL PANEL</h1>
-        <h4 className="product-subtitle">PRODUCTS</h4>
-        <Button
-          className="button-field"
-          title={"ADD PRODUCT"}
-          onClick={() => {
-            navigate("/admin/add");
-          }}
-        />
+        <h1 className="product-control-title">PRODUCTS PANEL</h1>
       </div>
 
       <BasicTable
