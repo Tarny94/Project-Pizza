@@ -5,7 +5,7 @@ import "../Styles/Products.scss";
 import { setCoockie } from "../../../Util/Cookies/Coockie";
 import { ADMIN_KEY } from "../../../Constant";
 import { Context } from "../../Provider";
-import BasicTable from "../../../Design/Table";
+import TableProducts from "../TableProducts";
 import axios from "axios";
 import { getApiUrl } from "../../../Api/api";
 
@@ -34,7 +34,7 @@ const ProductControl = () => {
         alert("Fail");
       });
     // window.location.reload();
-  };
+  };;
 
   const handleEdit = async (id: number) => {
     await axios
@@ -82,12 +82,12 @@ const ProductControl = () => {
         <h1 className="product-control-title">PRODUCTS PANEL</h1>
       </div>
 
-      <BasicTable
+      <TableProducts
         edit={"Edit"}
         columns={columns}
         row={allProducts}
-        onClick={handleDelete}
-        onClick2={handleEdit}
+        HandleDelete={handleDelete}
+        HandleEdit={handleEdit}
         setPizza_id={setPizza_id}
         navigate={navigate}
       />
