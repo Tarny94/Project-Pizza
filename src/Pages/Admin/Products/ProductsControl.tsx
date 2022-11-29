@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import Button from "../../Design/Button";
+import Button from "../../../Design/Button";
 import { useNavigate } from "react-router-dom";
-import "../Admin/Products.scss";
-import { setCoockie } from "../../Util/Cookies/Coockie";
-import { ADMIN_KEY } from "../../Constant";
-import { Context } from "../Provider";
-import BasicTable from "../../Design/Table";
+import "../Styles/Products.scss";
+import { setCoockie } from "../../../Util/Cookies/Coockie";
+import { ADMIN_KEY } from "../../../Constant";
+import { Context } from "../../Provider";
+import BasicTable from "../../../Design/Table";
 import axios from "axios";
-import { getApiUrl } from "../../Api/api";
+import { getApiUrl } from "../../../Api/api";
 
 const ProductControl = () => {
   const {
@@ -34,7 +34,7 @@ const ProductControl = () => {
         alert("Fail");
       });
     // window.location.reload();
-  };;
+  };
 
   const handleEdit = async (id: number) => {
     await axios

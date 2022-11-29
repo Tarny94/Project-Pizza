@@ -1,19 +1,19 @@
 import React, { useContext, useState } from "react";
-import { Context } from "../Provider";
+import { Context } from "../../Provider";
 import axios from "axios";
-import { getApiUrl } from "../../Api/api";
+import { getApiUrl } from "../../../Api/api";
 import { Link } from "react-router-dom";
 
 const UpdateProduct = () => {
   const { image, title, description, price, discount, pizza_id } =
-  useContext(Context);
+    useContext(Context);
 
   const [updateImage, setUpdateImage] = useState("");
   const [updateTitle, setUpdateTitle] = useState("");
   const [updateDescription, setUpdateDescription] = useState("");
   const [updatePrice, setUpdatePrice] = useState("");
   const [updateDiscount, setUpdateDiscount] = useState("");
- 
+
   const product = {
     pizza_id,
     updateImage: updateImage ? updateImage : image,

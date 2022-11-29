@@ -11,9 +11,9 @@ import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./PrivateRoutes";
-import ProductControl from "./Admin/ProductsControl";
-import AddProduct from "./Admin/AddProduct";
-import UpdateProduct from "./Admin/UpdateProduct";
+import ProductControl from "./Admin/Products/ProductsControl";
+import AddProduct from "./Admin/Products/AddProduct";
+import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
 
 

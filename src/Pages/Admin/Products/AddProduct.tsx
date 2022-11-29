@@ -1,10 +1,10 @@
-import React, { useContext} from "react";
-import Input from "../../Design/Input";
-import Button from "../../Design/Button";
-import "../Admin/Products.scss";
-import { getApiUrl } from "../../Api/api";
+import React, { useContext } from "react";
+import Input from "../../../Design/Input";
+import Button from "../../../Design/Button";
+import "../Styles/Products.scss";
+import { getApiUrl } from "../../../Api/api";
 import axios from "axios";
-import { Context } from "../Provider";
+import { Context } from "../../Provider";
 import { Link } from "react-router-dom";
 
 const AddProduct = () => {
