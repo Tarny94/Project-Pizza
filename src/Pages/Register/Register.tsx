@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../../Api/api";
-import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 import "./Registration.scss";
@@ -17,7 +16,6 @@ const Register = () => {
   const [response, setResponse] = useState("");
   const [terms, setTerms] = useState(false);
   const [open, setOpen] = useState(false);
-  const [fail, setFail] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,16 +37,11 @@ const Register = () => {
     await axios
       .post(getApiUrl("register"), user)
       .then((res) => {
-        setFail(false);
         setResponse("");
         setOpen(true);
-        setTerms(false);
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
+        navigate("/login");
       })
       .catch((error) => {
-        setFail(true);
         setOpen(true);
         setResponse(error.response.data.error);
       });
@@ -112,7 +105,6 @@ const Register = () => {
           }}
           disabled={!terms ? true : false}
         />
-        <Snackbar open={open} setOpen={setOpen} fail={fail} />
       </div>
     </div>
   );

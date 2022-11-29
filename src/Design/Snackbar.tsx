@@ -4,11 +4,13 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 type IProp = {
   open: boolean;
-  fail: boolean;
-  setOpen: any;
+  setOpen?: any;
+  severity?: "error" | "warning" | "info" | "success";
+  duration: number;
+  title?: string;
 };
 
-const Snackbar = ({ open, setOpen, fail }: IProp) => {
+const Snackbar = ({ open, setOpen, severity, duration, title }: IProp) => {
   const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref
@@ -27,13 +29,13 @@ const Snackbar = ({ open, setOpen, fail }: IProp) => {
   };
 
   return (
-    <SnackbarMUI open={open} autoHideDuration={1000} onClose={handleClose}>
+    <SnackbarMUI open={open} autoHideDuration={duration} onClose={handleClose}>
       <Alert
         onClose={handleClose}
-        severity={fail ? "warning" : "success"}
+        severity={severity}
         sx={{ width: "100%", fontSize: 20 }}
       >
-        {fail ? "Warning 😧" : "Succesfull Register 😀"}
+        {title}
       </Alert>
     </SnackbarMUI>
   );

@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { Link, useNavigate } from "react-router-dom";
-import Snackbar from "../../Design/Snackbar";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 import { setCoockie } from "../../Util/Cookies/Coockie";
@@ -10,13 +9,13 @@ import { Context } from "../Provider";
 import { TOKEN_KEY } from "../../Constant";
 import "./Login.scss";
 
+
 const Login = () => {
   const { setIsLoggedIn } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");
   const [open, setOpen] = useState(false);
-  const [fail, setFail] = useState(false);
 
   const navigate = useNavigate();
   const loginUser = {
@@ -31,7 +30,7 @@ const Login = () => {
   };
 
   const handleSuccesLogin = (res: any) => {
-    setFail(false);
+   
     setCoockie(TOKEN_KEY, {
       _id: res.data.user._id,
       token: res.data.user.token,
@@ -49,7 +48,6 @@ const Login = () => {
         handleSuccesLogin(res);
       })
       .catch((e) => {
-        setFail(true);
         setOpen(true);
         setResponse(e.response.data.error);
       });
@@ -90,7 +88,6 @@ const Login = () => {
             width={undefined}
             height={undefined}
           />
-          <Snackbar open={open} setOpen={setOpen} fail={fail} />
         </div>
         <div className="account-create-field">
           <Link to={"/register"} className="account-create-field">
