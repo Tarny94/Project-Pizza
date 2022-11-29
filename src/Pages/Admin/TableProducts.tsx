@@ -6,17 +6,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import "../Pages/Menu/ProductCard.scss";
+import "../../Pages/Menu/ProductCard.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-
-export default function BasicTable({
+export default function TableProducts({
   edit,
   columns,
   row,
-  onClick,
-  onClick2,
+  HandleDelete,
+  HandleEdit,
 }: any) {
   return (
     <TableContainer component={Paper}>
@@ -41,7 +40,7 @@ export default function BasicTable({
                   <div
                     style={{ cursor: "pointer", marginRight: 15 }}
                     onClick={() => {
-                      return onClick(product.pizza_id);
+                      return HandleDelete(product.pizza_id);
                     }}
                   >
                     {<DeleteIcon titleAccess="DELETE" />}
@@ -49,7 +48,7 @@ export default function BasicTable({
                   <div
                     style={{ cursor: "pointer" }}
                     onClick={() => {
-                      return onClick2(product.pizza_id);
+                      return HandleEdit(product.pizza_id);
                     }}
                   >
                     {<EditIcon titleAccess="EDIT" />}
