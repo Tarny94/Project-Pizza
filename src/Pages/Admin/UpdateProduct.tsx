@@ -5,14 +5,15 @@ import { getApiUrl } from "../../Api/api";
 import { Link } from "react-router-dom";
 
 const UpdateProduct = () => {
+  const { image, title, description, price, discount, pizza_id } =
+  useContext(Context);
+
   const [updateImage, setUpdateImage] = useState("");
   const [updateTitle, setUpdateTitle] = useState("");
   const [updateDescription, setUpdateDescription] = useState("");
   const [updatePrice, setUpdatePrice] = useState("");
   const [updateDiscount, setUpdateDiscount] = useState("");
-
-  const { image, title, description, price, discount, pizza_id } =
-    useContext(Context);
+ 
   const product = {
     pizza_id,
     updateImage: updateImage ? updateImage : image,

@@ -33,8 +33,8 @@ const ProductControl = () => {
       .catch((err) => {
         alert("Fail");
       });
-    window.location.reload();
-  };
+    // window.location.reload();
+  };;
 
   const handleEdit = async (id: number) => {
     await axios
