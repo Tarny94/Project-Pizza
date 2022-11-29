@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import Button from "../../../Design/Button";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Products.scss";
 import { setCoockie } from "../../../Util/Cookies/Coockie";
 import { ADMIN_KEY } from "../../../Constant";
 import { Context } from "../../Provider";
-import TableProducts from "../TableProducts";
+import TableProducts from "./TableProducts";
 import axios from "axios";
 import { getApiUrl } from "../../../Api/api";
+import BackButton from "../../../Design/BackButton";
 
 const ProductControl = () => {
   const {
@@ -34,7 +34,7 @@ const ProductControl = () => {
         alert("Fail");
       });
     // window.location.reload();
-  };;
+  };
 
   const handleEdit = async (id: number) => {
     await axios
@@ -91,16 +91,11 @@ const ProductControl = () => {
         setPizza_id={setPizza_id}
         navigate={navigate}
       />
-      <button
+      <BackButton
         onClick={() => {
-          setCoockie(ADMIN_KEY, undefined);
-          setIsAdminLoggedIn(false);
-          navigate("/admin/login");
+          navigate("/admin");
         }}
-        style={{ cursor: "pointer", marginTop: 20 }}
-      >
-        Log out
-      </button>
+      />
     </div>
   );
 };

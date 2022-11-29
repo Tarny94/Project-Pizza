@@ -48,3 +48,14 @@
   }
 }
 
+.back-button{
+  font-size: 30px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  &:hover{
+    background-color: $prim_2;
+    border-radius: 50%;
+    transition: 0.5s ease;
+  }
+}
