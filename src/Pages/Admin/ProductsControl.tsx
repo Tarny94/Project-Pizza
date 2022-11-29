@@ -1,0 +1,116 @@
+import React, { useContext, useEffect } from "react";
+import Button from "../../Design/Button";
+import { useNavigate } from "react-router-dom";
+import "../Admin/Products.scss";
+import { setCoockie } from "../../Util/Cookies/Coockie";
+import { ADMIN_KEY } from "../../Constant";
+import { Context } from "../Provider";
+import BasicTable from "../../Design/Table";
+import axios from "axios";
+import { getApiUrl } from "../../Api/api";
+
+const ProductControl = () => {
+  const {
+    setIsAdminLoggedIn,
+    allProducts,
+    setAllProducts,
+    setPizza_id,
+    pizza_id,
+    setImage,
+    setTitle,
+    setDescription,
+    setPrice,
+    setDiscount,
+  } = useContext(Context);
+  const navigate = useNavigate();
+
+  const handleDelete = (id: number) => {
+    axios
+      .delete(getApiUrl(`admin/delete${id}`))
+      .then((res) => {
+        alert("Succes");
+      })
+      .catch((err) => {
+        alert("Fail");
+      });
+    // window.location.reload();
+  };;
+
+  const handleEdit = async (id: number) => {
+    await axios
+      .get(getApiUrl(`admin/get${id}`))
+      .then((res) => {
+        const product = res.data;
+        setImage(product[0].image);
+        setTitle(product[0].title);
+        setDescription(product[0].description);
+        setPrice(product[0].price);
+        setDiscount(product[0].discount);
+        console.log(product[0]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    setPizza_id(id);
+    navigate("/admin/update");
+  };
+  useEffect(() => {}, [
+    pizza_id,
+    setDescription,
+    setDiscount,
+    setImage,
+    setPrice,
+    setTitle,
+  ]);
+
+  useEffect(() => {
+    axios
+      .get(getApiUrl("admin/get"))
+      .then((res) => {
+        setAllProducts(res.data);
+      })
+      .catch((e) => {
+        console.log("Err:", e);
+      });
+  }, [setAllProducts]);
+
+  const columns = ["Crt", "Title", "Image", "Description", "Price", "Discount"];
+
+  return (
+    <div className="product-control-container">
+      <div className="product-control-buttons">
+        <h1 className="product-control-title">CONTROL PANEL</h1>
+        <h4 className="product-subtitle">PRODUCTS</h4>
+        <Button
+          className="button-field"
+          title={"ADD PRODUCT"}
+          onClick={() => {
+            navigate("/admin/add");
+          }}
+        />
+      </div>
+
+      <BasicTable
+        edit={"Edit"}
+        columns={columns}
+        row={allProducts}
+        onClick={handleDelete}
+        onClick2={handleEdit}
+        setPizza_id={setPizza_id}
+        navigate={navigate}
+      />
+      <button
+        onClick={() => {
+          setCoockie(ADMIN_KEY, undefined);
+          setIsAdminLoggedIn(false);
+          navigate("/admin/login");
+        }}
+        style={{ cursor: "pointer", marginTop: 20 }}
+      >
+        Log out
+      </button>
+    </div>
+  );
+};
+
+export default ProductControl;
