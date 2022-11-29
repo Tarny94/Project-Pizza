@@ -16,6 +16,7 @@ export default function TableProducts({
   row,
   HandleDelete,
   HandleEdit,
+  setPizza_id,
 }: any) {
   return (
     <TableContainer component={Paper}>
@@ -51,12 +52,7 @@ export default function TableProducts({
                   >
                     {<DeleteIcon titleAccess="DELETE" />}
                   </div>
-                  <div
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      return HandleEdit(product.pizza_id);
-                    }}
-                  >
+                  <div style={{ cursor: "pointer" }} onClick={HandleEdit}>
                     {<EditIcon titleAccess="EDIT" />}
                   </div>
                 </div>

@@ -11,7 +11,7 @@ import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./PrivateRoutes";
-import ProductControl from "./Admin/Products/ProductsControl";
+import Products from "./Admin/Products/Products";
 import AddProduct from "./Admin/Products/AddProduct";
 import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
@@ -50,7 +50,7 @@ const Navigation = () => {
           path="/admin/products"
           element={
             <ProtectedRoutes>
-              <ProductControl />
+              <Products />
             </ProtectedRoutes>
           }
         />

@@ -1,12 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../Provider";
 import axios from "axios";
 import { getApiUrl } from "../../../Api/api";
-import { Link } from "react-router-dom";
+import BackButton from "../../../Design/BackButton";
+import { useNavigate } from "react-router-dom";
 
 const UpdateProduct = () => {
-  const { image, title, description, price, discount, pizza_id } =
-    useContext(Context);
+  const {
+    image,
+    title,
+    description,
+    price,
+    discount,
+    pizza_id,
+    setImage,
+    setTitle,
+    setDescription,
+    setPrice,
+    setDiscount,
+    allProducts,
+  } = useContext(Context);
 
   const [updateImage, setUpdateImage] = useState("");
   const [updateTitle, setUpdateTitle] = useState("");
@@ -14,6 +27,7 @@ const UpdateProduct = () => {
   const [updatePrice, setUpdatePrice] = useState("");
   const [updateDiscount, setUpdateDiscount] = useState("");
 
+  const navigate = useNavigate();
   const product = {
     pizza_id,
     updateImage: updateImage ? updateImage : image,
@@ -23,8 +37,25 @@ const UpdateProduct = () => {
     updateDiscount: updateDiscount ? updateDiscount : discount,
   };
 
-  const handleUpdate = () => {
+  useEffect(() => {
     axios
+      .get(getApiUrl(`admin/get${pizza_id}`))
+      .then((res) => {
+        const product = res.data;
+        setImage(product[0].image);
+        setTitle(product[0].title);
+        setDescription(product[0].description);
+        setPrice(product[0].price);
+        setDiscount(product[0].discount);
+        console.log(product[0]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [pizza_id, setDescription, setDiscount, setImage, setPrice, setTitle]);
+
+  const handleUpdate = async () => {
+    await axios
       .patch(getApiUrl("admin/update"), product)
       .then((res) => {
         alert("Succes");
@@ -92,7 +123,11 @@ const UpdateProduct = () => {
           UPDATE PRODUCT
         </button>
       </div>
-      <Link to={"/admin"}>Back</Link>
+      <BackButton
+        onClick={() => {
+          navigate("/admin/products");
+        }}
+      />
     </div>
   );
 };
