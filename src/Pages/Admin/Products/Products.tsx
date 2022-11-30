@@ -1,55 +1,36 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "../Styles/Products.scss";
 import { Context } from "../../Provider";
 import TableProducts from "./TableProducts";
-import axios from "axios";
-import { getApiUrl } from "../../../Api/api";
 import BackButton from "../../../Design/BackButton";
+import { useNavigate } from "react-router-dom";
+import { deleteProductApi } from "../../../Api/ApiRoutes";
+import { getAllProductsApi } from "../../../Api/ApiRoutes";
+import { getProductApi } from "../../../Api/ApiRoutes";
 
 const ProductControl = () => {
-  const {
-    allProducts,
-    setAllProducts,
-    setPizza_id,
-    pizza_id,
-    setImage,
-    setTitle,
-    setDescription,
-    setPrice,
-    setDiscount,
-  } = useContext(Context);
+  const { allProducts, setAllProducts, setProduct, setPizza_id } =
+    useContext(Context);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setAllProducts(await getAllProductsApi());
+    };
+
+    fetchData();
+  }, [setAllProducts]);
+
   const handleDelete = async (id: number) => {
-    await axios
-      .delete(getApiUrl(`admin/delete${id}`))
-      .then((res) => {
-        alert("Succes");
-      })
-      .catch((err) => {
-        alert("Fail");
-      });
-    axios
-      .get(getApiUrl("admin/get"))
-      .then((res) => {
-        setAllProducts(res.data);
-      })
-      .catch((e) => {
-        console.log("Err:", e);
-      });
+    await deleteProductApi(id);
+    setAllProducts(await getAllProductsApi());
   };
 
-  useEffect(() => {
-    axios
-      .get(getApiUrl("admin/get"))
-      .then((res) => {
-        setAllProducts(res.data);
-      })
-      .catch((e) => {
-        console.log("Err:", e);
-      });
-  }, [setAllProducts]);
+  const handleEdit = async (id: number) => {
+    setProduct(await getProductApi(id));
+    setPizza_id(id);
+    navigate("/admin/update");
+  };
 
   const columns = ["Crt", "Title", "Image", "Description", "Price", "Discount"];
 
@@ -64,11 +45,7 @@ const ProductControl = () => {
         columns={columns}
         row={allProducts}
         HandleDelete={handleDelete}
-        HandleEdit={() => {
-          navigate("/admin/update");
-        }}
-        setPizza_id={setPizza_id}
-        navigate={navigate}
+        HandleEdit={handleEdit}
       />
       <BackButton
         onClick={() => {

@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCoockie } from "../Util/Cookies/Coockie";
 import { TOKEN_KEY } from "../Constant";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   category: "",
@@ -13,12 +14,13 @@ const initialState = {
   description: "",
   price: 0,
   discount: 0,
-  product: {},
+  product: "",
   allProducts: [],
   openEditor: false,
   pizza_id: "",
   isAdminLoggedIn: false,
 
+  navigate: useNavigate,
   setIsAdminLoggedIn: useState,
   setPizza_id: useState,
   setOpenEditor: useState,
@@ -30,9 +32,18 @@ const initialState = {
   setDescription: useState,
   setPrice: useState,
   setDiscount: useState,
+  setProduct: useState,
   setCategory: () => {},
   setQuery: () => {},
   setLoading: () => {},
+};
+
+type iProp = {
+  image: string;
+  title: string;
+  description: string;
+  price: number;
+  discount: string;
 };
 
 export const Context = createContext(initialState);
@@ -40,21 +51,14 @@ export const Provider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [pizza_id, setPizza_id] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage]: any = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const [openEditor, setOpenEditor] = useState(false);
-
-  const product = {
-    image,
-    title,
-    description,
-    price,
-    discount,
-  };
+  const [product, setProduct] = useState();
 
   let user = getCoockie(TOKEN_KEY);
 
@@ -82,6 +86,7 @@ export const Provider = (props: any) => {
         discount,
         setDiscount,
         product,
+        setProduct,
         allProducts,
         setAllProducts,
         openEditor,

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../../Provider";
 import axios from "axios";
 import { getApiUrl } from "../../../Api/api";
@@ -7,58 +7,38 @@ import { useNavigate } from "react-router-dom";
 
 const UpdateProduct = () => {
   const {
+    product,
+    setImage,
+    setTitle,
+    setDescription,
+    setPrice,
+    setDiscount,
     image,
     title,
     description,
     price,
     discount,
     pizza_id,
-    setImage,
-    setTitle,
-    setDescription,
-    setPrice,
-    setDiscount,
-    allProducts,
   } = useContext(Context);
 
-  const [updateImage, setUpdateImage] = useState("");
-  const [updateTitle, setUpdateTitle] = useState("");
-  const [updateDescription, setUpdateDescription] = useState("");
-  const [updatePrice, setUpdatePrice] = useState("");
-  const [updateDiscount, setUpdateDiscount] = useState("");
-
+  const productData: any = product;
   const navigate = useNavigate();
-  const product = {
-    pizza_id,
-    updateImage: updateImage ? updateImage : image,
-    updateTitle: updateTitle ? updateTitle : title,
-    updateDescription: updateDescription ? updateDescription : description,
-    updatePrice: updatePrice ? updatePrice : price,
-    updateDiscount: updateDiscount ? updateDiscount : discount,
-  };
 
-  useEffect(() => {
-    axios
-      .get(getApiUrl(`admin/get${pizza_id}`))
-      .then((res) => {
-        const product = res.data;
-        setImage(product[0].image);
-        setTitle(product[0].title);
-        setDescription(product[0].description);
-        setPrice(product[0].price);
-        setDiscount(product[0].discount);
-        console.log(product[0]);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, [pizza_id, setDescription, setDiscount, setImage, setPrice, setTitle]);
+  let productToUpdate = {
+    image,
+    title,
+    description,
+    price,
+    discount,
+    pizza_id,
+  };
 
   const handleUpdate = async () => {
     await axios
-      .patch(getApiUrl("admin/update"), product)
+      .patch(getApiUrl("admin/update"), productToUpdate)
       .then((res) => {
         alert("Succes");
+        navigate("/admin/products");
       })
       .catch((e) => {
         console.log(e);
@@ -74,9 +54,9 @@ const UpdateProduct = () => {
           <input
             className="update-input"
             onChange={(e) => {
-              setUpdateImage(e.target.value);
+              setImage(e.target.value);
             }}
-            defaultValue={image}
+            defaultValue={productData.image}
           ></input>
         </div>
         <div className="product-to-update">
@@ -84,18 +64,18 @@ const UpdateProduct = () => {
           <input
             className="update-input"
             onChange={(e) => {
-              setUpdateTitle(e.target.value);
+              setTitle(e.target.value);
             }}
-            defaultValue={title}
+            defaultValue={productData.title}
           ></input>
         </div>
         <div className="product-to-update">
           DESCRIPTION
           <input
             className="update-input"
-            defaultValue={description}
+            defaultValue={productData.description}
             onChange={(e) => {
-              setUpdateDescription(e.target.value);
+              setDescription(e.target.value);
             }}
           ></input>
         </div>
@@ -103,9 +83,9 @@ const UpdateProduct = () => {
           PRICE
           <input
             className="update-input"
-            defaultValue={price}
+            defaultValue={productData.price}
             onChange={(e) => {
-              setUpdatePrice(e.target.value);
+              setPrice(e.target.value);
             }}
           ></input>
         </div>
@@ -113,9 +93,9 @@ const UpdateProduct = () => {
           DICOUNT
           <input
             className="update-input"
-            defaultValue={discount}
+            defaultValue={productData.discount}
             onChange={(e) => {
-              setUpdateDiscount(e.target.value);
+              setDiscount(e.target.value);
             }}
           ></input>
         </div>
