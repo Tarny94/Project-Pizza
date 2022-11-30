@@ -3,15 +3,6 @@ import { getCoockie } from "../Util/Cookies/Coockie";
 import { TOKEN_KEY } from "../Constant";
 import { useNavigate } from "react-router-dom";
 
-// type iProp = {
-//   id: number;
-//   image: string;
-//   title: string;
-//   description: string;
-//   price: number;
-//   discount: string;
-// };
-
 const initialState = {
   category: "",
   query: "",
@@ -31,6 +22,13 @@ const initialState = {
     discount: 0,
     pizza_id: 0,
   },
+  addProduct: {
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    discount: 0,
+  },
   allProducts: [],
   openEditor: false,
   pizza_id: 0,
@@ -49,13 +47,11 @@ const initialState = {
   setPrice: useState,
   setDiscount: useState,
   setProduct: useState,
+  setAddProduct: useState,
   setCategory: () => {},
   setQuery: () => {},
   setLoading: () => {},
 };
-
-
-
 export const Context = createContext(initialState);
 export const Provider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -68,6 +64,15 @@ export const Provider = (props: any) => {
   const [discount, setDiscount] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const [openEditor, setOpenEditor] = useState(false);
+
+  const [addProduct, setAddProduct] = useState({
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    discount: 0,
+  });
+
   const [product, setProduct] = useState({
     image: "",
     title: "",
@@ -81,15 +86,35 @@ export const Provider = (props: any) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setImage(product.image)
-      setTitle(product.title)
-      setDescription(product.description)
-      setPrice(product.price)
-      setDiscount(product.discount)
+      setImage(product.image);
+      setTitle(product.title);
+      setDescription(product.description);
+      setPrice(product.price);
+      setDiscount(product.discount);
     };
 
     fetchData();
-  }, [product.description, product.discount, product.image, product.price, product.title])
+  }, [
+    product.description,
+    product.discount,
+    product.image,
+    product.price,
+    product.title,
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setAddProduct({
+        image,
+        title,
+        description,
+        price,
+        discount,
+      });
+    };
+
+    fetchData();
+  }, [description, discount, image, price, title]);
 
   useEffect(() => {
     let token = JSON.stringify(user.token);
@@ -124,6 +149,8 @@ export const Provider = (props: any) => {
         setPizza_id,
         isAdminLoggedIn,
         setIsAdminLoggedIn,
+        addProduct,
+        setAddProduct,
       }}
       {...props}
     />

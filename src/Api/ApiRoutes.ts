@@ -7,7 +7,7 @@ type iProp = {
   description: string;
   price: number;
   discount: number;
-  pizza_id: number;
+  pizza_id?: number;
 };
 
 export const deleteProductApi = async (id: number) => {
@@ -51,5 +51,16 @@ export const updateProductApi = async (product: iProp) => {
     })
     .catch((e) => {
       alert("Fail");
+    });
+};
+
+export const addProductApi = async (product: iProp) => {
+  return await await axios
+    .post(getApiUrl("admin/add"), product)
+    .then((res) => {
+      alert("Succes");
+    })
+    .catch((e) => {
+      alert("Fail" + e);
     });
 };

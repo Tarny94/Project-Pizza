@@ -2,22 +2,25 @@ import React, { useContext } from "react";
 import Input from "../../../Design/Input";
 import Button from "../../../Design/Button";
 import "../Styles/Products.scss";
-import { getApiUrl } from "../../../Api/api";
-import axios from "axios";
 import { Context } from "../../Provider";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import BackButton from "../../../Design/BackButton";
+import { addProductApi } from "../../../Api/ApiRoutes";
 
 const AddProduct = () => {
-  const { setImage, setTitle, setDescription, setPrice, setDiscount, product } =
-    useContext(Context);
+  const {
+    setImage,
+    setTitle,
+    setDescription,
+    setPrice,
+    setDiscount,
+    addProduct,
+  } = useContext(Context);
+
+  const navigate = useNavigate();
+
   const handleSubmit = async () => {
-    try {
-      await axios.post(getApiUrl("admin/add"), product);
-      alert("Succes");
-    } catch (e) {
-      console.log(e);
-      alert("Fail");
-    }
+    addProductApi(addProduct);
   };
 
   return (
@@ -37,11 +40,15 @@ const AddProduct = () => {
             title={"SUBMIT"}
             onClick={() => {
               handleSubmit();
-              window.location.reload();
+              navigate("/admin");
             }}
           />
         </div>
-        <Link to={"/admin"}>Back</Link>
+        <BackButton
+          onClick={() => {
+            navigate("/admin");
+          }}
+        />
       </div>
     </div>
   );
