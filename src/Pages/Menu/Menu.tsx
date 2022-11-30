@@ -17,6 +17,7 @@ type iProp = {
 const Menu = () => {
   const { allProducts, setAllProducts } = useContext(ProductContext);
 
+
   useEffect(() => {
     axios
       .get(getApiUrl("admin/get"))

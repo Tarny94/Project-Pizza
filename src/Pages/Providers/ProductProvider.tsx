@@ -1,4 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
+import { deleteProductApi } from "../../Api/ApiRoutes";
+import { getAllProductsApi } from "../../Api/ApiRoutes";
 
 const initialState = {
   image: "",
@@ -8,6 +10,8 @@ const initialState = {
   discount: 0,
   pizza_id: 0,
   allProducts: [],
+  open: false,
+  securityDelete: false,
   product: {
     image: "",
     title: "",
@@ -33,17 +37,21 @@ const initialState = {
   setDiscount: useState,
   setProduct: useState,
   setAddProduct: useState,
+  setOpen: useState,
+  setSecurityDelete: useState,
 };
 
 export const ProductContext = createContext(initialState);
 export const ProductProvider = (props: any) => {
-  const [pizza_id, setPizza_id] = useState("");
+  const [pizza_id, setPizza_id] = useState(0);
   const [image, setImage]: any = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [securityDelete, setSecurityDelete] = useState(false);
   const [addProduct, setAddProduct] = useState({
     image: "",
     title: "",
@@ -79,7 +87,7 @@ export const ProductProvider = (props: any) => {
   ]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const addData = async () => {
       setAddProduct({
         image,
         title,
@@ -88,9 +96,19 @@ export const ProductProvider = (props: any) => {
         discount,
       });
     };
-
-    fetchData();
+    addData();
   }, [description, discount, image, price, title]);
+
+  useEffect(() => {
+    const deleteData = async () => {
+      if (!open) {
+        securityDelete && (await deleteProductApi(pizza_id));
+        setAllProducts(await getAllProductsApi());
+        setSecurityDelete(false);
+      }
+    };
+    deleteData();
+  }, [open, pizza_id, securityDelete, setAllProducts, setSecurityDelete]);
 
   return (
     <ProductContext.Provider
@@ -113,6 +131,10 @@ export const ProductProvider = (props: any) => {
         setPizza_id,
         addProduct,
         setAddProduct,
+        open,
+        setOpen,
+        setSecurityDelete,
+        securityDelete,
       }}
       {...props}
     />
