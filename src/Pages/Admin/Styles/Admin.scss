@@ -14,3 +14,24 @@
     }
   }
 }
+
+.admin-setting-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  .admin-settings-title{
+      margin-top: 7rem;
+  }
+  .admin-reset-password{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+  }
+}

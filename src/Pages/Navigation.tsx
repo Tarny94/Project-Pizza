@@ -18,6 +18,7 @@ import AdminLogin from "./Authentication/AdminLogin";
 import Admin from "./Admin/Admin";
 import { ProductProvider } from "./Providers/ProductProvider";
 import { UserProvider } from "./Providers/UserProvider";
+import AdminSetting from "./Admin/AdminSettings";
 
 const Navigation = () => {
   return (
@@ -49,6 +50,14 @@ const Navigation = () => {
               element={
                 <ProtectedRoutes>
                   <Admin />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/admin/settings"
+              element={
+                <ProtectedRoutes>
+                  <AdminSetting />
                 </ProtectedRoutes>
               }
             />

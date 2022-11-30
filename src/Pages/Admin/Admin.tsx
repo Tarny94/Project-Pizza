@@ -28,7 +28,9 @@ const Admin = () => {
         <Button
           className="button-field"
           title={"SETTINGS"}
-          onClick={undefined}
+          onClick={() => {
+            navigate("/admin/settings");
+          }}
         ></Button>
         <Button
           className="button-field"
