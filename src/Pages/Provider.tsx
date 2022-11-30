@@ -34,7 +34,7 @@ const initialState = {
   pizza_id: 0,
   isAdminLoggedIn: false,
 
-  navigate: useNavigate,
+  navigater: useNavigate,
   setIsAdminLoggedIn: useState,
   setPizza_id: useState,
   setOpenEditor: useState,

@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../../Design/Button";
 import { useNavigate } from "react-router-dom";
+import { setCoockieWithExpireTime } from "../../Util/Cookies/Coockie";
+import { ADMIN_KEY } from "../../Constant";
 import "../Admin/Styles/Admin.scss";
 
 const Admin = () => {
@@ -31,7 +33,10 @@ const Admin = () => {
         <Button
           className="button-field"
           title={"LOGOUT"}
-          onClick={undefined}
+          onClick={() => {
+            setCoockieWithExpireTime(ADMIN_KEY, undefined, 0);
+            navigate("/admin/login");
+          }}
         ></Button>
       </div>
     </div>
