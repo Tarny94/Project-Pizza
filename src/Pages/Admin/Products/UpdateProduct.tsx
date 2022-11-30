@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../../Provider";
+import { ProductContext } from "../../Providers/ProductProvider";
 import BackButton from "../../../Design/BackButton";
 import { useNavigate } from "react-router-dom";
 import { updateProductApi } from "../../../Api/ApiRoutes";
@@ -27,7 +27,7 @@ const UpdateProduct = () => {
     price,
     discount,
     pizza_id,
-  } = useContext(Context);
+  } = useContext(ProductContext);
 
   const navigate = useNavigate();
 

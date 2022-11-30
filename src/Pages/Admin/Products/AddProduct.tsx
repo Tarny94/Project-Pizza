@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Input from "../../../Design/Input";
 import Button from "../../../Design/Button";
 import "../Styles/Products.scss";
-import { Context } from "../../Provider";
+import { ProductContext } from "../../Providers/ProductProvider";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../../../Design/BackButton";
 import { addProductApi } from "../../../Api/ApiRoutes";
@@ -15,7 +15,7 @@ const AddProduct = () => {
     setPrice,
     setDiscount,
     addProduct,
-  } = useContext(Context);
+  } = useContext(ProductContext);
 
   const navigate = useNavigate();
 

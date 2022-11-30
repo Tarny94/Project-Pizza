@@ -16,64 +16,73 @@ import AddProduct from "./Admin/Products/AddProduct";
 import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
 import Admin from "./Admin/Admin";
+import { ProductProvider } from "./Providers/ProductProvider";
+import { UserProvider } from "./Providers/UserProvider";
 
 const Navigation = () => {
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/login"
-          element={
-            <PublicRoutes>
-              <Login />
-            </PublicRoutes>
-          }
-        />
+      <UserProvider>
+        {" "}
+        <Header />
+        <ProductProvider>
+          {" "}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/login"
+              element={
+                <PublicRoutes>
+                  <Login />
+                </PublicRoutes>
+              }
+            />
 
-        <Route path="/register" element={<Register />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoutes>
-              <Admin />
-            </ProtectedRoutes>
-          }
-        />
-        <Route
-          path="/admin/products"
-          element={
-            <ProtectedRoutes>
-              <Products />
-            </ProtectedRoutes>
-          }
-        />
+            <Route path="/register" element={<Register />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
 
-        <Route
-          path="/admin/add"
-          element={
-            <ProtectedRoutes>
-              <AddProduct />
-            </ProtectedRoutes>
-          }
-        />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoutes>
+                  <Admin />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/admin/products"
+              element={
+                <ProtectedRoutes>
+                  <Products />
+                </ProtectedRoutes>
+              }
+            />
 
-        <Route
-          path="/admin/update"
-          element={
-            <ProtectedRoutes>
-              <UpdateProduct />
-            </ProtectedRoutes>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+            <Route
+              path="/admin/add"
+              element={
+                <ProtectedRoutes>
+                  <AddProduct />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/admin/update"
+              element={
+                <ProtectedRoutes>
+                  <UpdateProduct />
+                </ProtectedRoutes>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ProductProvider>
+      </UserProvider>
     </>
   );
 };

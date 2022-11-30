@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../Provider";
+import { UserContext } from "../Providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import "../Header/Header.scss";
 import { setCoockie } from "../../Util/Cookies/Coockie";
@@ -10,7 +10,7 @@ type iProp = {
 };
 
 const Logout = ({ className }: iProp) => {
-  const { setIsLoggedIn } = useContext(Context);
+  const { setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {

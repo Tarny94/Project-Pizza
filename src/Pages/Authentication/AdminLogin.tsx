@@ -8,10 +8,10 @@ import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { setCoockieWithExpireTime } from "../../Util/Cookies/Coockie";
 import { ADMIN_KEY } from "../../Constant";
-import { Context } from "../Provider";
+import { UserContext } from "../Providers/UserProvider";
 
 const AdminLogin = () => {
-  const { setIsAdminLoggedIn, isAdminLoggedIn } = useContext(Context);
+  const { setIsAdminLoggedIn, isAdminLoggedIn } = useContext(UserContext);
   const [code, setCode] = useState("");
   const navigate = useNavigate();
 

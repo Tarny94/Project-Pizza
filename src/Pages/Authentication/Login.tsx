@@ -5,13 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 import { setCoockie } from "../../Util/Cookies/Coockie";
-import { Context } from "../Provider";
+import { UserContext } from "../Providers/UserProvider";
 import { TOKEN_KEY } from "../../Constant";
 import "./Login.scss";
 
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(Context);
+  const { setIsLoggedIn } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");

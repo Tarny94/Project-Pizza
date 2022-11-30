@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import "./Menu.scss";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
-import { Context } from "../Provider";
+import {ProductContext} from "../Providers/ProductProvider"
 
 type iProp = {
   image?: string;
@@ -14,7 +14,7 @@ type iProp = {
 };
 
 const Menu = () => {
-  const { allProducts, setAllProducts } = useContext(Context);
+  const { allProducts, setAllProducts } = useContext(ProductContext);
 
   useEffect(() => {
     axios

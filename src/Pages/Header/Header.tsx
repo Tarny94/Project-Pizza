@@ -4,7 +4,7 @@ import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "../Authentication/Logout";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../Provider";
+import { UserContext } from "../Providers/UserProvider";
 
 const Header = () => {
   const pages = {
@@ -14,7 +14,7 @@ const Header = () => {
     contact: "Contact",
     login: "login",
   };
-  const { isLoggedIn } = useContext(Context);
+  const { isLoggedIn } = useContext(UserContext);
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
 

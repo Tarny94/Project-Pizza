@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "../Styles/Products.scss";
-import { Context } from "../../Provider";
+import { ProductContext } from "../../Providers/ProductProvider";
 import TableProducts from "./TableProducts";
 import BackButton from "../../../Design/BackButton";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { getProductApi } from "../../../Api/ApiRoutes";
 
 const ProductControl = () => {
   const { allProducts, setAllProducts, setProduct, setPizza_id } =
-    useContext(Context);
+    useContext(ProductContext);
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -1,19 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getCoockie } from "../Util/Cookies/Coockie";
-import { TOKEN_KEY } from "../Constant";
-import { useNavigate } from "react-router-dom";
 
 const initialState = {
-  category: "",
-  query: "",
-  loading: true,
-  isLoggedIn: false,
-  user: "",
   image: "",
   title: "",
   description: "",
   price: 0,
   discount: 0,
+  pizza_id: 0,
+  allProducts: [],
   product: {
     image: "",
     title: "",
@@ -29,18 +23,9 @@ const initialState = {
     price: 0,
     discount: 0,
   },
-  allProducts: [],
-  openEditor: false,
-  pizza_id: 0,
-  isAdminLoggedIn: false,
 
-  navigater: useNavigate,
-  setIsAdminLoggedIn: useState,
   setPizza_id: useState,
-  setOpenEditor: useState,
   setAllProducts: useState,
-  setUser: useState,
-  setIsLoggedIn: useState,
   setImage: useState,
   setTitle: useState,
   setDescription: useState,
@@ -48,14 +33,10 @@ const initialState = {
   setDiscount: useState,
   setProduct: useState,
   setAddProduct: useState,
-  setCategory: () => {},
-  setQuery: () => {},
-  setLoading: () => {},
 };
-export const Context = createContext(initialState);
-export const Provider = (props: any) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+export const ProductContext = createContext(initialState);
+export const ProductProvider = (props: any) => {
   const [pizza_id, setPizza_id] = useState("");
   const [image, setImage]: any = useState("");
   const [title, setTitle] = useState("");
@@ -63,8 +44,6 @@ export const Provider = (props: any) => {
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
-  const [openEditor, setOpenEditor] = useState(false);
-
   const [addProduct, setAddProduct] = useState({
     image: "",
     title: "",
@@ -72,7 +51,6 @@ export const Provider = (props: any) => {
     price: 0,
     discount: 0,
   });
-
   const [product, setProduct] = useState({
     image: "",
     title: "",
@@ -81,8 +59,6 @@ export const Provider = (props: any) => {
     discount: 0,
     pizza_id: 0,
   });
-
-  let user = getCoockie(TOKEN_KEY);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -116,19 +92,9 @@ export const Provider = (props: any) => {
     fetchData();
   }, [description, discount, image, price, title]);
 
-  useEffect(() => {
-    let token = JSON.stringify(user.token);
-    if (!token) {
-      return setIsLoggedIn(false);
-    }
-    setIsLoggedIn(true);
-  }, [user.token]);
-
   return (
-    <Context.Provider
+    <ProductContext.Provider
       value={{
-        isLoggedIn,
-        setIsLoggedIn,
         image,
         setImage,
         title,
@@ -143,12 +109,8 @@ export const Provider = (props: any) => {
         setProduct,
         allProducts,
         setAllProducts,
-        openEditor,
-        setOpenEditor,
         pizza_id,
         setPizza_id,
-        isAdminLoggedIn,
-        setIsAdminLoggedIn,
         addProduct,
         setAddProduct,
       }}
