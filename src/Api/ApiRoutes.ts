@@ -1,6 +1,15 @@
 import axios from "axios";
 import { getApiUrl } from "./api";
 
+type iProp = {
+  image: string;
+  title: string;
+  description: string;
+  price: number;
+  discount: number;
+  pizza_id: number;
+};
+
 export const deleteProductApi = async (id: number) => {
   await axios
     .delete(getApiUrl(`admin/delete${id}`))
@@ -31,5 +40,16 @@ export const getProductApi = async (id: number) => {
     })
     .catch((e) => {
       alert("Err" + e);
+    });
+};
+
+export const updateProductApi = async (product: iProp) => {
+  return await axios
+    .patch(getApiUrl("admin/update"), product)
+    .then((res) => {
+      alert("Succes");
+    })
+    .catch((e) => {
+      alert("Fail");
     });
 };

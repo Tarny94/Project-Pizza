@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import { Context } from "../../Provider";
-import axios from "axios";
-import { getApiUrl } from "../../../Api/api";
 import BackButton from "../../../Design/BackButton";
 import { useNavigate } from "react-router-dom";
+import { updateProductApi } from "../../../Api/ApiRoutes";
+
+type iProp = {
+  image: string;
+  title: string;
+  description: string;
+  price: number;
+  discount: number;
+  pizza_id: number;
+};
 
 const UpdateProduct = () => {
   const {
@@ -21,10 +29,9 @@ const UpdateProduct = () => {
     pizza_id,
   } = useContext(Context);
 
-  const productData: any = product;
   const navigate = useNavigate();
 
-  let productToUpdate = {
+  let productToUpdate: iProp = {
     image,
     title,
     description,
@@ -34,16 +41,8 @@ const UpdateProduct = () => {
   };
 
   const handleUpdate = async () => {
-    await axios
-      .patch(getApiUrl("admin/update"), productToUpdate)
-      .then((res) => {
-        alert("Succes");
-        navigate("/admin/products");
-      })
-      .catch((e) => {
-        console.log(e);
-        alert("Fail");
-      });
+    await updateProductApi(productToUpdate);
+    navigate("/admin/products");
   };
   return (
     <div className="product-update">
@@ -56,7 +55,7 @@ const UpdateProduct = () => {
             onChange={(e) => {
               setImage(e.target.value);
             }}
-            defaultValue={productData.image}
+            defaultValue={product.image}
           ></input>
         </div>
         <div className="product-to-update">
@@ -66,14 +65,14 @@ const UpdateProduct = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
-            defaultValue={productData.title}
+            defaultValue={product.title}
           ></input>
         </div>
         <div className="product-to-update">
           DESCRIPTION
           <input
             className="update-input"
-            defaultValue={productData.description}
+            defaultValue={product.description}
             onChange={(e) => {
               setDescription(e.target.value);
             }}
@@ -83,7 +82,7 @@ const UpdateProduct = () => {
           PRICE
           <input
             className="update-input"
-            defaultValue={productData.price}
+            defaultValue={product.price}
             onChange={(e) => {
               setPrice(e.target.value);
             }}
@@ -93,7 +92,7 @@ const UpdateProduct = () => {
           DICOUNT
           <input
             className="update-input"
-            defaultValue={productData.discount}
+            defaultValue={product.discount}
             onChange={(e) => {
               setDiscount(e.target.value);
             }}

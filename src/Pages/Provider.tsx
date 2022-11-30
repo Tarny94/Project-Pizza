@@ -3,6 +3,15 @@ import { getCoockie } from "../Util/Cookies/Coockie";
 import { TOKEN_KEY } from "../Constant";
 import { useNavigate } from "react-router-dom";
 
+// type iProp = {
+//   id: number;
+//   image: string;
+//   title: string;
+//   description: string;
+//   price: number;
+//   discount: string;
+// };
+
 const initialState = {
   category: "",
   query: "",
@@ -14,10 +23,17 @@ const initialState = {
   description: "",
   price: 0,
   discount: 0,
-  product: "",
+  product: {
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    discount: 0,
+    pizza_id: 0,
+  },
   allProducts: [],
   openEditor: false,
-  pizza_id: "",
+  pizza_id: 0,
   isAdminLoggedIn: false,
 
   navigate: useNavigate,
@@ -38,13 +54,7 @@ const initialState = {
   setLoading: () => {},
 };
 
-type iProp = {
-  image: string;
-  title: string;
-  description: string;
-  price: number;
-  discount: string;
-};
+
 
 export const Context = createContext(initialState);
 export const Provider = (props: any) => {
@@ -58,9 +68,28 @@ export const Provider = (props: any) => {
   const [discount, setDiscount] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const [openEditor, setOpenEditor] = useState(false);
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    discount: 0,
+    pizza_id: 0,
+  });
 
   let user = getCoockie(TOKEN_KEY);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setImage(product.image)
+      setTitle(product.title)
+      setDescription(product.description)
+      setPrice(product.price)
+      setDiscount(product.discount)
+    };
+
+    fetchData();
+  }, [product.description, product.discount, product.image, product.price, product.title])
 
   useEffect(() => {
     let token = JSON.stringify(user.token);
