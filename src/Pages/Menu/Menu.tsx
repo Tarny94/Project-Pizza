@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import ProductCard from "./ProductCard";
+import Cart from "../Cart/Cart";
 import "./Menu.scss";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
@@ -52,6 +53,7 @@ const Menu = () => {
             );
           })}
         </div>
+        <Cart />
       </div>
     </div>
   );
