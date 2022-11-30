@@ -40,7 +40,6 @@ const Navigation = () => {
                 </PublicRoutes>
               }
             />
-
             <Route path="/register" element={<Register />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/admin/login" element={<AdminLogin />} />
@@ -61,7 +60,6 @@ const Navigation = () => {
                 </ProtectedRoutes>
               }
             />
-
             <Route
               path="/admin/add"
               element={
@@ -70,7 +68,6 @@ const Navigation = () => {
                 </ProtectedRoutes>
               }
             />
-
             <Route
               path="/admin/update"
               element={
