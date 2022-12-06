@@ -1,30 +1,56 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCoockie } from "../../Util/Cookies/Coockie";
 import { TOKEN_KEY } from "../../Constant";
+import { checkIfAdminLoggedIn } from "../../Api/ApiRoutes";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   isLoggedIn: false,
   user: "",
   isAdminLoggedIn: false,
+  isAdmin: false,
+  userId: 0,
 
   setIsAdminLoggedIn: useState,
   setUser: useState,
   setIsLoggedIn: useState,
+  setIsAdmin: useState,
+  setUserId: useState,
 };
 export const UserContext = createContext(initialState);
 export const UserProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userId, setUserId] = useState(0);
 
-  let user = getCoockie(TOKEN_KEY);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const getUser = async () => {
+      let user = await getCoockie(TOKEN_KEY);
+      let token = JSON.stringify(user.token);
+      if (!token) {
+        return setIsLoggedIn(false);
+      } else {
+        return setIsLoggedIn(true);
+      }
+    };
+    getUser();
+  }, [navigate]);
 
   useEffect(() => {
-    let token = JSON.stringify(user.token);
-    if (!token) {
-      return setIsLoggedIn(false);
-    }
-    setIsLoggedIn(true);
-  }, [user.token]);
+    const getUser = async () => {
+      let token = await getCoockie(TOKEN_KEY);
+      let isAdminUser = await checkIfAdminLoggedIn(token.token);
+      await setUserId(token._id);
+      if (!isAdminUser) {
+        return setIsAdmin(false);
+      } else {
+        return setIsAdmin(true);
+      }
+    };
+    getUser();
+  }, [navigate, userId]);
 
   return (
     <UserContext.Provider
@@ -33,6 +59,10 @@ export const UserProvider = (props: any) => {
         setIsLoggedIn,
         isAdminLoggedIn,
         setIsAdminLoggedIn,
+        isAdmin,
+        setIsAdmin,
+        setUserId,
+        userId,
       }}
       {...props}
     />

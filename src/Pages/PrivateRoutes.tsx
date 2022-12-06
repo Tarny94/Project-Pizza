@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { getCoockie } from "../Util/Cookies/Coockie";
-import { ADMIN_KEY } from "../Constant";
+import { UserContext } from "./Providers/UserProvider";
 
 const ProtectedRoutes = ({ children }: any) => {
-  const login = getCoockie(ADMIN_KEY);
-  return login?.loggedIn ? children : <Navigate to="/admin/login" />;
+  const { isAdminLoggedIn } = useContext(UserContext);
+
+  return isAdminLoggedIn ? children : <Navigate to="/admin/login" />;
 };
 
 export default ProtectedRoutes;

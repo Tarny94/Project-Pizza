@@ -76,7 +76,7 @@ const Header = () => {
         <h1
           className="header-title"
           onClick={() => {
-            navigate("/");
+            navigate("/admin/login");
           }}
         >
           PIZZA

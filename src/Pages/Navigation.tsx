@@ -19,6 +19,7 @@ import Admin from "./Admin/Admin";
 import { ProductProvider } from "./Providers/ProductProvider";
 import { UserProvider } from "./Providers/UserProvider";
 import AdminSetting from "./Admin/AdminSettings";
+import AdminRoutes from "./AdminRoutes";
 
 const Navigation = () => {
   return (
@@ -43,7 +44,14 @@ const Navigation = () => {
             />
             <Route path="/register" element={<Register />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin/login"
+              element={
+                <AdminRoutes>
+                  <AdminLogin />
+                </AdminRoutes>
+              }
+            />
 
             <Route
               path="/admin"

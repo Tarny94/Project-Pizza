@@ -55,12 +55,23 @@ export const updateProductApi = async (product: iProp) => {
 };
 
 export const addProductApi = async (product: iProp) => {
-  return await await axios
+  return await axios
     .post(getApiUrl("admin/add"), product)
     .then((res) => {
       alert("Succes");
     })
     .catch((e) => {
       alert("Fail" + e);
+    });
+};
+
+export const checkIfAdminLoggedIn = async (token: string) => {
+  return await axios
+    .post(getApiUrl("admin/login/page"), { token })
+    .then((res) => {
+      return true;
+    })
+    .catch((e: any) => {
+      return false;
     });
 };

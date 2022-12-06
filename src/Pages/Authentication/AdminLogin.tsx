@@ -11,19 +11,13 @@ import { ADMIN_KEY } from "../../Constant";
 import { UserContext } from "../Providers/UserProvider";
 
 const AdminLogin = () => {
-  const { setIsAdminLoggedIn, isAdminLoggedIn } = useContext(UserContext);
+  const { setIsAdminLoggedIn, userId } = useContext(UserContext);
   const [code, setCode] = useState("");
   const navigate = useNavigate();
 
-  onkeydown = function (e: any) {
-    if (e.key === "Enter") {
-      !isAdminLoggedIn && handleAdminLogin();
-    }
-  };
-
-  const handleAdminLogin = () => {
-    axios
-      .get(getApiUrl(`admin/login${code}`))
+  const handleAdminLogin = async () => {
+    await axios
+      .post(getApiUrl(`admin/login`), { code, id: userId })
       .then((res) => {
         setIsAdminLoggedIn(true);
         setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: true }, 3600);
