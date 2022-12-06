@@ -78,7 +78,7 @@ const Navigation = () => {
               }
             />
             <Route
-              path="/admin/add"
+              path="/admin/addProduct"
               element={
                 <ProtectedRoutes>
                   <AddProduct />
@@ -86,7 +86,7 @@ const Navigation = () => {
               }
             />
             <Route
-              path="/admin/update"
+              path="/admin/update/product"
               element={
                 <ProtectedRoutes>
                   <UpdateProduct />

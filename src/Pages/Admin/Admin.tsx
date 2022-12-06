@@ -22,7 +22,7 @@ const Admin = () => {
           className="button-field"
           title={"ADD PRODUCT"}
           onClick={() => {
-            navigate("/admin/add");
+            navigate("/admin/addProduct");
           }}
         />
         <Button

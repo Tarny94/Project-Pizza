@@ -40,7 +40,7 @@ const AdminLogin = () => {
           }}
         />
         <div className="admin-description">
-          <p>You are not the admin? </p> <Link to={"/"}> Click Hire</Link>
+          <Link to={"/"}> Go to home</Link>
         </div>
       </div>
     </div>
