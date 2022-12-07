@@ -1,4 +1,4 @@
-import "../Menu/ProductCard.scss";
+import "../Menu/productCard.scss";
 import React, { useEffect, useState } from "react";
 
 type iProp = {
