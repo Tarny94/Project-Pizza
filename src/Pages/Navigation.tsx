@@ -70,7 +70,7 @@ const Navigation = () => {
               }
             />
             <Route
-              path="/get/products"
+              path="/products"
               element={
                 <ProtectedRoutes>
                   <Products />

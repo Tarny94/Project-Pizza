@@ -20,7 +20,7 @@ const Menu = () => {
 
   useEffect(() => {
     axios
-      .get(getApiUrl("admin/get"))
+      .get(getApiUrl("get/products"))
       .then((res) => {
         setAllProducts(res.data);
       })

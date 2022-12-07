@@ -15,7 +15,7 @@ const Admin = () => {
           className="button-field"
           title={"GO TO PRODUCTS"}
           onClick={() => {
-            navigate("/get/products");
+            navigate("/products");
           }}
         ></Button>
         <Button

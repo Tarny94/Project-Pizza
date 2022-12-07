@@ -42,8 +42,9 @@ const UpdateProduct = () => {
 
   const handleUpdate = async () => {
     await updateProductApi(productToUpdate);
-    navigate("/get/products");
+    navigate("/products");
   };
+
   return (
     <div className="product-update">
       <h1 className="product-update-title">UPDATE PRODUCT</h1>
