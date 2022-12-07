@@ -36,7 +36,7 @@ const ProductControl = () => {
   const handleEdit = async (id: number) => {
     setProduct(await getProductApi(id));
     setPizza_id(id);
-    navigate("/admin/updateProduct");
+    navigate("/update/product");
   };
 
   const columns = ["Crt", "Title", "Image", "Description", "Price", "Discount"];

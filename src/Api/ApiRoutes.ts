@@ -12,7 +12,7 @@ type iProp = {
 
 export const deleteProductApi = async (id: number) => {
   await axios
-    .delete(getApiUrl(`admin/delete/${id}`))
+    .delete(getApiUrl(`delete/product/${id}`))
     .then((res) => {
       alert("Succes");
     })
@@ -23,7 +23,7 @@ export const deleteProductApi = async (id: number) => {
 
 export const getAllProductsApi = async () => {
   return await axios
-    .get(getApiUrl("admin/getProducts"))
+    .get(getApiUrl("get/products"))
     .then((res) => {
       return res.data;
     })
@@ -34,7 +34,7 @@ export const getAllProductsApi = async () => {
 
 export const getProductApi = async (id: number) => {
   return await axios
-    .get(getApiUrl(`admin/getProduct/${id}`))
+    .get(getApiUrl(`get/product/${id}`))
     .then((res) => {
       return res.data[0];
     })
@@ -45,7 +45,7 @@ export const getProductApi = async (id: number) => {
 
 export const updateProductApi = async (product: iProp) => {
   return await axios
-    .patch(getApiUrl("admin/updateProduct"), product)
+    .patch(getApiUrl("update/product"), product)
     .then((res) => {
       alert("Succes");
     })
@@ -56,7 +56,7 @@ export const updateProductApi = async (product: iProp) => {
 
 export const addProductApi = async (product: iProp) => {
   return await axios
-    .post(getApiUrl("admin/addProduct"), product)
+    .post(getApiUrl("add/product"), product)
     .then((res) => {
       alert("Succes");
     })

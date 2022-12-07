@@ -15,14 +15,14 @@ const Admin = () => {
           className="button-field"
           title={"GO TO PRODUCTS"}
           onClick={() => {
-            navigate("/admin/products");
+            navigate("/get/products");
           }}
         ></Button>
         <Button
           className="button-field"
           title={"ADD PRODUCT"}
           onClick={() => {
-            navigate("/admin/addProduct");
+            navigate("/add/product");
           }}
         />
         <Button
