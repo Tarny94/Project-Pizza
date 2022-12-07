@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../Providers/UserProvider";
 import { useNavigate } from "react-router-dom";
-import "../Header/Header.scss";
+import "../Header/header.scss";
 import {
   setCoockie,
   setCoockieWithExpireTime,

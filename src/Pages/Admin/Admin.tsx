@@ -3,7 +3,7 @@ import Button from "../../Design/Button";
 import { useNavigate } from "react-router-dom";
 import { setCoockieWithExpireTime } from "../../Util/Cookies/Coockie";
 import { ADMIN_KEY } from "../../Constant";
-import "../Admin/Styles/Admin.scss";
+import "./Styles/Admin.scss";
 
 const Admin = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import "../Header/Header.scss";
+import "./header.scss";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "../Authentication/Logout";
