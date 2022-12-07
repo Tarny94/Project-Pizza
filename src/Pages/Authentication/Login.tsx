@@ -1,4 +1,4 @@
-import "./Login.scss";
+import "./login.scss";
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
