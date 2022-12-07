@@ -8,22 +8,16 @@ import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { setCoockieWithExpireTime } from "../../Util/Cookies/Coockie";
 import { ADMIN_KEY } from "../../Constant";
-import { Context } from "../Provider";
+import { UserContext } from "../Providers/UserProvider";
 
 const AdminLogin = () => {
-  const { setIsAdminLoggedIn, isAdminLoggedIn } = useContext(Context);
+  const { setIsAdminLoggedIn, userId } = useContext(UserContext);
   const [code, setCode] = useState("");
   const navigate = useNavigate();
 
-  onkeydown = function (e: any) {
-    if (e.key === "Enter") {
-      !isAdminLoggedIn && handleAdminLogin();
-    }
-  };
-
-  const handleAdminLogin = () => {
-    axios
-      .get(getApiUrl(`admin/login${code}`))
+  const handleAdminLogin = async () => {
+    await axios
+      .post(getApiUrl(`admin/login`), { code, id: userId })
       .then((res) => {
         setIsAdminLoggedIn(true);
         setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: true }, 3600);
@@ -46,7 +40,7 @@ const AdminLogin = () => {
           }}
         />
         <div className="admin-description">
-          <p>You are not the admin? </p> <Link to={"/"}> Click Hire</Link>
+          <Link to={"/"}> Go to home</Link>
         </div>
       </div>
     </div>

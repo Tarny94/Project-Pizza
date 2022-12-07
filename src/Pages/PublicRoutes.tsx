@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Context } from "./Provider";
+import { UserContext } from "./Providers/UserProvider";
 import { Navigate } from "react-router-dom";
 
 const PublicRoutes = ({ children }: any) => {
-  const { isLoggedIn } = useContext(Context);
+  const { isLoggedIn } = useContext(UserContext);
   return isLoggedIn ? <Navigate to="/" /> : children;
 };
 

@@ -1,17 +1,25 @@
-@import "../../Styles/vars";
+@import "../../../Styles/vars";
 
 .product-control-container{
+  margin: 0 auto;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
+ 
   .product-control-buttons{
     margin: 80px auto;
     width: 700px;
-    .product-subtitle{
-      margin-bottom: 30px;
+  }
+  .security-delete-product{
+    width: 100%;
+    background-color: $blue_100;
+    display: flex;
+    justify-content: space-around;
+    .security-button{
+      color :wheat
     }
   }
 }

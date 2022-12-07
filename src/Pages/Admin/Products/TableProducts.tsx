@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import "../../Pages/Menu/ProductCard.scss";
+import "../../Menu/ProductCard.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -22,10 +22,16 @@ export default function TableProducts({
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell width={130}>{edit}</TableCell>
+            <TableCell width={130} sx={{ fontWeight: "bolder" }}>
+              {edit}
+            </TableCell>
             {columns.map((column: any, id: number) => {
               return (
-                <TableCell align="center" key={id}>
+                <TableCell
+                  align="center"
+                  key={id}
+                  sx={{ fontWeight: "bolder" }}
+                >
                   {column}
                 </TableCell>
               );
@@ -34,7 +40,7 @@ export default function TableProducts({
         </TableHead>
         <TableBody>
           {row.map((product: any, id: number) => (
-            <TableRow key={id} sx={{}}>
+            <TableRow key={id}>
               <TableCell component="th" scope="row">
                 <div style={{ display: "flex" }}>
                   <div

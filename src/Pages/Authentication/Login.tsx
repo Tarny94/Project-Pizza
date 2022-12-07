@@ -5,17 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
 import { setCoockie } from "../../Util/Cookies/Coockie";
-import { Context } from "../Provider";
+import { UserContext } from "../Providers/UserProvider";
 import { TOKEN_KEY } from "../../Constant";
 import "./Login.scss";
 
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(Context);
+  const { setIsLoggedIn } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");
-  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   const loginUser = {
@@ -23,32 +22,23 @@ const Login = () => {
     password,
   };
 
-  onkeydown = function (e) {
-    if (e.key === "Enter") {
-      !open && authentificate();
-    }
-  };
-
-  const handleSuccesLogin = (res: any) => {
-   
-    setCoockie(TOKEN_KEY, {
+  const handleSuccesLogin = async (res: any) => {
+    await setCoockie(TOKEN_KEY, {
       _id: res.data.user._id,
       token: res.data.user.token,
     });
-    setOpen(true);
     setIsLoggedIn(true);
     navigate("/");
   };
 
   const authentificate = async () => {
     setResponse("");
-    axios
+    await axios
       .post(getApiUrl("login"), loginUser)
       .then((res) => {
         handleSuccesLogin(res);
       })
       .catch((e) => {
-        setOpen(true);
         setResponse(e.response.data.error);
       });
   };

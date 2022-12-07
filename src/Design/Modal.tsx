@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
@@ -16,7 +15,13 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ openModal, setOpenModal }: any) {
+export default function BasicModal({
+  openModal,
+  setOpenModal,
+  title,
+  text,
+  question,
+}: any) {
   const handleClose = () => setOpenModal(false);
 
   return (
@@ -36,10 +41,23 @@ export default function BasicModal({ openModal, setOpenModal }: any) {
                 component="h2"
                 sx={{ textAlign: "center" }}
               >
-                Text in a modal
+                {title}
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                {text}
+              </Typography>
+              <Typography
+                id="modal-modal-description"
+                variant="h5"
+                component="h2"
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  textAlign: "center",
+                }}
+              >
+                {" "}
+                {question}
               </Typography>
             </Box>
           </Modal>
