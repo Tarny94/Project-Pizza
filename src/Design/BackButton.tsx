@@ -1,5 +1,5 @@
-import React from "react";
 import "../Styles/Button.scss";
+import React from "react";
 
 const BackButton = ({ onClick }: any) => {
   return (

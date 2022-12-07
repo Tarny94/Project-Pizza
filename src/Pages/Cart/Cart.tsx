@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import "./Cart.scss";
+import React, { useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import BasicModal from "../../Design/Modal";
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import "../Menu/ProductCard.scss";
+import React, { useEffect, useState } from "react";
 
 type iProp = {
   image?: string;
