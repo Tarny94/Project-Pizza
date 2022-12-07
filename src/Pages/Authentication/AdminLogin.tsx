@@ -1,4 +1,4 @@
-import "./AdminLogin.scss";
+import "./adminLogin.scss";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../Design/Button";
