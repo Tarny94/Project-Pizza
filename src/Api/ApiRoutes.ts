@@ -45,7 +45,7 @@ export const getProductApi = async (id: number) => {
 
 export const updateProductApi = async (product: iProp) => {
   return await axios
-    .patch(getApiUrl("admin/update/product"), product)
+    .patch(getApiUrl("admin/updateProduct"), product)
     .then((res) => {
       alert("Succes");
     })
