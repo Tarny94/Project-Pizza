@@ -1,4 +1,4 @@
-import "../Styles/Products.scss";
+import "../Styles/ProductsStyle.scss";
 import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../../Providers/ProductProvider";
 import TableProducts from "./TableProducts";

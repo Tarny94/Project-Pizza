@@ -1,4 +1,4 @@
-import "../Styles/Products.scss";
+import "../Styles/ProductsStyle.scss";
 import React, { useContext } from "react";
 import Input from "../../../Design/Input";
 import Button from "../../../Design/Button";

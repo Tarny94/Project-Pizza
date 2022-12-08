@@ -1,9 +1,8 @@
-import "./notfound.scss";
+import "./NotFoundStyle.scss";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
-  const navigate = useNavigate();
   return (
     <div className="notfound-container">
       <h1>Not Found 404</h1>

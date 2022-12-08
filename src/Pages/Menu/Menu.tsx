@@ -1,4 +1,4 @@
-import "./menu.scss";
+import "./MenuStyle.scss";
 import React, { useContext, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Cart from "../Cart/Cart";

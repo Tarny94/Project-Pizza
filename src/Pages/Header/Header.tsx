@@ -1,4 +1,4 @@
-import "./header.scss";
+import "./HeaderStyle.scss";
 import React, { useState, useContext } from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";

@@ -1,4 +1,4 @@
-import "../Header/header.scss";
+import "../Header/HeaderStyle.scss";
 import React, { useContext } from "react";
 import { UserContext } from "../Providers/UserProvider";
 import { useNavigate } from "react-router-dom";

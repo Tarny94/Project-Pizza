@@ -1,4 +1,4 @@
-import "./aboutUs.scss";
+import "./AboutUsStyle.scss";
 import React from "react";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import LocalPizzaIcon from "@mui/icons-material/LocalPizza";

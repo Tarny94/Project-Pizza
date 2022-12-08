@@ -1,4 +1,4 @@
-import "../Styles/Button.scss";
+import "../Styles/Buttons.scss";
 import React from "react";
 
 const BackButton = ({ onClick }: any) => {

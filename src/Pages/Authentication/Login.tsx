@@ -1,4 +1,4 @@
-import "./login.scss";
+import "./LoginStyle.scss";
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";

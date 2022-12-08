@@ -1,4 +1,4 @@
-import "../../Menu/productCard.scss";
+import "../../Menu/ProductCardStyle.scss";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
