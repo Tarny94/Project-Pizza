@@ -1,11 +1,11 @@
 @import "../../Styles/vars";
 
 .cart-container{
-  width: 100%;
-  display: flex;
-  justify-content: end;
   position: fixed;
-  margin-top: 70px;
+    bottom: 0;
+    right: 0;
+    
+ 
  
   .cart-design{
     margin: 0 10px 0 0;
