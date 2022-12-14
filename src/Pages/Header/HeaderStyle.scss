@@ -5,6 +5,9 @@
   position: fixed;
   width: 100%;
   opacity: 0.8;
+  .pages-container{
+    display: none;
+  }
   .header-container{
     background: $usual_800;
     display: flex;
@@ -78,6 +81,7 @@
       }
     }
   .pages-container {
+        display: inherit;
         color: $usual_200;
         background-color: $usual_800;
         width: 100%;
