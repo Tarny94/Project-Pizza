@@ -42,8 +42,9 @@ const UpdateProduct = () => {
 
   const handleUpdate = async () => {
     await updateProductApi(productToUpdate);
-    navigate("/admin/products");
+    navigate("/products");
   };
+
   return (
     <div className="product-update">
       <h1 className="product-update-title">UPDATE PRODUCT</h1>
@@ -104,7 +105,7 @@ const UpdateProduct = () => {
       </div>
       <BackButton
         onClick={() => {
-          navigate("/admin/products");
+          navigate("/get/products");
         }}
       />
     </div>

@@ -1,3 +1,4 @@
+import "./LoginStyle.scss";
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
@@ -7,8 +8,6 @@ import Input from "../../Design/Input";
 import { setCoockie } from "../../Util/Cookies/Coockie";
 import { UserContext } from "../Providers/UserProvider";
 import { TOKEN_KEY } from "../../Constant";
-import "./Login.scss";
-
 
 const Login = () => {
   const { setIsLoggedIn } = useContext(UserContext);

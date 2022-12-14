@@ -1,10 +1,10 @@
+import "./MenuStyle.scss";
 import React, { useContext, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Cart from "../Cart/Cart";
-import "./Menu.scss";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
-import {ProductContext} from "../Providers/ProductProvider"
+import { ProductContext } from "../Providers/ProductProvider";
 
 type iProp = {
   image?: string;
@@ -17,10 +17,9 @@ type iProp = {
 const Menu = () => {
   const { allProducts, setAllProducts } = useContext(ProductContext);
 
-
   useEffect(() => {
     axios
-      .get(getApiUrl("admin/get"))
+      .get(getApiUrl("get/products"))
       .then((res) => {
         setAllProducts(res.data);
       })
@@ -29,7 +28,7 @@ const Menu = () => {
       });
   }, [setAllProducts]);
   console.log(allProducts);
-  
+
   return (
     <div className="page-menu-container">
       <div className="menu-container">

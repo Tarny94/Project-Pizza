@@ -1,5 +1,5 @@
+import "./AboutUsStyle.scss";
 import React from "react";
-import "../AboutUs/AboutUs.scss";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import WifiIcon from "@mui/icons-material/Wifi";

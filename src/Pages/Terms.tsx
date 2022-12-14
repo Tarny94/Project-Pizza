@@ -1,6 +1,6 @@
+import "../Styles/TermsStyle.scss";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/Terms.scss";
 
 const Terms = () => {
   const navigate = useNavigate();

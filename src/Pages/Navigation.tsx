@@ -15,10 +15,10 @@ import Products from "./Admin/Products/Products";
 import AddProduct from "./Admin/Products/AddProduct";
 import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
-import Admin from "./Admin/Admin";
+import Admin from "../Pages/Admin/Admin";
 import { ProductProvider } from "./Providers/ProductProvider";
 import { UserProvider } from "./Providers/UserProvider";
-import AdminSetting from "./Admin/AdminSettings";
+import AdminSetting from "../Pages/Admin/AdminSettings";
 import AdminRoutes from "./AdminRoutes";
 
 const Navigation = () => {
@@ -70,7 +70,7 @@ const Navigation = () => {
               }
             />
             <Route
-              path="/admin/products"
+              path="/products"
               element={
                 <ProtectedRoutes>
                   <Products />
@@ -78,7 +78,7 @@ const Navigation = () => {
               }
             />
             <Route
-              path="/admin/addProduct"
+              path="/add/product"
               element={
                 <ProtectedRoutes>
                   <AddProduct />
@@ -86,7 +86,7 @@ const Navigation = () => {
               }
             />
             <Route
-              path="/admin/update/product"
+              path="/update/product"
               element={
                 <ProtectedRoutes>
                   <UpdateProduct />

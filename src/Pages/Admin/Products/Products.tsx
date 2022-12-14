@@ -1,5 +1,5 @@
+import "../Styles/ProductsStyle.scss";
 import React, { useContext, useEffect } from "react";
-import "../Styles/Products.scss";
 import { ProductContext } from "../../Providers/ProductProvider";
 import TableProducts from "./TableProducts";
 import BackButton from "../../../Design/BackButton";
@@ -36,7 +36,7 @@ const ProductControl = () => {
   const handleEdit = async (id: number) => {
     setProduct(await getProductApi(id));
     setPizza_id(id);
-    navigate("/admin/update/product");
+    navigate("/update/product");
   };
 
   const columns = ["Crt", "Title", "Image", "Description", "Price", "Discount"];

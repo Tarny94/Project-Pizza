@@ -1,9 +1,9 @@
+import "./Styles/AdminStyle.scss";
 import React from "react";
 import Button from "../../Design/Button";
 import { useNavigate } from "react-router-dom";
 import { setCoockieWithExpireTime } from "../../Util/Cookies/Coockie";
 import { ADMIN_KEY } from "../../Constant";
-import "../Admin/Styles/Admin.scss";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -15,14 +15,14 @@ const Admin = () => {
           className="button-field"
           title={"GO TO PRODUCTS"}
           onClick={() => {
-            navigate("/admin/products");
+            navigate("/products");
           }}
         ></Button>
         <Button
           className="button-field"
           title={"ADD PRODUCT"}
           onClick={() => {
-            navigate("/admin/addProduct");
+            navigate("/add/product");
           }}
         />
         <Button
