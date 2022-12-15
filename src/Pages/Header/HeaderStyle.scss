@@ -5,6 +5,7 @@
   position: fixed;
   width: 100%;
   opacity: 0.8;
+  z-index: 2;
   .header-container{
     background: $usual_800;
     display: flex;
