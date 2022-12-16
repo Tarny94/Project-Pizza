@@ -39,11 +39,12 @@
     }
   }
   .intro-title{
-    font-size: 600%;
+    font-size: 7rem;
     color: $orange_100;
     font-family:cursive;
     letter-spacing: 14px;
     transform: skew(10deg, 10deg);
+    z-index:inherit;
   
   }
   .intro-description{
@@ -52,7 +53,7 @@
     font-family:'Courier New', Courier, monospace;
     font-size: 23px;
     color: $usual_300;
- 
+    
   }
 
 }
@@ -70,10 +71,7 @@
       .intro-title{
         margin:0 auto;
        transform: none;
-        font-size: 500%;
-      }
-     .intro-description{
-      
+        font-size: 5rem;
       }
     }
   }

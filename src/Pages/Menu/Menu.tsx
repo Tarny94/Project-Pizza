@@ -53,8 +53,8 @@ const Menu = () => {
             );
           })}
         </div>
-        <Cart />
       </div>
+      <Cart />
     </div>
   );
 };
