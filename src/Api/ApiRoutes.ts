@@ -67,7 +67,9 @@ export const addProductApi = async (product: iProp) => {
 
 export const checkIfAdminLoggedIn = async (token: string) => {
   return await axios
-    .post(getApiUrl("admin/login/page"), { token })
+    .post(getApiUrl("admin/login/page"), null, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((res) => {
       return true;
     })
@@ -75,3 +77,5 @@ export const checkIfAdminLoggedIn = async (token: string) => {
       return false;
     });
 };
+
+export const setUserToken = (token: string) => {};

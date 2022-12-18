@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const initialState = {
   isLoggedIn: false,
   user: "",
-  isAdminLoggedIn: false,
+  isAdminLoggedIn: true,
   isAdmin: false,
   userId: 0,
 
@@ -20,7 +20,7 @@ const initialState = {
 export const UserContext = createContext(initialState);
 export const UserProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(0);
 
