@@ -7,6 +7,7 @@ import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { useNavigate } from "react-router-dom";
+import Map from "../../components/map/Map";
 
 type iProp = {
   title: string;
@@ -28,53 +29,58 @@ const contactInfo: iProp = {
 const Contact = () => {
   const navigate = useNavigate();
   return (
-    <div className="contact-container">
-      <div className="contact-elemnts">
-        <div className="contact-title">
-          <div className="title-name">{contactInfo.title}</div>
-        </div>
-        <div className="contact-icons-social">
-          <div className="facebook ifb">
-            {" "}
-            <FacebookIcon className="icon" fontSize="large" />
+    <>
+      <Map />
+      <div className="contact-container">
+        <div className="contact-elemnts">
+          <div className="contact-title">
+            <div className="title-name">{contactInfo.title}</div>
           </div>
-          <div className="instagram ifb">
-            <InstagramIcon className="icon" fontSize="large" />
+          <div className="contact-icons-social">
+            <div className="facebook ifb">
+              {" "}
+              <FacebookIcon className="icon" fontSize="large" />
+            </div>
+            <div className="instagram ifb">
+              <InstagramIcon className="icon" fontSize="large" />
+            </div>
           </div>
-        </div>
-        <div className="contact-terms">
-          <div
-            className="contact-terms-name"
-            onClick={() => {
-              navigate("/terms");
-            }}
-          >
-            Terms and conditions
+
+          <div className="contact-terms">
+            <div
+              className="contact-terms-name"
+              onClick={() => {
+                navigate("/terms");
+              }}
+            >
+              Terms and conditions
+            </div>
           </div>
-        </div>
-        <div className="contact-data">
-          <div className="contact-data-title">CONTACT</div>
-          <div className="contact-email  contact-data-location">
-            <EmailIcon className="contact-icon" />
-            <div>{contactInfo.email}</div>
-          </div>
-          <div className="contact-phone contact-data-location">
-            <CallIcon className="contact-icon" />
-            <div>{contactInfo.phone}</div>
-          </div>
-          <div className="contact-data-location">
-            <LocationOnIcon className="contact-icon" />
-            <div>{contactInfo.address}</div>
-          </div>
-          <div className="contact-details">
-            <WatchLaterIcon className="contact-icon" />
-            <div className="contact-timetable contact-data-location">
-              {contactInfo.timetable}
+
+          <div className="contact-data">
+            <div className="contact-data-title">CONTACT</div>
+            <div className="contact-email  contact-data-location">
+              <EmailIcon className="contact-icon" />
+              <div>{contactInfo.email}</div>
+            </div>
+            <div className="contact-phone contact-data-location">
+              <CallIcon className="contact-icon" />
+              <div>{contactInfo.phone}</div>
+            </div>
+            <div className="contact-data-location">
+              <LocationOnIcon className="contact-icon" />
+              <div>{contactInfo.address}</div>
+            </div>
+            <div className="contact-details">
+              <WatchLaterIcon className="contact-icon" />
+              <div className="contact-timetable contact-data-location">
+                {contactInfo.timetable}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
