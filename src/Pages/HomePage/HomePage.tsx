@@ -3,8 +3,11 @@ import React from "react";
 import Button from "../../Design/Button";
 import AboutUs from "../AboutUs/AboutUs";
 import Contact from "../Contact/Contact";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="home-container">
@@ -18,16 +21,18 @@ const HomePage = () => {
               <Button
                 className="button-intro"
                 title={"ORDER NOW"}
-                onClick={undefined}
-                disabled={false}
+                onClick={() => {
+                  navigate("/menu");
+                }}
                 width={200}
                 height={50}
               />
               <Button
                 className="button-intro"
                 title={"CONTACT US"}
-                onClick={undefined}
-                disabled={false}
+                onClick={() => {
+                  navigate("/contact");
+                }}
                 width={200}
                 height={50}
               />
