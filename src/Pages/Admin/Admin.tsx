@@ -36,7 +36,7 @@ const Admin = () => {
           className="button-field"
           title={"LOGOUT"}
           onClick={() => {
-            setCoockieWithExpireTime(ADMIN_KEY, undefined, 0);
+            setCoockieWithExpireTime(ADMIN_KEY, { loggedIn: false }, 0);
             navigate("/admin/login");
           }}
         ></Button>
