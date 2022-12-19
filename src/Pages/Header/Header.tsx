@@ -99,51 +99,52 @@ const Header = () => {
           <MenuIcon />
         </IconButton>
         <div className="acces-header">
-          <div
+          <button
             className="page-home page-header"
             onClick={() => {
               navigate("/");
             }}
           >
             {pages.home.toUpperCase()}
-          </div>
+          </button>
 
-          <div
+          <button
             className="page-menu page-header"
             onClick={() => {
               navigate("/menu");
             }}
           >
             {pages.menu.toUpperCase()}
-          </div>
+          </button>
 
-          <div
+          <button
             className="page-about page-header"
+            itemType="button"
             onClick={() => {
               navigate("/about");
             }}
           >
             {pages.about.toUpperCase()}
-          </div>
+          </button>
 
-          <div
+          <button
             className="page-contact page-header"
             onClick={() => {
               navigate("/contact");
             }}
           >
             {pages.contact.toUpperCase()}
-          </div>
+          </button>
 
           {!isLoggedIn ? (
-            <div
+            <button
               className="page-login page-header"
               onClick={() => {
                 navigate("/login");
               }}
             >
               <span>{pages.login.toUpperCase()}</span>
-            </div>
+            </button>
           ) : (
             <Logout className="page-contact page-header" />
           )}
