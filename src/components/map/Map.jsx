@@ -5,7 +5,8 @@ import "./MapStyle.scss";
 const mapStyles = {
   width: "100%",
   height: "400px",
-  borderTop: " 0.5px solid gray",
+  borderTop: "0.5px solid gray",
+  marginTop: "5rem",
 };
 
 const MapContainer = (props) => (
