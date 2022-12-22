@@ -83,13 +83,15 @@
         cursor: pointer;
         font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-weight: lighter;
-        font-size: 12px;
+        font-size: 19px;
         transition: 0.5s;
+        color: $usual_200;
+        background-color: $usual_700;
         &:hover {
           transition: 0.5s;
           background: linear-gradient(to left,$orange_200  35%, $usual_800 70%) right;
           background-size: 200% 100%;
-          color: $usual_700;
+          color: $usual_800;
           transition: 0.5s ease; 
         }
     }
