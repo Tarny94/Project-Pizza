@@ -1,12 +1,17 @@
 import "./Home.scss";
+import React, { useContext } from "react";
 import Button from "../../Design/Button";
 import AboutUs from "../AboutUs/AboutUs";
 import Contact from "../Contact/Contact";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Providers/UserProvider";
 
 const HomePage = () => {
+  const { phone, setPhone } = useContext(UserContext);
+
   const navigate = useNavigate();
 
+  setPhone("0737678044");
   return (
     <>
       <div className="home-container">
@@ -16,6 +21,7 @@ const HomePage = () => {
             <p className="intro-description">
               Best homemade pizza you will ever eat
             </p>
+
             <div className="intro-buttons">
               <Button
                 className="button-intro"
@@ -36,6 +42,8 @@ const HomePage = () => {
                 height={50}
               />
             </div>
+
+            <h2 className="phone-contain">📞 {phone}</h2>
           </div>
         </div>
       </div>

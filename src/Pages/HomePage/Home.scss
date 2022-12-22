@@ -26,8 +26,30 @@
     flex-direction: column;
     animation-name: chany;
     animation-duration: 1.5s;
-   
+    .phone-contain {
+      margin-top: 7rem;
+      font-size: 45px;
+      transform: skew(15deg, -15deg);
+      font-style: oblique;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: $orange_200;
+      text-shadow:0 0 100px $red_100;
+      animation: cycle 3s linear infinite ;
+      
+    }
+    
   }
+  @keyframes cycle {
+    
+    0% { text-shadow: 0px 0px 100px rgb(0, 17, 247);}
+    20% { text-shadow: 0px 0px 100px rgb(209, 11, 249);}
+    40% { text-shadow: 0px 0px 100px rgb(8, 200, 17);}
+    60% { text-shadow: 0px 0px 100px rgba(242, 16, 16, 0.979);}
+    80% { text-shadow: 0px 0px 100px rgba(245, 110, 0, 0.998);}
+  }
+
+  
+
   @keyframes chany {
     from {
       margin-left: 0;
@@ -61,6 +83,10 @@
 
 @media only screen and (max-width: 900px) {
 .home-container{
+
+  .home-image {
+    background-image: linear-gradient( rgba(50, 50, 50, 0.5), rgba(0, 0, 0, 0.5) ),url( "../../Images/pizza6.jpg");
+  }
 
   .intro-container{
     width: 100%;
