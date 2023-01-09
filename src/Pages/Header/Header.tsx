@@ -1,5 +1,5 @@
 import "./HeaderStyle.scss";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "../Authentication/Logout";
@@ -14,8 +14,7 @@ const Header = () => {
     contact: "Contact",
     login: "login",
   };
-  const { isLoggedIn } = useContext(UserContext);
-  const [click, setClick] = useState(false);
+  const { isLoggedIn, click, setClick } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleIconMenu = () => {

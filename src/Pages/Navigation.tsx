@@ -20,13 +20,16 @@ import { ProductProvider } from "./Providers/ProductProvider";
 import { UserProvider } from "./Providers/UserProvider";
 import AdminSetting from "../Pages/Admin/AdminSettings";
 import AdminRoutes from "./AdminRoutes";
+import OutsideAlerter from "../Design/ClickAway";
 
 const Navigation = () => {
   return (
     <>
       <UserProvider>
         {" "}
-        <Header />
+        <OutsideAlerter>
+          <Header />
+        </OutsideAlerter>
         <ProductProvider>
           {" "}
           <Routes>
