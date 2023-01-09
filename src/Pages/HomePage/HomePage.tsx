@@ -12,6 +12,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   setPhone("0737678044");
+
   return (
     <>
       <div className="home-container">
