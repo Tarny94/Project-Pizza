@@ -27,10 +27,27 @@ const contactInfo: iProp = {
 };
 
 const Contact = () => {
+  const mapStyles = {
+    width: "100%",
+    height: "400px",
+    borderTop: "0.5px solid gray",
+    marginTop: "5rem",
+  };
+  const initialPosition = {
+    lat: 47.531827,
+    lng: 25.548195,
+  };
+  const position = { lat: 47.531, lng: 25.548 };
+
   const navigate = useNavigate();
   return (
     <>
-      <Map />
+      <Map
+        zoom={15}
+        initialPosition={initialPosition}
+        mapStyles={mapStyles}
+        position={position}
+      />
       <div className="contact-container">
         <div className="contact-elemnts">
           <div className="contact-title">
