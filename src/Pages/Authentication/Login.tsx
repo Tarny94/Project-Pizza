@@ -8,9 +8,10 @@ import Input from "../../Design/Input";
 import { setCoockie } from "../../Util/Cookies/Coockie";
 import { UserContext } from "../Providers/UserProvider";
 import { TOKEN_KEY } from "../../Constant";
+import Snackbar from "../../Design/Snackbar";
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(UserContext);
+  const { setIsLoggedIn, setOpen, open } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");
@@ -84,6 +85,13 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      <Snackbar
+        open={open}
+        setOpen={setOpen}
+        duration={3000}
+        severity={"success"}
+        title={"Successfull registration!"}
+      />
     </div>
   );
 };

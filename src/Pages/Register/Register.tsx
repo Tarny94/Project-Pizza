@@ -1,12 +1,14 @@
 import "./RegisterStyle.scss";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getApiUrl } from "../../Api/api";
 import Button from "../../Design/Button";
 import Input from "../../Design/Input";
+import { UserContext } from "../Providers/UserProvider";
 
 const Register = () => {
+  const { setOpen } = useContext(UserContext);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -14,7 +16,6 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [response, setResponse] = useState("");
   const [terms, setTerms] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -41,7 +42,6 @@ const Register = () => {
         navigate("/login");
       })
       .catch((error) => {
-        setOpen(true);
         setResponse(error.response.data.error);
       });
   };

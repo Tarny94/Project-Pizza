@@ -8,9 +8,17 @@ type IProp = {
   severity?: "error" | "warning" | "info" | "success";
   duration: number;
   title?: string;
+  resumeHideDuration?: number;
 };
 
-const Snackbar = ({ open, setOpen, severity, duration, title }: IProp) => {
+const Snackbar = ({
+  open,
+  setOpen,
+  severity,
+  duration,
+  title,
+  resumeHideDuration,
+}: IProp) => {
   const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref
@@ -29,7 +37,12 @@ const Snackbar = ({ open, setOpen, severity, duration, title }: IProp) => {
   };
 
   return (
-    <SnackbarMUI open={open} autoHideDuration={duration} onClose={handleClose}>
+    <SnackbarMUI
+      open={open}
+      autoHideDuration={duration}
+      onClose={handleClose}
+      resumeHideDuration={resumeHideDuration}
+    >
       <Alert
         onClose={handleClose}
         severity={severity}
