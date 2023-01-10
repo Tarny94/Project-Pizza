@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "../Authentication/Logout";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
+import UserProfile from "../Profile/UserProfile";
 
 const Header = () => {
   const pages = {
@@ -71,6 +72,7 @@ const Header = () => {
 
   return (
     <div className="header-app-container">
+      <UserProfile />
       <div className="header-container">
         <h1
           className="header-title"
