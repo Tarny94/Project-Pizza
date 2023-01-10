@@ -11,7 +11,9 @@ const initialState = {
   isAdmin: false,
   userId: 0,
   phone: 0,
+  open: false,
 
+  setOpen: useState,
   setPhone: useState,
   setIsAdminLoggedIn: useState,
   setUser: useState,
@@ -26,6 +28,7 @@ export const UserProvider = (props: any) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(0);
   const [phone, setPhone] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -68,6 +71,8 @@ export const UserProvider = (props: any) => {
         userId,
         setPhone,
         phone,
+        open,
+        setOpen,
       }}
       {...props}
     />
