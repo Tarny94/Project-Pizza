@@ -3,16 +3,21 @@ import React from "react";
 import Logout from "../Authentication/Logout";
 
 const UserProfile = () => {
+  
   return (
     <div className="profile-container">
       <div className="profile-contains">
-        <div className="profile-title">User</div>
-        <div className="profile-icon profile-domain">Icon</div>
-        <div className="profile-details profile-domain">Details</div>
-        <div className="profile-password-change profile-domain">
-          Change Password
+        <div className="profile-icon-name profile-domain">
+          <div className="profile-icon "> 😉</div>
+          <div className="profile-title ">USER</div>
+          <p className="icon-help-text">Click to change Icon</p>
         </div>
-        <Logout />
+
+        <div className="profile-details profile-domain">DETAILS</div>
+        <div className="profile-password-change profile-domain">
+          CHANGE PASSWORD
+        </div>
+        <Logout className="profile-domain" />
       </div>
     </div>
   );

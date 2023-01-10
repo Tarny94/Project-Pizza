@@ -1,8 +1,7 @@
 import "./HeaderStyle.scss";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Logout from "../Authentication/Logout";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
 import UserProfile from "../Profile/UserProfile";
@@ -19,6 +18,11 @@ const Header = () => {
   const [openProfile, setOpenProfile] = useState(false);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setOpenProfile(false);
+    }
+  }, [isLoggedIn]);
 
   const handleIconMenu = () => {
     return (
@@ -66,7 +70,18 @@ const Header = () => {
             </span>
           </div>
         ) : (
-          <div className="page-contact page-header">PROFILE</div>
+          <div
+            className="page-home page"
+            onClick={() => {
+              if (openProfile) {
+                setOpenProfile(false);
+              } else {
+                setOpenProfile(true);
+              }
+            }}
+          >
+            PROFILE
+          </div>
         )}
       </div>
     );
@@ -164,7 +179,7 @@ const Header = () => {
         </div>
       </div>
       {click ? handleIconMenu() : ""}
-      {openProfile && <UserProfile />}
+      {isLoggedIn && openProfile && <UserProfile />}
     </div>
   );
 };
