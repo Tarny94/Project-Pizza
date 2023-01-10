@@ -18,12 +18,10 @@ type iProp = {
 };
 const contactInfo: iProp = {
   title: "PIZZA",
-  email: "alex@yahoo.com",
-  phone: "0733.404.222",
-  address: "Str. Valea 120, Bacau",
-  timetable: `Monday - Tuesday: closed, give us a message. 
-  Wednesday - Saturday: 11:00 - 21:00
-  Sunday: 12:00 - 21:00`,
+  email: "alextarnicer1994@gmail.com",
+  phone: "0737678044",
+  address: "Valea Seaca 120, Campulung Moldovenesc, Suceava",
+  timetable: `Monday - Saturday: 09:00 - 21:00, Sunday: 12:00 - 19:00`,
 };
 
 const Contact = () => {

@@ -7,11 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
 
 const HomePage = () => {
-  const { phone, setPhone } = useContext(UserContext);
+  const { phone } = useContext(UserContext);
 
   const navigate = useNavigate();
 
-  setPhone("0737678044");
   return (
     <>
       <div className="home-container">

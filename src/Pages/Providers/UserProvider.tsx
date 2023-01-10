@@ -29,7 +29,7 @@ export const UserProvider = (props: any) => {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(0);
-  const [phone, setPhone] = useState(0);
+  const [phone, setPhone] = useState("0737678044");
 
   const navigate = useNavigate();
   useEffect(() => {
