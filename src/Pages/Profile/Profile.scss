@@ -1,10 +1,20 @@
 @import "../../Styles/vars";
 
 .profile-container{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  
   .profile-title{
 
   }
-  .profile-buttons{
+  .profile-contains{
+    width: 25%;
+    background-color: $usual_800;
+    color: $usual_100;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     
   }
 }

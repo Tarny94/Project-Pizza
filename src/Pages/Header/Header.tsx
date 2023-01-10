@@ -1,5 +1,5 @@
 import "./HeaderStyle.scss";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logout from "../Authentication/Logout";
@@ -16,6 +16,8 @@ const Header = () => {
     login: "login",
   };
   const { isLoggedIn, click, setClick } = useContext(UserContext);
+  const [openProfile, setOpenProfile] = useState(false);
+
   const navigate = useNavigate();
 
   const handleIconMenu = () => {
@@ -64,7 +66,7 @@ const Header = () => {
             </span>
           </div>
         ) : (
-          <Logout className="page-contact page" />
+          <div className="page-contact page-header">PROFILE</div>
         )}
       </div>
     );
@@ -72,7 +74,6 @@ const Header = () => {
 
   return (
     <div className="header-app-container">
-      <UserProfile />
       <div className="header-container">
         <h1
           className="header-title"
@@ -147,11 +148,23 @@ const Header = () => {
               <span>{pages.login.toUpperCase()}</span>
             </button>
           ) : (
-            <Logout className="page-contact page-header" />
+            <div
+              className="page-contact page-header"
+              onClick={() => {
+                if (openProfile) {
+                  setOpenProfile(false);
+                } else {
+                  setOpenProfile(true);
+                }
+              }}
+            >
+              PROFILE
+            </div>
           )}
         </div>
       </div>
       {click ? handleIconMenu() : ""}
+      {openProfile && <UserProfile />}
     </div>
   );
 };
