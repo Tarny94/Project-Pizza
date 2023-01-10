@@ -30,6 +30,8 @@ export const UserProvider = (props: any) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(0);
   const [phone, setPhone] = useState("0737678044");
+  const [click, setClick] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -72,6 +74,10 @@ export const UserProvider = (props: any) => {
         userId,
         setPhone,
         phone,
+        click,
+        setClick,
+        open,
+        setOpen,
       }}
       {...props}
     />
