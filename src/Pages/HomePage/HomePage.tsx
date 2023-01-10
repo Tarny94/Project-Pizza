@@ -28,8 +28,6 @@ const HomePage = () => {
                 onClick={() => {
                   navigate("/menu");
                 }}
-                width={200}
-                height={50}
               />
               <Button
                 className="button-intro"
@@ -37,8 +35,6 @@ const HomePage = () => {
                 onClick={() => {
                   navigate("/contact");
                 }}
-                width={200}
-                height={50}
               />
             </div>
 
