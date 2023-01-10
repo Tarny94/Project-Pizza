@@ -105,7 +105,7 @@ const UpdateProduct = () => {
       </div>
       <BackButton
         onClick={() => {
-          navigate("/get/products");
+          navigate("/products");
         }}
       />
     </div>
