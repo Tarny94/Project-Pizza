@@ -13,7 +13,7 @@ const UserProfile = () => {
           <p className="icon-help-text">Click to change Icon</p>
         </div>
 
-        <div className="profile-details profile-domain">DETAILS</div>
+        <div className="profile-details profile-domain">ACCOUNT DETAILS</div>
         <div className="profile-password-change profile-domain">
           CHANGE PASSWORD
         </div>
