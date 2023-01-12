@@ -179,7 +179,15 @@ const Header = () => {
         </div>
       </div>
       {click ? handleIconMenu() : ""}
-      {isLoggedIn && openProfile && <UserProfile />}
+      <div className="header-profile-container">
+        <div
+          className="header-profile"
+          onClick={() => {
+            setOpenProfile(false);
+          }}
+        ></div>
+        {isLoggedIn && openProfile && <UserProfile />}
+      </div>
     </div>
   );
 };

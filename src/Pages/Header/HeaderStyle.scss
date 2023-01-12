@@ -7,6 +7,13 @@
   opacity: 0.8;
   z-index: 2;
  
+  .header-profile-container{
+    width: 100%;
+    display: flex;
+    .header-profile{
+      width: 75%;
+    }
+  }
  
   .pages-container{
     display: none;
@@ -77,7 +84,12 @@
 
 @media screen and (max-width: 1100px) {
   .header-app-container{
-    
+    .header-profile-container{
+      
+      .header-profile{
+        width: 0;
+      }
+    }
     .header-container{
       justify-content: space-between;
       .acces-header{
