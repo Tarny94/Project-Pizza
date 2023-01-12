@@ -1,9 +1,4 @@
 @import "../../Styles/vars";
-
-.profile-container{
-  width: 100%;
-  display: flex;
-  justify-content: end;
   
   .profile-contains{
     width: 25%;
@@ -36,15 +31,9 @@
       margin-bottom: 10px;
     }
   }
-}
 
-@media screen and (max-width: 1100px) {
-  .profile-container{
-    width: 100%;
-    
-    
+@media screen and (max-width: 1100px) { 
     .profile-contains{
       width: 100%;
     }
   }
-}

@@ -30,6 +30,7 @@ const Header = () => {
         <div
           className="page-home page"
           onClick={() => {
+            setClick(false);
             navigate("/");
           }}
         >
@@ -38,6 +39,7 @@ const Header = () => {
         <div
           className="page-menu page"
           onClick={() => {
+            setClick(false);
             navigate("/menu");
           }}
         >
@@ -46,6 +48,7 @@ const Header = () => {
         <div
           className="page-about page"
           onClick={() => {
+            setClick(false);
             navigate("/about");
           }}
         >
@@ -54,6 +57,7 @@ const Header = () => {
         <div
           className="page-contact page"
           onClick={() => {
+            setClick(false);
             navigate("/contact");
           }}
         >
@@ -178,8 +182,16 @@ const Header = () => {
           )}
         </div>
       </div>
-      {click && handleIconMenu()}
-      {isLoggedIn && openProfile && <UserProfile />}
+      {click ? handleIconMenu() : ""}
+      <div className="header-profile-container">
+        <div
+          className="header-profile"
+          onClick={() => {
+            setOpenProfile(false);
+          }}
+        ></div>
+        {isLoggedIn && openProfile && <UserProfile />}
+      </div>
     </div>
   );
 };
