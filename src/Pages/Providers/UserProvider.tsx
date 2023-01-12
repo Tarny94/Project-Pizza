@@ -13,7 +13,9 @@ const initialState = {
   phone: 0,
   open: false,
   click: false,
+  openProfile: false,
 
+  setOpenProfile: useState,
   setOpen: useState,
   setClick: useState,
   setPhone: useState,
@@ -32,6 +34,7 @@ export const UserProvider = (props: any) => {
   const [phone, setPhone] = useState("0737678044");
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -78,6 +81,8 @@ export const UserProvider = (props: any) => {
         setClick,
         open,
         setOpen,
+        setOpenProfile,
+        openProfile,
       }}
       {...props}
     />

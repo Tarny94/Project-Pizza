@@ -5,7 +5,7 @@ import { UserContext } from "../Pages/Providers/UserProvider";
  * Hook that alerts clicks outside of the passed ref
  */
 function useOutsideAlerter(ref: any) {
-  const { setClick } = useContext(UserContext);
+  const { setClick, setOpenProfile } = useContext(UserContext);
 
   useEffect(() => {
     /**
@@ -14,6 +14,7 @@ function useOutsideAlerter(ref: any) {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
         setClick(false);
+        setOpenProfile(false);
       }
     }
     // Bind the event listener
