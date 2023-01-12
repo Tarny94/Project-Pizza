@@ -1,5 +1,5 @@
 import "./HeaderStyle.scss";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
@@ -14,15 +14,15 @@ const Header = () => {
     contact: "Contact",
     login: "login",
   };
-  const { isLoggedIn, click, setClick } = useContext(UserContext);
-  const [openProfile, setOpenProfile] = useState(false);
+  const { isLoggedIn, click, setClick, openProfile, setOpenProfile } =
+    useContext(UserContext);
 
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
       setOpenProfile(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, setOpenProfile]);
 
   const handleIconMenu = () => {
     return (
@@ -178,7 +178,7 @@ const Header = () => {
           )}
         </div>
       </div>
-      {click ? handleIconMenu() : ""}
+      {click && handleIconMenu()}
       {isLoggedIn && openProfile && <UserProfile />}
     </div>
   );
