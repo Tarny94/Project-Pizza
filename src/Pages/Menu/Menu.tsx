@@ -1,7 +1,6 @@
 import "./MenuStyle.scss";
 import React, { useContext, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import Cart from "../Cart/Cart";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { ProductContext } from "../Providers/ProductProvider";
@@ -54,7 +53,6 @@ const Menu = () => {
           })}
         </div>
       </div>
-      <Cart />
     </div>
   );
 };

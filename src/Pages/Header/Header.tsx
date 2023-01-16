@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
 import UserProfile from "../Profile/UserProfile";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
   const pages = {
@@ -87,6 +88,10 @@ const Header = () => {
             PROFILE
           </div>
         )}
+        <div className=" page">
+          {" "}
+          <Cart />
+        </div>
       </div>
     );
   };
@@ -180,6 +185,9 @@ const Header = () => {
               PROFILE
             </div>
           )}
+          <div className=" page-header">
+            <Cart />
+          </div>
         </div>
       </div>
       {click ? handleIconMenu() : ""}
@@ -190,6 +198,7 @@ const Header = () => {
             setOpenProfile(false);
           }}
         ></div>
+
         {isLoggedIn && openProfile && <UserProfile />}
       </div>
     </div>
