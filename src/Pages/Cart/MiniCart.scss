@@ -1,0 +1,23 @@
+@import "../../Styles/vars";
+
+.minicart-container{
+  background-color: $usual_100;
+  color: $usual_800;
+  border-radius: 20px;
+  box-shadow: 1px 1px 10px 1px;
+  width: 350px;
+  margin: 0 10px 0 0;
+  position: absolute;
+  right: 0;
+  cursor: initial;
+  
+  .minicart-details{
+    border-bottom: 1px solid $usual_700;
+  }
+  .minicart-details:last-child {
+    border-bottom: none;
+  }
+  .minicart-product{
+    text-align: start;
+  }
+}

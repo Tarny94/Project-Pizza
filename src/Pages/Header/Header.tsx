@@ -18,6 +18,8 @@ const Header = () => {
   const { isLoggedIn, click, setClick, openProfile, setOpenProfile } =
     useContext(UserContext);
 
+
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
@@ -185,7 +187,7 @@ const Header = () => {
               PROFILE
             </div>
           )}
-          <div className=" page-header">
+          <div className="page-header">
             <Cart />
           </div>
         </div>
