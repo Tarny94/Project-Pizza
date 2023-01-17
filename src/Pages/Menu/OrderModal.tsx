@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Button from "../../Design/Button";
 import { CartContext } from "../Providers/CartProvider";
 
 const style = {
@@ -16,9 +17,30 @@ const style = {
   p: 4,
 };
 
-export default function OrderModal() {
-  const { openOrderModal, setOpenOrderModal } = React.useContext(CartContext);
-  const handleClose = () => setOpenOrderModal(false);
+export default function OrderModal({
+  openOrderModal,
+  setOpenOrderModal,
+  productChosed,
+}: any) {
+  const { numberOfProduct, setNumberOfProduct } = React.useContext(CartContext);
+  const [price, setPrice] = React.useState(productChosed.totalPrice);
+  let cost = price;
+  let pieces = numberOfProduct;
+  let initPrice = productChosed.totalPrice;
+
+  React.useEffect(() => {
+    setPrice(productChosed.totalPrice);
+  }, [productChosed.totalPrice]);
+
+  const handleClose = () => {
+    setOpenOrderModal(false);
+    cost = 0;
+    pieces = 1;
+    initPrice = 0;
+    setPrice(productChosed.totalPrice);
+    setNumberOfProduct(1);
+  };
+  console.log(productChosed);
 
   return (
     <>
@@ -32,15 +54,31 @@ export default function OrderModal() {
           >
             <Box sx={style}>
               <Typography
+                id="modal-modal-description"
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  textAlign: "center",
+                }}
+              >
+                <img
+                  src={productChosed.image}
+                  alt="pizza images"
+                  width="250"
+                  height="250"
+                />
+              </Typography>
+              <Typography
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"
                 sx={{ textAlign: "center" }}
-              ></Typography>
-              <Typography
-                id="modal-modal-description"
-                sx={{ mt: 2 }}
-              ></Typography>
+              >
+                {productChosed.title}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                {productChosed.description}
+              </Typography>
               <Typography
                 id="modal-modal-description"
                 variant="h5"
@@ -50,7 +88,46 @@ export default function OrderModal() {
                   justifyContent: "space-around",
                   textAlign: "center",
                 }}
-              ></Typography>
+              >
+                ${price}
+              </Typography>
+
+              <Typography
+                className="order-number-container"
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  textAlign: "center",
+                }}
+              >
+                <Button
+                  title={"➖"}
+                  onClick={() => {
+                    if (numberOfProduct > 1) {
+                      setNumberOfProduct(--pieces);
+                      setPrice((cost -= initPrice));
+                    }
+                  }}
+                />
+                {numberOfProduct}
+                <Button
+                  title={"➕"}
+                  onClick={() => {
+                    setNumberOfProduct(++pieces);
+                    setPrice((cost += initPrice));
+                  }}
+                />
+              </Typography>
+              <Typography
+                className="order-number-container"
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  textAlign: "center",
+                }}
+              >
+                <Button title={"ADD TO CART"} onClick={undefined} />
+              </Typography>
             </Box>
           </Modal>
         </div>

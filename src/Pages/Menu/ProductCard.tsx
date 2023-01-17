@@ -8,17 +8,25 @@ type iProp = {
   description?: string;
   price: number;
   discount?: number;
+  pizza_id: number;
 };
 
-const ProductCard = ({ image, title, description, price, discount }: iProp) => {
-  const { setOpenOrderModal, openOrderModal } = useContext(CartContext);
+const ProductCard = ({
+  image,
+  title,
+  description,
+  price,
+  discount,
+  pizza_id,
+}: iProp) => {
+  const { setOpenOrderModal, setProductChosed } = useContext(CartContext);
   const [discountPrice, setDiscountPrice] = useState(NaN);
 
   useEffect(() => {
     if (discount) {
       setDiscountPrice(Math.trunc((price * discount) / 100 + price));
     }
-  }, [discount, price]);
+  }, [discount, discountPrice, price]);
 
   return (
     <div className="card-component">
@@ -47,6 +55,13 @@ const ProductCard = ({ image, title, description, price, discount }: iProp) => {
         <div
           className="card-order"
           onClick={() => {
+            setProductChosed({
+              id: pizza_id,
+              image,
+              title,
+              description,
+              totalPrice: price,
+            });
             setOpenOrderModal(true);
           }}
         >

@@ -13,11 +13,13 @@ type iProp = {
   description?: string;
   price: number;
   discount?: number;
+  pizza_id: number;
 };
 
 const Menu = () => {
   const { allProducts, setAllProducts } = useContext(ProductContext);
-  const { openOrderModal, setOpenOrderModal } = useContext(CartContext);
+  const { openOrderModal, setOpenOrderModal, productChosed } =
+    useContext(CartContext);
 
   useEffect(() => {
     axios
@@ -51,12 +53,17 @@ const Menu = () => {
                 description={product.description}
                 price={product.price}
                 discount={product.discount}
+                pizza_id={product.pizza_id}
               />
             );
           })}
         </div>
       </div>
-      <OrderModal />
+      <OrderModal
+        openOrderModal={openOrderModal}
+        setOpenOrderModal={setOpenOrderModal}
+        productChosed={productChosed}
+      />
     </div>
   );
 };
