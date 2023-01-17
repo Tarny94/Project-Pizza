@@ -5,9 +5,16 @@ const MiniCart = () => {
   return (
     <div className="minicart-container">
       <div className="minicart-title minicart-details">
-        No Product inside of Cart
+        No product inside of Cart
       </div>
-      <div className="minicart-product minicart-details">PRODUCT</div>
+      <div className="minicart-product minicart-details">
+        <div>PRODUCT</div>
+        <div className="minicart-number">
+          <div>BUC:</div>
+          <div>0</div>
+        </div>
+      </div>
+
       <div className="minicart-order minicart-details">GO TO CART</div>
     </div>
   );

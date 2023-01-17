@@ -4,6 +4,8 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { ProductContext } from "../Providers/ProductProvider";
+import OrderModal from "./OrderModal";
+import { CartContext } from "../Providers/CartProvider";
 
 type iProp = {
   image?: string;
@@ -15,6 +17,7 @@ type iProp = {
 
 const Menu = () => {
   const { allProducts, setAllProducts } = useContext(ProductContext);
+  const { openOrderModal, setOpenOrderModal } = useContext(CartContext);
 
   useEffect(() => {
     axios
@@ -53,6 +56,7 @@ const Menu = () => {
           })}
         </div>
       </div>
+      <OrderModal />
     </div>
   );
 };

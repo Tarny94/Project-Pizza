@@ -1,5 +1,6 @@
 import "../Menu/ProductCardStyle.scss";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { CartContext } from "../Providers/CartProvider";
 
 type iProp = {
   image?: string;
@@ -10,6 +11,7 @@ type iProp = {
 };
 
 const ProductCard = ({ image, title, description, price, discount }: iProp) => {
+  const { setOpenOrderModal, openOrderModal } = useContext(CartContext);
   const [discountPrice, setDiscountPrice] = useState(NaN);
 
   useEffect(() => {
@@ -42,7 +44,12 @@ const ProductCard = ({ image, title, description, price, discount }: iProp) => {
           )}
         </div>
 
-        <div className="card-order">
+        <div
+          className="card-order"
+          onClick={() => {
+            setOpenOrderModal(true);
+          }}
+        >
           <div className="card-title-order">ORDER</div>
         </div>
       </div>
