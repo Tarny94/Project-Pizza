@@ -10,7 +10,7 @@ const initialState = {
     description: "",
     price: NaN,
   },
-  totalPrice: NaN,
+  totalPrice: 0,
   numberOfProduct: 1,
 
   setNumberOfProduct: (_: Number) => {},
@@ -25,8 +25,9 @@ export const CartProvider = (props: any) => {
   const [isHover, setIsHover] = useState(false);
   const [openOrderModal, setOpenOrderModal] = useState(false);
   const [productChosed, setProductChosed] = useState({});
-
   const [numberOfProduct, setNumberOfProduct] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+  let total = 0;
 
   return (
     <CartContext.Provider
@@ -39,6 +40,9 @@ export const CartProvider = (props: any) => {
         setProductChosed,
         numberOfProduct,
         setNumberOfProduct,
+        totalPrice,
+        setTotalPrice,
+        total,
       }}
       {...props}
     />

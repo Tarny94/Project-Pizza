@@ -33,7 +33,8 @@ export default function OrderModal({
   setOpenOrderModal,
   productChosed,
 }: any) {
-  const { numberOfProduct, setNumberOfProduct } = React.useContext(CartContext);
+  const { numberOfProduct, setNumberOfProduct, setTotalPrice, totalPrice } =
+    React.useContext(CartContext);
   const [price, setPrice] = React.useState(productChosed.totalPrice);
   let cost: number = price;
   let pieces: number = numberOfProduct;
@@ -56,6 +57,7 @@ export default function OrderModal({
   };
 
   const handleOrderProducts = async () => {
+    setTotalPrice(price + totalPrice);
     orderItems.push({
       id: productChosed.id,
       image: productChosed.image,
@@ -64,6 +66,7 @@ export default function OrderModal({
       price,
       initPrice,
     });
+
     setCoockie(ORDER_KEY, orderItems);
     handleClose();
   };

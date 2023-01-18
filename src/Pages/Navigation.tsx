@@ -16,6 +16,7 @@ import AddProduct from "./Admin/Products/AddProduct";
 import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
 import Admin from "../Pages/Admin/Admin";
+import CartPage from "./Cart/CartPage";
 import { ProductProvider } from "./Providers/ProductProvider";
 import { UserProvider } from "./Providers/UserProvider";
 import { CartProvider } from "./Providers/CartProvider";
@@ -98,6 +99,7 @@ const Navigation = () => {
                   </ProtectedRoutes>
                 }
               />
+              <Route path="/cart/page" element={<CartPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ProductProvider>

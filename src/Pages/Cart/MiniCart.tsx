@@ -1,7 +1,9 @@
 import "./MiniCart.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { ORDER_KEY } from "../../Constant";
 import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
+import { CartContext } from "../Providers/CartProvider";
+import { useNavigate } from "react-router-dom";
 type iProp = {
   id: number;
   image: string;
@@ -12,9 +14,12 @@ type iProp = {
 };
 
 const MiniCart = () => {
-  let orderItems = getCoockie(ORDER_KEY);
-  let totalPrice = 0;
+  const { totalPrice, setTotalPrice } = React.useContext(CartContext);
 
+  const navigation = useNavigate();
+
+  let orderItems = getCoockie(ORDER_KEY);
+  let total = 0;
   return (
     <div className="minicart-container">
       <div className="minicart-title minicart-details">
@@ -23,6 +28,7 @@ const MiniCart = () => {
       <div className="minicart-product minicart-details">
         <div>
           {orderItems.map((item: iProp, id: number) => {
+            total += item.price;
             return (
               <div>
                 <p>{id + 1}</p>
@@ -35,7 +41,6 @@ const MiniCart = () => {
                   onClick={() => {
                     orderItems.splice(id, 1);
                     setCoockie(ORDER_KEY, orderItems);
-                    totalPrice += item.price;
                     window.location.reload();
                   }}
                 >
@@ -48,8 +53,14 @@ const MiniCart = () => {
       </div>
 
       <div className="minicart-order minicart-details">
-        <div>TOTAL: {totalPrice}</div>
-        <div>GO TO CART</div>
+        <div>TOTAL: {total}</div>
+        <div
+          onClick={() => {
+            navigation("/cart/page");
+          }}
+        >
+          GO TO CART
+        </div>
       </div>
     </div>
   );
