@@ -1,5 +1,5 @@
 import "./MiniCart.scss";
-import React, { useEffect } from "react";
+import React from "react";
 import { ORDER_KEY } from "../../Constant";
 import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
 import { CartContext } from "../Providers/CartProvider";

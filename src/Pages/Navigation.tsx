@@ -10,13 +10,15 @@ import Menu from "./Menu/Menu";
 import AboutUs from "./AboutUs/AboutUs";
 import Contact from "./Contact/Contact";
 import PublicRoutes from "./PublicRoutes";
-import ProtectedRoutes from "./PrivateRoutes";
+import ProtectedAdminRoutes from "./ProtectedAdminRoutes";
+import ProtectedLoginRoutes from "./ProtectedLoginRoutes";
 import Products from "./Admin/Products/Products";
 import AddProduct from "./Admin/Products/AddProduct";
 import UpdateProduct from "./Admin/Products/UpdateProduct";
 import AdminLogin from "./Authentication/AdminLogin";
 import Admin from "../Pages/Admin/Admin";
 import CartPage from "./Cart/CartPage";
+import OrderSection from "./OrderSection/OrderSection";
 import { ProductProvider } from "./Providers/ProductProvider";
 import { UserProvider } from "./Providers/UserProvider";
 import { CartProvider } from "./Providers/CartProvider";
@@ -62,44 +64,52 @@ const Navigation = () => {
               <Route
                 path="/admin"
                 element={
-                  <ProtectedRoutes>
+                  <ProtectedAdminRoutes>
                     <Admin />
-                  </ProtectedRoutes>
+                  </ProtectedAdminRoutes>
                 }
               />
               <Route
                 path="/admin/settings"
                 element={
-                  <ProtectedRoutes>
+                  <ProtectedAdminRoutes>
                     <AdminSetting />
-                  </ProtectedRoutes>
+                  </ProtectedAdminRoutes>
                 }
               />
               <Route
                 path="/products"
                 element={
-                  <ProtectedRoutes>
+                  <ProtectedAdminRoutes>
                     <Products />
-                  </ProtectedRoutes>
+                  </ProtectedAdminRoutes>
                 }
               />
               <Route
                 path="/add/product"
                 element={
-                  <ProtectedRoutes>
+                  <ProtectedAdminRoutes>
                     <AddProduct />
-                  </ProtectedRoutes>
+                  </ProtectedAdminRoutes>
                 }
               />
               <Route
                 path="/update/product"
                 element={
-                  <ProtectedRoutes>
+                  <ProtectedAdminRoutes>
                     <UpdateProduct />
-                  </ProtectedRoutes>
+                  </ProtectedAdminRoutes>
                 }
               />
               <Route path="/cart/page" element={<CartPage />} />
+              <Route
+                path={"cart/page/ordered"}
+                element={
+                  <ProtectedLoginRoutes>
+                    {<OrderSection />}
+                  </ProtectedLoginRoutes>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ProductProvider>

@@ -1,7 +1,8 @@
 import "./CartPage.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_KEY } from "../../Constant";
+import { useNavigate } from "react-router-dom";
 
 type iProp = {
   id: number;
@@ -13,22 +14,22 @@ type iProp = {
 };
 
 const CartPage = () => {
-  let isDelivery: Boolean = false;
   let orderItems = getCoockie(ORDER_KEY);
   let total = 0;
   let totalProducts = 0;
   const delivary = 10;
   const service = 1;
 
+  const navigate = useNavigate();
+
   const handleTotalPrice = () => {
     if (total !== 0) {
       total += service;
 
       if (total < 100) {
-        isDelivery = true;
         return (total += delivary);
       }
-      isDelivery = false;
+
       return total;
     }
     return 0;
@@ -69,14 +70,22 @@ const CartPage = () => {
       </div>
       <div className="page-cart-order-summary-container">
         <div className="order-summary">About Order</div>
-        <div className="order-summary">Products: {totalProducts}</div>
-        <div className="order-summary">Services: {total && service}</div>
+        <div className="order-summary">Products: {totalProducts}$</div>
+        <div className="order-summary">Services: {total && service}$</div>
         <div className="order-summary">
-          Delivery: {total !== 0 ? (total < 100 ? delivary : "FREE") : 0}
+          Delivery:{" "}
+          {total !== 0 ? (total < 100 ? delivary + "$" : "FREE") : 0 + "$"}
         </div>
-        <div className="order-summary">Total Cost: {handleTotalPrice()}</div>
+        <div className="order-summary">Total Cost: {handleTotalPrice()}$</div>
       </div>
       <div className="page-cart-another-products"></div>
+      <button
+        onClick={() => {
+          navigate("/cart/page/ordered");
+        }}
+      >
+        GO TO NEXT STEP
+      </button>
     </div>
   );
 };
