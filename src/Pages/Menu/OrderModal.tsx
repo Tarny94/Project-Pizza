@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "../../Design/Button";
 import { CartContext } from "../Providers/CartProvider";
+import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
+import { ORDER_KEY } from "../../Constant";
 
 const style = {
   position: "absolute" as "absolute",
@@ -17,6 +19,15 @@ const style = {
   p: 4,
 };
 
+type iProp = {
+  id: number;
+  image: string;
+  title: string;
+  numberOfProduct: number;
+  price: number;
+  initPrice: number;
+};
+
 export default function OrderModal({
   openOrderModal,
   setOpenOrderModal,
@@ -24,9 +35,12 @@ export default function OrderModal({
 }: any) {
   const { numberOfProduct, setNumberOfProduct } = React.useContext(CartContext);
   const [price, setPrice] = React.useState(productChosed.totalPrice);
-  let cost = price;
-  let pieces = numberOfProduct;
-  let initPrice = productChosed.totalPrice;
+  let cost: number = price;
+  let pieces: number = numberOfProduct;
+  let initPrice: number = productChosed.totalPrice;
+
+  let orderItemsCookies = getCoockie(ORDER_KEY);
+  let orderItems: iProp[] = [...orderItemsCookies];
 
   React.useEffect(() => {
     setPrice(productChosed.totalPrice);
@@ -40,7 +54,19 @@ export default function OrderModal({
     setPrice(productChosed.totalPrice);
     setNumberOfProduct(1);
   };
-  console.log(productChosed);
+
+  const handleOrderProducts = async () => {
+    orderItems.push({
+      id: productChosed.id,
+      image: productChosed.image,
+      title: productChosed.title,
+      numberOfProduct,
+      price,
+      initPrice,
+    });
+    setCoockie(ORDER_KEY, orderItems);
+    handleClose();
+  };
 
   return (
     <>
@@ -88,9 +114,7 @@ export default function OrderModal({
                   justifyContent: "space-around",
                   textAlign: "center",
                 }}
-              >
-                ${price}
-              </Typography>
+              ></Typography>
 
               <Typography
                 className="order-number-container"
@@ -126,7 +150,10 @@ export default function OrderModal({
                   textAlign: "center",
                 }}
               >
-                <Button title={"ADD TO CART"} onClick={undefined} />
+                <Button
+                  title={`ADD TO CART $${price}`}
+                  onClick={handleOrderProducts}
+                />
               </Typography>
             </Box>
           </Modal>

@@ -7,6 +7,7 @@ import { ProductContext } from "../Providers/ProductProvider";
 import OrderModal from "./OrderModal";
 import { CartContext } from "../Providers/CartProvider";
 
+
 type iProp = {
   image?: string;
   title: string;
@@ -31,7 +32,6 @@ const Menu = () => {
         console.log("Err:", e);
       });
   }, [setAllProducts]);
-  console.log(allProducts);
 
   return (
     <div className="page-menu-container">
@@ -45,7 +45,7 @@ const Menu = () => {
           </div>
         </div>
         <div className="menu-with-productCards">
-          {allProducts.map((product: iProp) => {
+          {allProducts.map((product: iProp, id: number) => {
             return (
               <ProductCard
                 image={product.image}
@@ -54,6 +54,7 @@ const Menu = () => {
                 price={product.price}
                 discount={product.discount}
                 pizza_id={product.pizza_id}
+                key={id}
               />
             );
           })}
