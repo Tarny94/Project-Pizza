@@ -2,7 +2,7 @@ import "./MiniCart.scss";
 import React from "react";
 import { ORDER_KEY } from "../../Constant";
 import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
-import { CartContext } from "../Providers/CartProvider";
+
 import { useNavigate } from "react-router-dom";
 type iProp = {
   id: number;
@@ -14,8 +14,6 @@ type iProp = {
 };
 
 const MiniCart = () => {
-  const { totalPrice, setTotalPrice } = React.useContext(CartContext);
-
   const navigation = useNavigate();
 
   let orderItems = getCoockie(ORDER_KEY);

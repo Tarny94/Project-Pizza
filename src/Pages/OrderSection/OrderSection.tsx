@@ -1,8 +1,12 @@
 import "./OrderSection.scss";
 import React, { useContext } from "react";
 import { UserContext } from "../Providers/UserProvider";
+import OrderSummary from "./OrderSummary";
+import { CartContext } from "../Providers/CartProvider";
 
 const OrderSection = () => {
+  const { productsSummary, totalPrice, setTotalCost, totalCost } =
+    useContext(CartContext);
   const { user } = useContext(UserContext);
 
   return (
@@ -26,6 +30,16 @@ const OrderSection = () => {
       </div>
       <div>
         <div>Donation for Help People</div>
+      </div>
+      <div>
+        <OrderSummary
+          productsSummary={productsSummary}
+          totalPrice={totalPrice}
+          setTotalCost={setTotalCost}
+        />
+        <div>
+          <button>SEND THE ORDER ${totalCost}</button>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,11 @@
 import "./CartPage.scss";
-import React from "react";
+import React, { useContext } from "react";
 import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_KEY } from "../../Constant";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../Providers/CartProvider";
+import OrderSummary from "../OrderSection/OrderSummary";
+import { ORDER_SUMMARY_KEY } from "../../Constant";
 
 type iProp = {
   id: number;
@@ -13,27 +16,25 @@ type iProp = {
   initPrice: number;
 };
 
+type OrderSum = {
+  totalPieces: number;
+  totalPrice: number;
+};
+
 const CartPage = () => {
+  const { setTotalPrice, setProductsSummary, productsSummary, totalPrice } =
+    useContext(CartContext);
+
   let orderItems = getCoockie(ORDER_KEY);
   let total = 0;
   let totalProducts = 0;
-  const delivary = 10;
-  const service = 1;
+
+  const summaryProducts: OrderSum = {
+    totalPieces: 1,
+    totalPrice: 0,
+  };
 
   const navigate = useNavigate();
-
-  const handleTotalPrice = () => {
-    if (total !== 0) {
-      total += service;
-
-      if (total < 100) {
-        return (total += delivary);
-      }
-
-      return total;
-    }
-    return 0;
-  };
 
   return (
     <div className="page-cart-container">
@@ -46,7 +47,15 @@ const CartPage = () => {
         {" "}
         {orderItems.map((item: iProp, id: number) => {
           total += item.price;
-          totalProducts += item.price;
+          setTotalPrice(total);
+
+          totalProducts += item.numberOfProduct;
+          setProductsSummary(totalProducts);
+
+          summaryProducts.totalPieces = productsSummary;
+          summaryProducts.totalPrice = totalPrice;
+
+          setCoockie(ORDER_SUMMARY_KEY, summaryProducts);
           return (
             <div>
               <p>{id + 1}</p>
@@ -68,15 +77,11 @@ const CartPage = () => {
           );
         })}
       </div>
-      <div className="page-cart-order-summary-container">
-        <div className="order-summary">About Order</div>
-        <div className="order-summary">Products: {totalProducts}$</div>
-        <div className="order-summary">Services: {total && service}$</div>
-        <div className="order-summary">
-          Delivery:{" "}
-          {total !== 0 ? (total < 100 ? delivary + "$" : "FREE") : 0 + "$"}
-        </div>
-        <div className="order-summary">Total Cost: {handleTotalPrice()}$</div>
+      <div>
+        <OrderSummary
+          productsSummary={productsSummary}
+          totalPrice={totalPrice}
+        />
       </div>
       <div className="page-cart-another-products"></div>
       <button
