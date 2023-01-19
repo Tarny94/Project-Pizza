@@ -81,8 +81,8 @@ export const checkIfAdminLoggedIn = async (token: string) => {
 export const getUser = async (id: number) => {
   return await axios
     .get(getApiUrl(`get/user/${id}`))
-    .then((res) => {
-      return res;
+    .then(async (res) => {
+      return await res.data[0];
     })
     .catch((err) => {
       alert("Error to fetch user");

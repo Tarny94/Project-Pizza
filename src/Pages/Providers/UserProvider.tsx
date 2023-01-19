@@ -3,10 +3,11 @@ import { getCoockie } from "../../Util/Cookies/Coockie";
 import { TOKEN_KEY } from "../../Constant";
 import { checkIfAdminLoggedIn } from "../../Api/ApiRoutes";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../../Api/ApiRoutes";
 
 const initialState = {
   isLoggedIn: false,
-  user: "",
+  user: { user_id: 0, name: "", address: "", phone: "", email: "" },
   isAdminLoggedIn: true,
   isAdmin: false,
   userId: 0,
@@ -35,10 +36,25 @@ export const UserProvider = (props: any) => {
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const [user, setUser] = useState({
+    user_id: 0,
+    name: "",
+    address: "",
+    phone: "",
+    email: "",
+  });
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    const getUser = async () => {
+    const fetchUser = async () => {
+      setUser(await getUser(userId));
+    };
+    fetchUser();
+  }, [userId]);
+
+  useEffect(() => {
+    const checkUser = async () => {
       let user = await getCoockie(TOKEN_KEY);
       let token = JSON.stringify(user.token);
       if (!token) {
@@ -47,11 +63,11 @@ export const UserProvider = (props: any) => {
         return setIsLoggedIn(true);
       }
     };
-    getUser();
+    checkUser();
   }, [navigate]);
 
   useEffect(() => {
-    const getUser = async () => {
+    const checkUser = async () => {
       let token = await getCoockie(TOKEN_KEY);
       let isAdminUser = await checkIfAdminLoggedIn(token.token);
       await setUserId(token._id);
@@ -61,7 +77,7 @@ export const UserProvider = (props: any) => {
         return setIsAdmin(true);
       }
     };
-    getUser();
+    checkUser();
   }, [navigate, userId]);
 
   return (
@@ -83,6 +99,8 @@ export const UserProvider = (props: any) => {
         setOpen,
         setOpenProfile,
         openProfile,
+        user,
+        setUser,
       }}
       {...props}
     />

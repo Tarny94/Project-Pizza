@@ -102,14 +102,7 @@ const Navigation = () => {
                 }
               />
               <Route path="/cart/page" element={<CartPage />} />
-              <Route
-                path={"cart/page/ordered"}
-                element={
-                  <ProtectedLoginRoutes>
-                    {<OrderSection />}
-                  </ProtectedLoginRoutes>
-                }
-              />
+              <Route path={"cart/page/ordered"} element={<OrderSection />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </ProductProvider>
