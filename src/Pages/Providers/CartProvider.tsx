@@ -33,7 +33,7 @@ export const CartProvider = (props: any) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [productsSummary, setProductsSummary] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
-  let total = 0;
+
 
   return (
     <CartContext.Provider
@@ -48,7 +48,6 @@ export const CartProvider = (props: any) => {
         setNumberOfProduct,
         totalPrice,
         setTotalPrice,
-        total,
         productsSummary,
         setProductsSummary,
         totalCost,

@@ -14,6 +14,7 @@ type iProp = {
   numberOfProduct: number;
   price: number;
   initPrice: number;
+  key: number;
 };
 
 type OrderSum = {
@@ -78,10 +79,7 @@ const CartPage = () => {
         })}
       </div>
       <div>
-        <OrderSummary
-          productsSummary={productsSummary}
-          totalPrice={totalPrice}
-        />
+        <OrderSummary />
       </div>
       <div className="page-cart-another-products"></div>
       <button

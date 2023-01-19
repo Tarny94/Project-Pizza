@@ -1,12 +1,13 @@
 import "./OrderSection.scss";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../Providers/UserProvider";
 import OrderSummary from "./OrderSummary";
 import { CartContext } from "../Providers/CartProvider";
+import OrderConfirm from "./OrderConfirm";
 
 const OrderSection = () => {
-  const { productsSummary, totalPrice, setTotalCost, totalCost } =
-    useContext(CartContext);
+  const { totalCost } = useContext(CartContext);
+  const [openModal, setOpenModal] = useState(false);
   const { user } = useContext(UserContext);
 
   return (
@@ -32,15 +33,22 @@ const OrderSection = () => {
         <div>Donation for Help People</div>
       </div>
       <div>
-        <OrderSummary
-          productsSummary={productsSummary}
-          totalPrice={totalPrice}
-          setTotalCost={setTotalCost}
-        />
+        <OrderSummary />
         <div>
-          <button>SEND THE ORDER ${totalCost}</button>
+          <button
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            SEND THE ORDER ${totalCost}
+          </button>
         </div>
       </div>
+      <OrderConfirm
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        address={user && user.address}
+      />
     </div>
   );
 };

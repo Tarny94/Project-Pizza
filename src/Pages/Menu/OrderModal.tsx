@@ -26,6 +26,7 @@ type iProp = {
   numberOfProduct: number;
   price: number;
   initPrice: number;
+  key: number;
 };
 
 export default function OrderModal({
@@ -35,7 +36,9 @@ export default function OrderModal({
 }: any) {
   const { numberOfProduct, setNumberOfProduct, setTotalPrice, totalPrice } =
     React.useContext(CartContext);
+
   const [price, setPrice] = React.useState(productChosed.totalPrice);
+
   let cost: number = price;
   let pieces: number = numberOfProduct;
   let initPrice: number = productChosed.totalPrice;
@@ -65,6 +68,7 @@ export default function OrderModal({
       numberOfProduct,
       price,
       initPrice,
+      key: productChosed.id,
     });
 
     setCoockie(ORDER_KEY, orderItems);

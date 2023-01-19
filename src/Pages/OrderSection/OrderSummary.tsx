@@ -1,34 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../Providers/CartProvider";
 import { getCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_SUMMARY_KEY } from "../../Constant";
 
-const OrderSummary = ({ productsSummary, totalPrice, setTotalCost }: any) => {
+const OrderSummary = () => {
+  const { setTotalCost, productsSummary, totalPrice } = useContext(CartContext);
+
   const summary = getCoockie(ORDER_SUMMARY_KEY);
+
   let pieces: number = productsSummary ? productsSummary : summary.totalPeces;
   let price: number = totalPrice ? totalPrice : summary.totalPrice;
+
   const delivary: number = 10;
   let service: number = 1;
+  let total: number = 0;
 
   if (pieces > 9) {
     service += 4;
   }
 
+  useEffect(() => {
+    if (total) {
+      setTotalCost(total);
+    }
+  }, [setTotalCost, total]);
+
   const handleTotalPrice = () => {
-    let totalP = price;
+    total = price;
 
     if (price !== 0) {
-      totalP += service;
+      total += service;
       if (price < 100) {
-        totalP += delivary;
-        return totalP;
+        total += delivary;
+
+        return total;
       }
-      return totalP;
+
+      return total;
     }
     return 0;
   };
 
-  setTotalCost(handleTotalPrice());
   return (
     <div className="page-cart-order-summary-container">
       <div className="order-summary">About Order</div>
