@@ -1,5 +1,5 @@
 import "./CartPage.scss";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_KEY } from "../../Constant";
 import { useNavigate } from "react-router-dom";
@@ -7,35 +7,58 @@ import { CartContext } from "../Providers/CartProvider";
 import OrderSummary from "../OrderSection/OrderSummary";
 import { ORDER_SUMMARY_KEY } from "../../Constant";
 
-type iProp = {
+// type iProp = {
+//   id: number;
+//   image: string;
+//   title: string;
+//   numberOfProduct: number;
+//   price: number;
+//   initPrice: number;
+//   key: number;
+// };
+
+type iProduct = {
   id: number;
   image: string;
   title: string;
-  numberOfProduct: number;
+  productsPieces: number;
+  productsPrice: number;
   price: number;
-  initPrice: number;
-  key: number;
-};
-
-type OrderSum = {
-  totalPieces: number;
-  totalPrice: number;
 };
 
 const CartPage = () => {
-  const { setTotalPrice, setProductsSummary, productsSummary, totalPrice } =
-    useContext(CartContext);
+  const {
+    productsOrdered,
+    setTotalPrice,
+    setTotalPieces,
+    totalPieces,
+    totalPrice,
+  } = useContext(CartContext);
 
-  let orderItems = getCoockie(ORDER_KEY);
-  let total = 0;
-  let totalProducts = 0;
-
-  const summaryProducts: OrderSum = {
-    totalPieces: 1,
-    totalPrice: 0,
-  };
-
+  const [, setItems] = useState([]);
   const navigate = useNavigate();
+  const items = productsOrdered;
+
+  let totalCash = 0;
+  let totalBuc = 1;
+
+  useEffect(() => {
+    if (totalCash) {
+      setTotalPrice(totalCash);
+      setTotalPieces(totalBuc);
+      localStorage.setItem(
+        ORDER_SUMMARY_KEY,
+        JSON.stringify({ totalPrice, totalPieces })
+      );
+    }
+  }, [
+    setTotalPieces,
+    setTotalPrice,
+    totalBuc,
+    totalCash,
+    totalPieces,
+    totalPrice,
+  ]);
 
   return (
     <div className="page-cart-container">
@@ -46,30 +69,23 @@ const CartPage = () => {
       </div>
       <div className="page-cart-all-products">
         {" "}
-        {orderItems.map((item: iProp, id: number) => {
-          total += item.price;
-          setTotalPrice(total);
-
-          totalProducts += item.numberOfProduct;
-          setProductsSummary(totalProducts);
-
-          summaryProducts.totalPieces = productsSummary;
-          summaryProducts.totalPrice = totalPrice;
-
-          setCoockie(ORDER_SUMMARY_KEY, summaryProducts);
+        {items.map((item: iProduct, id: number) => {
+          totalCash += item.productsPrice;
+          totalBuc += item.productsPieces;
           return (
-            <div>
+            <div key={id}>
               <p>{id + 1}</p>
               <img src={item.image} alt="pizza img" width="50" height="50" />
               <h2>Pizza {item.title}</h2>
               <div>
-                {item.numberOfProduct} x ${item.initPrice}
+                {item.productsPieces} x ${item.price}
               </div>
               <button
                 onClick={() => {
-                  orderItems.splice(id, 1);
-                  setCoockie(ORDER_KEY, orderItems);
-                  window.location.reload();
+                  setItems(items.splice(id, 1));
+                  setTotalPrice((totalCash -= item.productsPrice));
+                  setTotalPieces((totalBuc -= item.productsPieces));
+                  localStorage.setItem(ORDER_KEY, JSON.stringify(items));
                 }}
               >
                 DELETE

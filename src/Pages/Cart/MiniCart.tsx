@@ -1,23 +1,31 @@
 import "./MiniCart.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ORDER_KEY } from "../../Constant";
-import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
-
+import { CartContext } from "../Providers/CartProvider";
 import { useNavigate } from "react-router-dom";
-type iProp = {
+
+type iProduct = {
   id: number;
   image: string;
   title: string;
-  numberOfProduct: number;
+  productsPieces: number;
+  productsPrice: number;
   price: number;
-  initPrice: number;
 };
 
 const MiniCart = () => {
-  const navigation = useNavigate();
+  const { productsOrdered } = React.useContext(CartContext);
 
-  let orderItems = getCoockie(ORDER_KEY);
+  const [, setItems] = useState([]);
+  const navigate = useNavigate();
+
+  let items = productsOrdered;
   let total = 0;
+
+  useEffect(() => {
+    localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+  }, [items]);
+
   return (
     <div className="minicart-container">
       <div className="minicart-title minicart-details">
@@ -25,21 +33,19 @@ const MiniCart = () => {
       </div>
       <div className="minicart-product minicart-details">
         <div>
-          {orderItems.map((item: iProp, id: number) => {
-            total += item.price;
+          {items.map((item: iProduct, id: number) => {
+            total += item.price * item.productsPieces;
             return (
-              <div>
+              <div key={id}>
                 <p>{id + 1}</p>
                 <img src={item.image} alt="pizza img" width="50" height="50" />
                 <h2>Pizza {item.title}</h2>
                 <div>
-                  {item.numberOfProduct} x ${item.initPrice}
+                  {item.productsPieces} x ${item.price}
                 </div>
                 <button
                   onClick={() => {
-                    orderItems.splice(id, 1);
-                    setCoockie(ORDER_KEY, orderItems);
-                    window.location.reload();
+                    setItems(items.splice(id, 1));
                   }}
                 >
                   DELETE
@@ -54,7 +60,8 @@ const MiniCart = () => {
         <div>TOTAL: {total}</div>
         <div
           onClick={() => {
-            navigation("/cart/page");
+            localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+            navigate("/cart/page");
           }}
         >
           GO TO CART

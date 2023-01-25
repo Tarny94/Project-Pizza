@@ -4,6 +4,7 @@ import { UserContext } from "../Providers/UserProvider";
 import OrderSummary from "./OrderSummary";
 import { CartContext } from "../Providers/CartProvider";
 import OrderConfirm from "./OrderConfirm";
+import { TOTAL_COST_KEY } from "../../Constant";
 
 const OrderSection = () => {
   const { totalCost } = useContext(CartContext);

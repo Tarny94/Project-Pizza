@@ -9,6 +9,7 @@ type iProp = {
   price: number;
   discount?: number;
   pizza_id: number;
+  setProductChosed: any;
 };
 
 const ProductCard = ({
@@ -18,9 +19,10 @@ const ProductCard = ({
   price,
   discount,
   pizza_id,
+  setProductChosed,
 }: iProp) => {
-  const { setOpenOrderModal, setProductChosed } = useContext(CartContext);
-  const [discountPrice, setDiscountPrice] = useState(NaN);
+  const { setOpenOrderModal } = useContext(CartContext);
+  const [discountPrice, setDiscountPrice] = useState(0);
 
   useEffect(() => {
     if (discount) {
@@ -60,7 +62,7 @@ const ProductCard = ({
               image,
               title,
               description,
-              totalPrice: price,
+              price,
             });
             setOpenOrderModal(true);
           }}

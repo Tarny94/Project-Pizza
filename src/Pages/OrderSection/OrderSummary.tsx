@@ -1,29 +1,23 @@
 import React, { useContext, useEffect } from "react";
 import { CartContext } from "../Providers/CartProvider";
-import { getCoockie } from "../../Util/Cookies/Coockie";
-import { ORDER_SUMMARY_KEY } from "../../Constant";
+import { ORDER_KEY, TOTAL_COST_KEY } from "../../Constant";
 
 const OrderSummary = () => {
-  const { setTotalCost, productsSummary, totalPrice } = useContext(CartContext);
+  const { totalPieces, totalPrice, setTotalCost } = useContext(CartContext);
 
-  const summary = getCoockie(ORDER_SUMMARY_KEY);
+  const pieces = totalPieces;
+  const price = totalPrice;
 
-  let pieces: number = productsSummary ? productsSummary : summary.totalPeces;
-  let price: number = totalPrice ? totalPrice : summary.totalPrice;
+  console.log(totalPrice);
+  console.log(totalPieces);
 
   const delivary: number = 10;
   let service: number = 1;
-  let total: number = 0;
+  let total: number = price;
 
   if (pieces > 9) {
     service += 4;
   }
-
-  useEffect(() => {
-    if (total) {
-      setTotalCost(total);
-    }
-  }, [setTotalCost, total]);
 
   const handleTotalPrice = () => {
     total = price;
@@ -32,10 +26,10 @@ const OrderSummary = () => {
       total += service;
       if (price < 100) {
         total += delivary;
-
+        localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
         return total;
       }
-
+      localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
       return total;
     }
     return 0;

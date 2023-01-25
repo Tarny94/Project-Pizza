@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "../../Design/Button";
 import { CartContext } from "../Providers/CartProvider";
-import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_KEY } from "../../Constant";
 
 const style = {
@@ -18,60 +17,64 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
-type iProp = {
-  id: number;
-  image: string;
+type iProduct = {
+  image?: string;
   title: string;
-  numberOfProduct: number;
+  description?: string;
   price: number;
-  initPrice: number;
-  key: number;
+  discount?: number;
+  id: number;
+};
+type iProp = {
+  id?: number;
+  image?: string;
+  title?: string;
+  numberOfProduct?: number;
+  price?: number;
+  initPrice?: number;
+  productChosed: iProduct;
 };
 
-export default function OrderModal({
-  openOrderModal,
-  setOpenOrderModal,
-  productChosed,
-}: any) {
-  const { numberOfProduct, setNumberOfProduct, setTotalPrice, totalPrice } =
-    React.useContext(CartContext);
+export default function OrderModal({ productChosed }: iProp) {
+  const {
+    openOrderModal,
+    setOpenOrderModal,
+    setProductsOrdered,
+    productsOrdered,
+  } = React.useContext(CartContext);
+  const [finalPrice, setFinalPrice] = React.useState(0);
+  const [finalPieces, setFinalPieces] = React.useState(1);
 
-  const [price, setPrice] = React.useState(productChosed.totalPrice);
-
-  let cost: number = price;
-  let pieces: number = numberOfProduct;
-  let initPrice: number = productChosed.totalPrice;
-
-  let orderItemsCookies = getCoockie(ORDER_KEY);
-  let orderItems: iProp[] = [...orderItemsCookies];
+  let cost = finalPrice;
+  let price = productChosed.price;
+  let pieces = finalPieces;
 
   React.useEffect(() => {
-    setPrice(productChosed.totalPrice);
-  }, [productChosed.totalPrice]);
+    setFinalPrice(productChosed.price);
+  }, [price, productChosed.price]);
 
   const handleClose = () => {
+    setFinalPrice(productChosed.price);
+    setFinalPieces(1);
+    price = productChosed.price;
     setOpenOrderModal(false);
-    cost = 0;
-    pieces = 1;
-    initPrice = 0;
-    setPrice(productChosed.totalPrice);
-    setNumberOfProduct(1);
   };
 
   const handleOrderProducts = async () => {
-    setTotalPrice(price + totalPrice);
-    orderItems.push({
-      id: productChosed.id,
-      image: productChosed.image,
-      title: productChosed.title,
-      numberOfProduct,
-      price,
-      initPrice,
-      key: productChosed.id,
-    });
+    const neeState = [
+      {
+        id: productChosed.id,
+        image: productChosed.image,
+        title: productChosed.title,
+        productsPrice: finalPrice,
+        productsPieces: finalPieces,
+        price: productChosed.price,
+      },
+      ...productsOrdered,
+    ];
+    setProductsOrdered(neeState);
 
-    setCoockie(ORDER_KEY, orderItems);
+    localStorage.setItem(ORDER_KEY, JSON.stringify(neeState));
     handleClose();
   };
 
@@ -134,18 +137,18 @@ export default function OrderModal({
                 <Button
                   title={"➖"}
                   onClick={() => {
-                    if (numberOfProduct > 1) {
-                      setNumberOfProduct(--pieces);
-                      setPrice((cost -= initPrice));
+                    if (pieces > 1) {
+                      setFinalPieces(--pieces);
+                      setFinalPrice((cost -= productChosed.price));
                     }
                   }}
                 />
-                {numberOfProduct}
+                {finalPieces}
                 <Button
                   title={"➕"}
                   onClick={() => {
-                    setNumberOfProduct(++pieces);
-                    setPrice((cost += initPrice));
+                    setFinalPieces(++pieces);
+                    setFinalPrice((cost += productChosed.price));
                   }}
                 />
               </Typography>
@@ -158,7 +161,7 @@ export default function OrderModal({
                 }}
               >
                 <Button
-                  title={`ADD TO CART $${price}`}
+                  title={`ADD TO CART $${finalPrice}`}
                   onClick={handleOrderProducts}
                 />
               </Typography>

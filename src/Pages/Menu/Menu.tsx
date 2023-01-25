@@ -1,12 +1,11 @@
 import "./MenuStyle.scss";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { ProductContext } from "../Providers/ProductProvider";
 import OrderModal from "./OrderModal";
 import { CartContext } from "../Providers/CartProvider";
-
 
 type iProp = {
   image?: string;
@@ -19,8 +18,15 @@ type iProp = {
 
 const Menu = () => {
   const { allProducts, setAllProducts } = useContext(ProductContext);
-  const { openOrderModal, setOpenOrderModal, productChosed } =
-    useContext(CartContext);
+
+  const [productChosed, setProductChosed] = useState({
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    discount: 0,
+    id: 0,
+  });
 
   useEffect(() => {
     axios
@@ -54,17 +60,14 @@ const Menu = () => {
                 price={product.price}
                 discount={product.discount}
                 pizza_id={product.pizza_id}
+                setProductChosed={setProductChosed}
                 key={id}
               />
             );
           })}
         </div>
       </div>
-      <OrderModal
-        openOrderModal={openOrderModal}
-        setOpenOrderModal={setOpenOrderModal}
-        productChosed={productChosed}
-      />
+      <OrderModal productChosed={productChosed} />
     </div>
   );
 };
