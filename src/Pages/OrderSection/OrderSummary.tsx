@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../Providers/CartProvider";
-import { ORDER_KEY, TOTAL_COST_KEY } from "../../Constant";
+import { TOTAL_COST_KEY } from "../../Constant";
 
 const OrderSummary = () => {
-  const { totalPieces, totalPrice, setTotalCost } = useContext(CartContext);
+  const { totalPieces, totalPrice } = useContext(CartContext);
 
   const pieces = totalPieces;
   const price = totalPrice;

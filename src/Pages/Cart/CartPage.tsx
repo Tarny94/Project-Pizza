@@ -1,6 +1,5 @@
 import "./CartPage.scss";
 import React, { useContext, useEffect, useState } from "react";
-import { getCoockie, setCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_KEY } from "../../Constant";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../Providers/CartProvider";
