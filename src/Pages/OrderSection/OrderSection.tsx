@@ -4,35 +4,41 @@ import { UserContext } from "../Providers/UserProvider";
 import OrderSummary from "./OrderSummary";
 import { CartContext } from "../Providers/CartProvider";
 import OrderConfirm from "./OrderConfirm";
-
+import OrderPayment from "./OrderPayment";
+import { ORDERED_KEY } from "../../Constant";
 
 const OrderSection = () => {
   const { totalCost } = useContext(CartContext);
   const [openModal, setOpenModal] = useState(false);
   const { user } = useContext(UserContext);
 
+  const localStorageValue = localStorage.getItem(ORDERED_KEY);
+  const ORDERED = localStorageValue && JSON.parse(localStorageValue);
+  console.log("ORDERED:", ORDERED);
+
   return (
     <div className="order-section-container">
       <div className="order-section-height"></div>
       <div>Finish Ordered</div>
-      <div>Address Details</div>
+      <div>User Details</div>
       <div>
         <div>Name: {user && user.name}</div>
         <div>Phone: {user && user.phone} </div>
-        <div>Address: {user && user.address}</div>
+
         <div>Email: {user && user.email}</div>
-        <div>Status: in progress...</div>
+        <div>
+          Addres Details <div>County: </div>
+          <div>City: {user && user.address}</div>
+          <div>Street:</div>
+          <div>No.</div>
+          <div>Bl:</div>
+          <div>Ap:</div>
+        </div>
       </div>
       <div>
-        <div>Credit Card</div>
-        <div>Pay to Delivery</div>
+        <OrderPayment />
       </div>
-      <div>
-        <div>Tips for delivery</div>
-      </div>
-      <div>
-        <div>Donation for Help People</div>
-      </div>
+
       <div>
         <OrderSummary />
         <div>

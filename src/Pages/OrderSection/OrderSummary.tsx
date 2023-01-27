@@ -3,7 +3,7 @@ import { CartContext } from "../Providers/CartProvider";
 import { TOTAL_COST_KEY } from "../../Constant";
 
 const OrderSummary = () => {
-  const { totalPieces, totalPrice } = useContext(CartContext);
+  const { totalPieces, totalPrice, tips } = useContext(CartContext);
 
   const pieces = totalPieces;
   const price = totalPrice;
@@ -25,7 +25,7 @@ const OrderSummary = () => {
     if (price !== 0) {
       total += service;
       if (price < 100) {
-        total += delivary;
+        total += delivary + tips;
         localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
         return total;
       }
@@ -39,7 +39,7 @@ const OrderSummary = () => {
     <div className="page-cart-order-summary-container">
       <div className="order-summary">About Order</div>
       <div className="order-summary">Products Cost: {price}$</div>
-      <div className="order-summary">Services: {price && service}$</div>
+      <div className="order-summary">Wrapping: {price && service}$</div>
       <div className="order-summary">
         Delivery:{" "}
         {price !== 0 ? (price < 100 ? delivary + "$" : "FREE") : 0 + "$"}

@@ -17,7 +17,9 @@ const initialState = {
   productsOrdered: [],
   totalPieces: 0,
   totalPrice: 0,
+  tips: 0,
 
+  setTips: (_: Number) => {},
   setTotalPieces: (_: Number) => {},
   setTotalPrice: (_: Number) => {},
   setProductsOrdered: (_: Object) => [],
@@ -48,6 +50,7 @@ export const CartProvider = (props: any) => {
   const [productsOrdered, setProductsOrdered] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalPieces, setTotalPieces] = useState(0);
+  const [tips, setTips] = useState(0);
 
   useEffect(() => {
     const valueFromLocalStore = localStorage.getItem(ORDER_KEY);
@@ -97,6 +100,8 @@ export const CartProvider = (props: any) => {
         setProductsOrdered,
         totalPieces,
         setTotalPieces,
+        tips,
+        setTips,
       }}
       {...props}
     />

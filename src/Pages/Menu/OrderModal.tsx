@@ -61,7 +61,7 @@ export default function OrderModal({ productChosed }: iProp) {
   };
 
   const handleOrderProducts = async () => {
-    const neeState = [
+    const products = [
       {
         id: productChosed.id,
         image: productChosed.image,
@@ -72,9 +72,9 @@ export default function OrderModal({ productChosed }: iProp) {
       },
       ...productsOrdered,
     ];
-    setProductsOrdered(neeState);
+    setProductsOrdered(products);
 
-    localStorage.setItem(ORDER_KEY, JSON.stringify(neeState));
+    localStorage.setItem(ORDER_KEY, JSON.stringify(products));
     handleClose();
   };
 

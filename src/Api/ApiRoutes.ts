@@ -89,4 +89,15 @@ export const getUser = async (id: number) => {
     });
 };
 
+export const addOrder = async (value: any) => {
+  return await axios
+    .post(getApiUrl("add/order"), value)
+    .then((res) => {
+      alert("Successful");
+    })
+    .catch((err) => {
+      alert("Fail to add Order" + err);
+    });
+};
+
 export const setUserToken = (token: string) => {};
