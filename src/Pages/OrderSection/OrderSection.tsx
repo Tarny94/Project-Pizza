@@ -6,6 +6,7 @@ import { CartContext } from "../Providers/CartProvider";
 import OrderConfirm from "./OrderConfirm";
 import OrderPayment from "./OrderPayment";
 import { ORDERED_KEY } from "../../Constant";
+import { addOrder } from "../../Api/ApiRoutes";
 
 const OrderSection = () => {
   const { totalCost } = useContext(CartContext);
@@ -31,7 +32,7 @@ const OrderSection = () => {
           <div>City: {user && user.address}</div>
           <div>Street:</div>
           <div>No.</div>
-          <div>Bl:</div>
+          <div>Staircase:</div>
           <div>Ap:</div>
         </div>
       </div>

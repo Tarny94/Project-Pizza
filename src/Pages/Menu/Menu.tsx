@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { ProductContext } from "../Providers/ProductProvider";
-import OrderModal from "./OrderModal";
+import OrderModal from "../OrderSection/OrderModal";
 import { CartContext } from "../Providers/CartProvider";
 
 type iProp = {

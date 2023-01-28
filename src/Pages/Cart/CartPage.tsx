@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../Providers/CartProvider";
 import OrderSummary from "../OrderSection/OrderSummary";
 import { ORDER_SUMMARY_KEY, ORDERED_KEY } from "../../Constant";
-import { addOrder } from "../../Api/ApiRoutes";
+
 import { UserContext } from "../Providers/UserProvider";
 import RadioButton from "../../Design/RadioButton";
 import TipsRadioButtons from "../OrderSection/TipsRadioButtons";
