@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { CartContext } from "../Providers/CartProvider";
+import { addOrder } from "../../Api/ApiRoutes";
+import { useNavigate } from "react-router-dom";
+import { ORDERED_KEY, ORDER_KEY, ORDER_SUMMARY_KEY } from "../../Constant";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,19 +23,35 @@ export default function OrderConfirm({
   openModal,
   setOpenModal,
   address,
+  ordered,
 }: any) {
   const { totalCost } = React.useContext(CartContext);
 
   const [isConfirmed, setIsConfirmed] = React.useState(false);
+  const navigate = useNavigate();
 
-  const handleClose = () => setOpenModal(false);
+  if (isConfirmed) {
+    setTimeout(() => {
+      setIsConfirmed(false);
+      setOpenModal(false);
+      navigate("/menu");
+    }, 3500);
+  }
 
-  // if (isConfirmed) {
-  //   setTimeout(() => {
-  //     setIsConfirmed(false);
-  //     handleClose();
-  //   }, 5000);
-  // }
+  console.log("ord:", ordered);
+
+  const HandleClose = () => {
+    setOpenModal(false);
+    setIsConfirmed(false);
+  };
+
+  const HandleConfirmOrder = async () => {
+    await addOrder(ordered);
+    localStorage.setItem(ORDERED_KEY, "");
+    localStorage.setItem(ORDER_KEY, "");
+    localStorage.setItem(ORDER_SUMMARY_KEY, "");
+    setIsConfirmed(true);
+  };
 
   return (
     <>
@@ -40,7 +59,7 @@ export default function OrderConfirm({
         <div>
           <Modal
             open={openModal}
-            onClose={handleClose}
+            onClose={HandleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -83,14 +102,8 @@ export default function OrderConfirm({
                     }}
                   >
                     <div>
-                      <button onClick={handleClose}>Cancel</button>
-                      <button
-                        onClick={() => {
-                          setIsConfirmed(true);
-                        }}
-                      >
-                        Confirm
-                      </button>
+                      <button onClick={HandleClose}>Cancel</button>
+                      <button onClick={HandleConfirmOrder}>Confirm</button>
                     </div>
                   </Typography>{" "}
                 </>
@@ -132,10 +145,7 @@ export default function OrderConfirm({
                       textAlign: "center",
                       cursor: "pointer",
                     }}
-                    onClick={() => {
-                      setIsConfirmed(false);
-                      setOpenModal(false);
-                    }}
+                    onClick={HandleClose}
                   >
                     🆗
                   </Typography>{" "}

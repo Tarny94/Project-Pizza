@@ -40,7 +40,7 @@ const CartPage = () => {
 
   const navigate = useNavigate();
   const items = productsOrdered;
-  const productsID: number[] = [];
+  const productsContains: any[] = [];
   const date = new Date();
 
   let totalCash = 0;
@@ -67,12 +67,14 @@ const CartPage = () => {
     totalPrice,
   ]);
 
+  console.log("pieces:", totalPieces);
+
   const handleOrderedProducts = async () => {
     localStorage.setItem(
       ORDERED_KEY,
       JSON.stringify({
         userId,
-        productsID,
+        productsContains: [...productsContains],
         totalCash: 0,
         productsCash: totalPrice,
         address_id: "",
@@ -81,7 +83,7 @@ const CartPage = () => {
           date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
         }`,
         tips,
-        wrapping: "",
+        wrapping: totalPieces > 9 ? 5 : 1,
         comments,
         tableware,
       })
@@ -101,7 +103,10 @@ const CartPage = () => {
           totalCash += item.productsPrice;
           totalBuc += item.productsPieces;
 
-          productsID.push(item.id);
+          productsContains.push({
+            productId: item.id,
+            productPieces: item.productsPieces,
+          });
 
           return (
             <div key={id}>
@@ -156,8 +161,10 @@ const CartPage = () => {
       <div className="page-cart-another-products"></div>
       <button
         onClick={() => {
-          handleOrderedProducts();
-          navigate("/cart/page/ordered");
+          if (productsContains) {
+            handleOrderedProducts();
+            navigate("/cart/page/ordered");
+          }
         }}
       >
         GO TO NEXT STEP

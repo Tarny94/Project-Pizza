@@ -60,8 +60,10 @@ const MiniCart = () => {
         <div>TOTAL: {total}</div>
         <div
           onClick={() => {
-            localStorage.setItem(ORDER_KEY, JSON.stringify(items));
-            navigate("/cart/page");
+            if (total) {
+              localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+              navigate("/cart/page");
+            }
           }}
         >
           GO TO CART

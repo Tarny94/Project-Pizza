@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../Providers/CartProvider";
 import { TOTAL_COST_KEY } from "../../Constant";
 
-const OrderSummary = () => {
+type iProp = {
+  onChange?: any;
+};
+
+const OrderSummary = ({ onChange }: iProp) => {
   const { totalPieces, totalPrice, tips } = useContext(CartContext);
 
   const pieces = totalPieces;
@@ -27,11 +31,14 @@ const OrderSummary = () => {
       if (price < 100) {
         total += delivary + tips;
         localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
+
         return total;
       }
       localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
+
       return total;
     }
+
     return 0;
   };
 

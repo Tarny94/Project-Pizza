@@ -77,6 +77,7 @@ export default function TipsRadioButtons({ tips, setTips }: iProp) {
             />
           }
         />
+
         <MyFormControlLabel
           value="five"
           label="$5"
