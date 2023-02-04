@@ -120,109 +120,114 @@ const OrderSection = () => {
   };
   return (
     <div className="order-section-container">
-      <div className="order-section-height"></div>
-      <div>Finish Ordered</div>
-      <div>User Details</div>
-      <div>
-        <div>Name: {user && user.name}</div>
-        <div>Phone: {user && user.phone} </div>
+      <div className="order-section-components">
+        <div className="order-section-components-title">Finish Ordered</div>
+        <div className="order-section-user-details">
+          <div className="order-section-user-title">User Details</div>
+          <div>
+            <div>Name: {user && user.name}</div>
+            <div>Phone: {user && user.phone} </div>
 
-        <div>Email: {user && user.email}</div>
-      </div>
-      <div>
-        <div>Addres Details</div>
-        <div>
-          <button
-            onClick={() => {
-              openAddAddress && setOpenAddAddress(false);
-              if (!openAddAddress) {
-                setOpenAddAddress(true);
-              }
-            }}
-          >
-            {!openAddAddress ? "➕" : "➖"}
-          </button>{" "}
-          Add New Address
-        </div>
-        <div>
-          {openAddAddress && (
+            <div>Email: {user && user.email}</div>
+          </div>
+
+          <div>
+            <div>Addres Details</div>
             <div>
-              {" "}
-              <div>
-                <Autocomplet
-                  counties={Counties}
-                  label="County"
-                  onChange={setCounty}
-                />
-                <Autocomplet
-                  counties={Cities[county as keyof typeof Cities] || []}
-                  label="City"
-                  onChange={setCity}
-                ></Autocomplet>
-              </div>
-              <div>
-                <TextFields
-                  onChange={setStreet}
-                  label="Street"
-                  required={true}
-                />
-                <TextFields onChange={setNumber} label="No" />
-              </div>
-              <div>
-                <TextFields onChange={setStairCase} label="Staircase" />
-                <TextFields onChange={setAp} label="Apartament" type="number" />
-              </div>
               <button
                 onClick={() => {
-                  if (
-                    addressFields.county &&
-                    addressFields.city &&
-                    addressFields.street
-                  ) {
-                    HandleAddNewAddress();
-                  } else {
-                    alert("Complet required fields!");
+                  openAddAddress && setOpenAddAddress(false);
+                  if (!openAddAddress) {
+                    setOpenAddAddress(true);
                   }
                 }}
               >
-                SUBMIT
-              </button>
+                {!openAddAddress ? "➕" : "➖"}
+              </button>{" "}
+              Add New Address
             </div>
-          )}
+            <div>
+              {openAddAddress && (
+                <div>
+                  {" "}
+                  <div>
+                    <Autocomplet
+                      counties={Counties}
+                      label="County"
+                      onChange={setCounty}
+                    />
+                    <Autocomplet
+                      counties={Cities[county as keyof typeof Cities] || []}
+                      label="City"
+                      onChange={setCity}
+                    ></Autocomplet>
+                  </div>
+                  <div>
+                    <TextFields
+                      onChange={setStreet}
+                      label="Street"
+                      required={true}
+                    />
+                    <TextFields onChange={setNumber} label="No" />
+                  </div>
+                  <div>
+                    <TextFields onChange={setStairCase} label="Staircase" />
+                    <TextFields
+                      onChange={setAp}
+                      label="Apartament"
+                      type="number"
+                    />
+                  </div>
+                  <button
+                    onClick={() => {
+                      if (
+                        addressFields.county &&
+                        addressFields.city &&
+                        addressFields.street
+                      ) {
+                        HandleAddNewAddress();
+                      } else {
+                        alert("Complet required fields!");
+                      }
+                    }}
+                  >
+                    SUBMIT
+                  </button>
+                </div>
+              )}
+            </div>
+            {addresses.map((addres: iAddress, key: number) => {
+              const data = `${key + 1}. County ${addres.county}, City ${
+                addres.city
+              }, street ${addres.address}, No. ${addres.number} ${
+                addres.staircase ? `Staircase ${addres.staircase}` : ""
+              } ${addres.ap ? `, Apartment ${addres.ap}` : ""} `;
+
+              return (
+                <div
+                  key={key}
+                  onClick={() => {
+                    setConfirmedAddress(data);
+                    setAddresId(addres.id);
+                  }}
+                >
+                  <div>{data}</div>
+                  <div
+                    onClick={async () => {
+                      HandleDeleteAddress(key, addres.id);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        {addresses.map((addres: iAddress, key: number) => {
-          const data = `${key + 1}. County ${addres.county}, City ${
-            addres.city
-          }, street ${addres.address}, No. ${addres.number} ${
-            addres.staircase ? `Staircase ${addres.staircase}` : ""
-          } ${addres.ap ? `, Apartment ${addres.ap}` : ""} `;
+        <div>
+          <OrderPayment />
+        </div>
 
-          return (
-            <div
-              key={key}
-              onClick={() => {
-                setConfirmedAddress(data);
-                setAddresId(addres.id);
-              }}
-            >
-              <div>{data}</div>
-              <div
-                onClick={async () => {
-                  HandleDeleteAddress(key, addres.id);
-                }}
-              >
-                <DeleteIcon />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <OrderPayment />
-      </div>
-
-      <div>
-        <OrderSummary onChange={setDeliveryCost} />
         <div>
           <button
             onClick={() => {
@@ -232,13 +237,15 @@ const OrderSection = () => {
             SEND THE ORDER ${totalCost}
           </button>
         </div>
+
+        <OrderConfirm
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          ordered={ordered}
+          address={confirmedAddress && confirmedAddress}
+        />
       </div>
-      <OrderConfirm
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        ordered={ordered}
-        address={confirmedAddress && confirmedAddress}
-      />
+      <OrderSummary onChange={setDeliveryCost} />
     </div>
   );
 };

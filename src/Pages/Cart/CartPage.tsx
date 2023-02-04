@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../Providers/CartProvider";
 import OrderSummary from "../OrderSection/OrderSummary";
 import { ORDER_SUMMARY_KEY, ORDERED_KEY } from "../../Constant";
-
 import { UserContext } from "../Providers/UserProvider";
 import RadioButton from "../../Design/RadioButton";
 import TipsRadioButtons from "../OrderSection/TipsRadioButtons";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Multiline from "../../Design/Multiline";
 
 type iProduct = {
   id: number;
@@ -18,8 +19,6 @@ type iProduct = {
   productsPrice: number;
   price: number;
 };
-
-type iAddOrder = {};
 
 const CartPage = () => {
   const {
@@ -46,8 +45,6 @@ const CartPage = () => {
   let totalCash = 0;
   let totalBuc = 1;
 
-  console.log(tips);
-
   useEffect(() => {
     if (totalCash) {
       setTotalPrice(totalCash);
@@ -66,8 +63,6 @@ const CartPage = () => {
     totalPieces,
     totalPrice,
   ]);
-
-  console.log("pieces:", totalPieces);
 
   const handleOrderedProducts = async () => {
     localStorage.setItem(
@@ -92,83 +87,92 @@ const CartPage = () => {
 
   return (
     <div className="page-cart-container">
-      <div className="page-height"></div>
-      <div className="page-cart-intro">
-        <div className="page-cart-order intro">Your Order</div>
-        <div className="page-cart-products intro">Your Products</div>
-      </div>
-      <div className="page-cart-all-products">
-        {" "}
-        {items.map((item: iProduct, id: number) => {
-          totalCash += item.productsPrice;
-          totalBuc += item.productsPieces;
+      <div className="page-cart-products">
+        <div className="page-cart-order-title  intro"> ORDER</div>
+        <div className="page-cart-products-title intro">Your Products</div>
+        <div className="page-cart-products-contain">
+          {" "}
+          {items.map((item: iProduct, id: number) => {
+            totalCash += item.productsPrice;
+            totalBuc += item.productsPieces;
 
-          productsContains.push({
-            productId: item.id,
-            productPieces: item.productsPieces,
-          });
+            productsContains.push({
+              productId: item.id,
+              productPieces: item.productsPieces,
+            });
 
-          return (
-            <div key={id}>
-              <p>{id + 1}</p>
-              <img src={item.image} alt="pizza img" width="50" height="50" />
-              <h2>Pizza {item.title}</h2>
-              <div>
-                {item.productsPieces} x ${item.price}
+            return (
+              <div key={id} className="page-cart-product-container">
+                <div className="page-cart-product">
+                  <div>{id + 1}.</div>
+                  <img
+                    src={item.image}
+                    alt="pizza img"
+                    width="50"
+                    height="50"
+                  />
+                  <h2>Pizza {item.title}</h2>
+                  <div>
+                    {item.productsPieces} x ${item.price}
+                  </div>
+                  <div
+                    className="page-cart-delete-button"
+                    onClick={() => {
+                      setItems(items.splice(id, 1));
+                      setTotalPrice((totalCash -= item.productsPrice));
+                      setTotalPieces((totalBuc -= item.productsPieces));
+                      localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+                    }}
+                  >
+                    <DeleteIcon />
+                  </div>
+                </div>
               </div>
-              <button
-                onClick={() => {
-                  setItems(items.splice(id, 1));
-                  setTotalPrice((totalCash -= item.productsPrice));
-                  setTotalPieces((totalBuc -= item.productsPieces));
-                  localStorage.setItem(ORDER_KEY, JSON.stringify(items));
-                }}
-              >
-                DELETE
-              </button>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+        <div className="page-cart-tableware">
+          <RadioButton
+            name="Tableware"
+            tableware={tableware}
+            setTableware={setTableware}
+          />
+        </div>
+        <div className="page-cart-tips">
+          {totalCash < 100 ? (
+            <TipsRadioButtons tips={tips} setTips={setTips} />
+          ) : (
+            ""
+          )}
+        </div>
 
-      <div>
-        {totalCash < 100 ? (
-          <TipsRadioButtons tips={tips} setTips={setTips} />
-        ) : (
-          ""
-        )}
+        <div className="page-cart-mentions">
+          <Multiline
+            label={"Mentions?"}
+            onChange={setComments}
+            variant={"outlined"}
+            maxRow={4}
+          />
+        </div>
+        <div className="page-cart-button-contain">
+          <div
+            className="page-cart-button"
+            onClick={() => {
+              if (productsContains) {
+                handleOrderedProducts();
+                // navigate("/cart/page/ordered"); in progress...
+              }
+            }}
+          >
+            NEXT STEP
+            <p>in progress...</p>
+          </div>
+        </div>
       </div>
-
-      <div>
-        <RadioButton
-          name="Tableware"
-          tableware={tableware}
-          setTableware={setTableware}
-        />
-      </div>
-      <div>
-        Something else to mention?
-        <input
-          onChange={(e: any) => {
-            setComments(e.target.value);
-          }}
-        ></input>
-      </div>
-      <div>
+      <div className="page-cart-summary-contain">
+        {" "}
         <OrderSummary />
       </div>
-
-      <div className="page-cart-another-products"></div>
-      <button
-        onClick={() => {
-          if (productsContains) {
-            handleOrderedProducts();
-            navigate("/cart/page/ordered");
-          }
-        }}
-      >
-        GO TO NEXT STEP
-      </button>
     </div>
   );
 };

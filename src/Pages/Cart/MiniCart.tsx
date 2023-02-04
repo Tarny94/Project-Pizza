@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ORDER_KEY } from "../../Constant";
 import { CartContext } from "../Providers/CartProvider";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 type iProduct = {
   id: number;
@@ -19,37 +20,49 @@ const MiniCart = () => {
   const [, setItems] = useState([]);
   const navigate = useNavigate();
 
-  let items = productsOrdered;
+  let products = productsOrdered;
   let total = 0;
 
   useEffect(() => {
-    localStorage.setItem(ORDER_KEY, JSON.stringify(items));
-  }, [items]);
+    localStorage.setItem(ORDER_KEY, JSON.stringify(products));
+  }, [products]);
 
   return (
     <div className="minicart-container">
       <div className="minicart-title minicart-details">
-        No product inside of Cart
+        {products.length !== 0 ? "YOUR CART" : "No product inside of Cart"}
       </div>
       <div className="minicart-product minicart-details">
-        <div>
-          {items.map((item: iProduct, id: number) => {
+        <div className="minicart-product-contain">
+          {products.map((item: iProduct, id: number) => {
             total += item.price * item.productsPieces;
             return (
-              <div key={id}>
-                <p>{id + 1}</p>
-                <img src={item.image} alt="pizza img" width="50" height="50" />
-                <h2>Pizza {item.title}</h2>
-                <div>
-                  {item.productsPieces} x ${item.price}
+              <div key={id} className="minicard-product-details">
+                <div className="minicart-product-first-part">
+                  <div
+                    className="minicart-delete"
+                    onClick={() => {
+                      setItems(products.splice(id, 1));
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <DeleteIcon />
+                  </div>
+                  {/* <div>{id + 1}</div> */}
+                  <img
+                    src={item.image}
+                    alt="img"
+                    width="50"
+                    height="50"
+                    style={{ fontSize: 15 }}
+                  />
+                  <div>Pizza {item.title}</div>
                 </div>
-                <button
-                  onClick={() => {
-                    setItems(items.splice(id, 1));
-                  }}
-                >
-                  DELETE
-                </button>
+                <div className="minicart-product-second-part">
+                  <div>
+                    {item.productsPieces} x ${item.price}
+                  </div>
+                </div>
               </div>
             );
           })}
@@ -57,11 +70,11 @@ const MiniCart = () => {
       </div>
 
       <div className="minicart-order minicart-details">
-        <div>TOTAL: {total}</div>
+        <div>TOTAL: ${total}</div>
         <div
           onClick={() => {
             if (total) {
-              localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+              localStorage.setItem(ORDER_KEY, JSON.stringify(products));
               navigate("/cart/page");
             }
           }}

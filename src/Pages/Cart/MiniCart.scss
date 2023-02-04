@@ -10,22 +10,70 @@
   position: absolute;
   right: 0;
   cursor: initial;
+
+  .minicart-title{
+  
+  }
    
   .minicart-details{
-    border-bottom: 1px solid $usual_700;
+    border-bottom: 3px solid $usual_300;
+    font-size: 25px;
+    color: $usual_500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 15px;
   }
   .minicart-details:last-child {
     border-bottom: none;
+    
   }
   .minicart-product{
     text-align: start;
     max-height: 500px;
     overflow: scroll;
     overflow-x: hidden; 
+    .minicart-product-contain{
+      color: $usual_700;
+      font-size: 21px;
+      font-family:'Courier New', Courier, monospace;
+      .minicard-product-details{
+         margin-bottom: 10px;
+         border-bottom: 1px solid $usual_200;
+         &:hover{
+          box-shadow: 0 0px 5px -2px $usual_700;
+        }
+        .minicart-product-first-part{
+          display: flex;
+          align-items: center;
+          
+          .minicart-delete{
+            margin-right: 7px;
+          }
+        
+      }
+      .minicart-product-second-part{
+        display: flex;
+        justify-content: space-between;
+      }  
+      }
+    }
   }
 
   .minicart-order{
     display: flex;
     justify-content: space-evenly;
+    cursor: pointer;
+    &:hover{
+      background-color: $usual_700;
+      color: $usual_200;
+      transition: 0.5s ease;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .minicart-container{
+    display: none;
   }
 }
