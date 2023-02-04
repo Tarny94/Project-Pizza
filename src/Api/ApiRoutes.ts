@@ -21,6 +21,17 @@ export const deleteProductApi = async (id: number) => {
     });
 };
 
+export const deleteAddress = async (id: number) => {
+  await axios
+    .delete(getApiUrl(`delete/address/${id}`))
+    .then((res) => {
+      console.log("Successful delete address");
+    })
+    .catch((err) => {
+      console.log("Fail");
+    });
+};
+
 export const getAllProductsApi = async () => {
   return await axios
     .get(getApiUrl("get/products"))
@@ -77,5 +88,51 @@ export const checkIfAdminLoggedIn = async (token: string) => {
       return false;
     });
 };
+
+export const getUser = async (id: number) => {
+  return await axios
+    .get(getApiUrl(`user/${id}`))
+    .then((res) => {
+      return res.data[0];
+    })
+    .catch((err) => {
+      alert("Error to fetch user");
+    });
+};
+
+export const getAddress = async (id: number) => {
+  return await axios
+    .get(getApiUrl(`get/address/${id}`))
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      alert("Fail to get address");
+    });
+};
+
+export const addAddress = async (value: any) => {
+  return await axios
+    .post(getApiUrl("add/address"), value)
+    .then((res) => {
+      console.log("Successful added address");
+    })
+    .catch((err) => {
+      alert("Fail to add Address" + err);
+    });
+};
+
+export const addOrder = async (value: any) => {
+  return await axios
+    .post(getApiUrl("add/order"), value)
+    .then((res) => {
+      alert("Successful");
+    })
+    .catch((err) => {
+      alert("Fail to add Order" + err);
+    });
+};
+
+
 
 export const setUserToken = (token: string) => {};

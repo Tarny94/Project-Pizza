@@ -1,28 +1,34 @@
 import "./CartStyle.scss";
-import React, { useState } from "react";
+import React, {useContext } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import BasicModal from "../../Design/Modal";
+import { CartContext } from "../Providers/CartProvider";
+import MiniCart from "./MiniCart";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const { setIsHover, isHover } = useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
-    <div className="cart-container">
+    <div
+      className="cart-container"
+      onMouseOver={() => {
+        setIsHover(true);
+      }}
+      onMouseOut={() => {
+        setIsHover(false);
+      }}
+    >
       <div
         className="cart-design"
         onClick={() => {
-          if (openModal) {
-            return setOpenModal(false);
-          }
-          setOpenModal(true);
+          navigate("/cart/page");
         }}
       >
         {<ShoppingCartOutlinedIcon />}
-        <div></div>
       </div>
-      {openModal && (
-        <BasicModal openModal={openModal} setOpenModal={setOpenModal} />
-      )}
+
+      {isHover && <MiniCart />}
     </div>
   );
 };

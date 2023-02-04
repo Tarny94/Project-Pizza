@@ -1,10 +1,11 @@
 import "./MenuStyle.scss";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import Cart from "../Cart/Cart";
 import axios from "axios";
 import { getApiUrl } from "../../Api/api";
 import { ProductContext } from "../Providers/ProductProvider";
+import OrderModal from "../OrderSection/OrderModal";
+import { CartContext } from "../Providers/CartProvider";
 
 type iProp = {
   image?: string;
@@ -12,10 +13,20 @@ type iProp = {
   description?: string;
   price: number;
   discount?: number;
+  pizza_id: number;
 };
 
 const Menu = () => {
   const { allProducts, setAllProducts } = useContext(ProductContext);
+
+  const [productChosed, setProductChosed] = useState({
+    image: "",
+    title: "",
+    description: "",
+    price: 0,
+    discount: 0,
+    id: 0,
+  });
 
   useEffect(() => {
     axios
@@ -27,7 +38,6 @@ const Menu = () => {
         console.log("Err:", e);
       });
   }, [setAllProducts]);
-  console.log(allProducts);
 
   return (
     <div className="page-menu-container">
@@ -41,7 +51,7 @@ const Menu = () => {
           </div>
         </div>
         <div className="menu-with-productCards">
-          {allProducts.map((product: iProp) => {
+          {allProducts.map((product: iProp, id: number) => {
             return (
               <ProductCard
                 image={product.image}
@@ -49,12 +59,15 @@ const Menu = () => {
                 description={product.description}
                 price={product.price}
                 discount={product.discount}
+                pizza_id={product.pizza_id}
+                setProductChosed={setProductChosed}
+                key={id}
               />
             );
           })}
         </div>
       </div>
-      <Cart />
+      <OrderModal productChosed={productChosed} />
     </div>
   );
 };
