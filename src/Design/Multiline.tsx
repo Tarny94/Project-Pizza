@@ -7,30 +7,29 @@ type iProp = {
   onChange?: any;
   maxRow?: number;
   variant?: "filled" | "outlined" | "standard";
+  rows?: number;
 };
 
-export default function Multiline({ label, onChange, maxRow, variant }: iProp) {
+export default function Multiline({ label, onChange, variant, rows }: iProp) {
   return (
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "30ch" },
+        "& .MuiTextField-root": { width: "30ch" },
       }}
       noValidate
       autoComplete="off"
     >
-      <div>
-        <TextField
-          id="standard-multiline-flexible"
-          label={label}
-          multiline
-          maxRows={maxRow}
-          variant={variant}
-          onChange={(e: any) => {
-            e.target.value && onChange(e.target.value);
-          }}
-        />
-      </div>
+      <TextField
+        id="filled-multiline-static"
+        label={label}
+        multiline
+        rows={rows}
+        variant={variant}
+        onChange={(e: any) => {
+          e.target.value && onChange(e.target.value);
+        }}
+      />
     </Box>
   );
 }

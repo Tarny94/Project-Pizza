@@ -6,10 +6,11 @@ import { CartContext } from "../Providers/CartProvider";
 import OrderSummary from "../OrderSection/OrderSummary";
 import { ORDER_SUMMARY_KEY, ORDERED_KEY } from "../../Constant";
 import { UserContext } from "../Providers/UserProvider";
-import RadioButton from "../../Design/RadioButton";
+
 import TipsRadioButtons from "../OrderSection/TipsRadioButtons";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Multiline from "../../Design/Multiline";
+import CheckBox from "../../Design/CheckBox";
 
 type iProduct = {
   id: number;
@@ -44,6 +45,10 @@ const CartPage = () => {
 
   let totalCash = 0;
   let totalBuc = 1;
+
+  if (items.length === 0) {
+    navigate("/menu");
+  }
 
   useEffect(() => {
     if (totalCash) {
@@ -104,74 +109,76 @@ const CartPage = () => {
             return (
               <div key={id} className="page-cart-product-container">
                 <div className="page-cart-product">
-                  <div>{id + 1}.</div>
-                  <img
-                    src={item.image}
-                    alt="pizza img"
-                    width="50"
-                    height="50"
-                  />
-                  <h2>Pizza {item.title}</h2>
-                  <div>
-                    {item.productsPieces} x ${item.price}
+                  <div className="page-cart-pizza-image-title">
+                    {" "}
+                    <img
+                      src={item.image}
+                      alt="pizza img"
+                      width="100"
+                      height="100"
+                    />
+                    <h2>Pizza {item.title}</h2>
                   </div>
-                  <div
-                    className="page-cart-delete-button"
-                    onClick={() => {
-                      setItems(items.splice(id, 1));
-                      setTotalPrice((totalCash -= item.productsPrice));
-                      setTotalPieces((totalBuc -= item.productsPieces));
-                      localStorage.setItem(ORDER_KEY, JSON.stringify(items));
-                    }}
-                  >
-                    <DeleteIcon />
+                  <div className="page-cart-price-delete-button">
+                    <div>${item.productsPrice}</div>
+                    <div>{item.productsPieces}</div>
+                    <div
+                      className="page-cart-delete-button"
+                      onClick={() => {
+                        setItems(items.splice(id, 1));
+                        setTotalPrice((totalCash -= item.productsPrice));
+                        setTotalPieces((totalBuc -= item.productsPieces));
+                        localStorage.setItem(ORDER_KEY, JSON.stringify(items));
+                      }}
+                    >
+                      <DeleteIcon color="primary" style={{ fontSize: 30 }} />
+                    </div>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-        <div className="page-cart-tableware">
-          <RadioButton
-            name="Tableware"
+        <div
+          className="page-cart-tableware"
+          onClick={() => {
+            if (tableware) {
+              setTableware(false);
+            } else {
+              setTableware(true);
+            }
+          }}
+        >
+          <CheckBox
             tableware={tableware}
             setTableware={setTableware}
+            label="Cutlery"
           />
         </div>
         <div className="page-cart-tips">
-          {totalCash < 100 ? (
-            <TipsRadioButtons tips={tips} setTips={setTips} />
-          ) : (
-            ""
-          )}
+          <TipsRadioButtons tips={tips} setTips={setTips} />
         </div>
 
         <div className="page-cart-mentions">
           <Multiline
             label={"Mentions?"}
             onChange={setComments}
-            variant={"outlined"}
-            maxRow={4}
+            variant={"filled"}
+            rows={3}
           />
-        </div>
-        <div className="page-cart-button-contain">
-          <div
-            className="page-cart-button"
-            onClick={() => {
-              if (productsContains) {
-                handleOrderedProducts();
-                // navigate("/cart/page/ordered"); in progress...
-              }
-            }}
-          >
-            NEXT STEP
-            <p>in progress...</p>
-          </div>
         </div>
       </div>
       <div className="page-cart-summary-contain">
         {" "}
-        <OrderSummary />
+        <OrderSummary
+          buttonText="NEXT STEP"
+          onClick={() => {
+            if (productsContains) {
+              handleOrderedProducts();
+            }
+            // navigate("/cart/page/ordered");;
+          }}
+        />
       </div>
     </div>
   );
