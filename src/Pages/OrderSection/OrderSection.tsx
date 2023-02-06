@@ -6,12 +6,7 @@ import { CartContext } from "../Providers/CartProvider";
 import OrderConfirm from "./OrderConfirm";
 import OrderPayment from "./OrderPayment";
 import { ORDERED_KEY } from "../../Constant";
-import {
-  addOrder,
-  getAddress,
-  addAddress,
-  deleteAddress,
-} from "../../Api/ApiRoutes";
+import { getAddress, addAddress, deleteAddress } from "../../Api/ApiRoutes";
 import Autocomplet from "../../Design/Autocomplet";
 import Counties from "../../Util/Counties.json";
 import Cities from "../../Util/Cities.json";
@@ -245,7 +240,7 @@ const OrderSection = () => {
           address={confirmedAddress && confirmedAddress}
         />
       </div>
-      <OrderSummary onChange={setDeliveryCost} />
+      <OrderSummary />
     </div>
   );
 };

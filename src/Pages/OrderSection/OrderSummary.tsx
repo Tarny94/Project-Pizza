@@ -5,9 +5,11 @@ import { TOTAL_COST_KEY } from "../../Constant";
 
 type iProp = {
   onChange?: any;
+  onClick?: any;
+  buttonText?: string;
 };
 
-const OrderSummary = ({ onChange }: iProp) => {
+const OrderSummary = ({ onChange, onClick, buttonText }: iProp) => {
   const { totalPieces, totalPrice, tips } = useContext(CartContext);
 
   const pieces = totalPieces;
@@ -40,13 +42,26 @@ const OrderSummary = ({ onChange }: iProp) => {
   return (
     <div className="order-summary-container">
       <h2 className=" order-summary-title">ABOUT ORDER</h2>
-      <div className="order-summary">Products Cost: {price}$</div>
-      <div className="order-summary">Wrapping: {price && service}$</div>
-      <div className="order-summary">
-        Delivery:{" "}
-        {price !== 0 ? (price < 100 ? delivary + "$" : "FREE") : 0 + "$"}
+      <div className="order_summary-details">
+        <div className="order-summary">Products Cost: {price}$</div>
+        <div className="order-summary">Wrapping: {price && service}$</div>
+        <div className="order-summary">
+          Delivery:{" "}
+          {price !== 0 ? (
+            price < 100 ? (
+              delivary + "$"
+            ) : (
+              <p className="order_summary-delivery-status">FREE</p>
+            )
+          ) : (
+            0 + "$"
+          )}
+        </div>
+        <div className="order-summary">Total Cost: {handleTotalPrice()}$</div>
       </div>
-      <div className="order-summary">Total Cost: {handleTotalPrice()}$</div>
+      <div className="order_summary-button" onClick={onClick}>
+        {buttonText}
+      </div>
     </div>
   );
 };
