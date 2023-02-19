@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 type iProp = {
   label?: string;
   variant?: "filled" | "outlined" | "standard";
-  onChange?: (e: string) => void;
+  onChange?: any;
   required?: boolean;
   type?: "text" | "number" | "password";
 };

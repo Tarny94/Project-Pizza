@@ -4,6 +4,7 @@ import { TOKEN_KEY } from "../../Constant";
 import { checkIfAdminLoggedIn } from "../../Api/ApiRoutes";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../Api/ApiRoutes";
+import { HTTP } from "../../Api/Http";
 
 const initialState = {
   isLoggedIn: false,
@@ -36,6 +37,8 @@ export const UserProvider = (props: any) => {
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const [user, setUser] = useState({
     user_id: 0,
     name: "",
@@ -46,12 +49,12 @@ export const UserProvider = (props: any) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      setUser(await getUser(userId));
-    };
-    fetchUser();
-  }, [userId]);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     setUser(await getUser(userId));
+  //   };
+  //   fetchUser();
+  // }, [userId]);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -70,6 +73,8 @@ export const UserProvider = (props: any) => {
     const checkUser = async () => {
       let token = await getCoockie(TOKEN_KEY);
       let isAdminUser = await checkIfAdminLoggedIn(token.token);
+      HTTP.setToken(token.token);
+
       await setUserId(token._id);
       if (!isAdminUser) {
         return setIsAdmin(false);
@@ -77,9 +82,14 @@ export const UserProvider = (props: any) => {
         return setIsAdmin(true);
       }
     };
-    checkUser();
+    checkUser().finally(() => {
+      setLoading(false);
+    });
   }, [navigate, userId]);
 
+  if (loading) {
+    return null;
+  }
   return (
     <UserContext.Provider
       value={{

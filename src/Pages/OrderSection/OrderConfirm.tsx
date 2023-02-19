@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal";
 import { CartContext } from "../Providers/CartProvider";
 import { addOrder } from "../../Api/ApiRoutes";
 import { useNavigate } from "react-router-dom";
-import { ORDERED_KEY, ORDER_KEY, ORDER_SUMMARY_KEY } from "../../Constant";
+// import { ORDERED_KEY, ORDER_KEY, ORDER_SUMMARY_KEY } from "../../Constant";
 
 const style = {
   position: "absolute" as "absolute",
@@ -45,13 +45,13 @@ export default function OrderConfirm({
     setIsConfirmed(false);
   };
 
-  const HandleConfirmOrder = async () => {
-    await addOrder(ordered);
-    localStorage.setItem(ORDERED_KEY, "");
-    localStorage.setItem(ORDER_KEY, "");
-    localStorage.setItem(ORDER_SUMMARY_KEY, "");
-    setIsConfirmed(true);
-  };
+  // const HandleConfirmOrder = async () => {
+  //   await addOrder(ordered);
+  //   localStorage.setItem(ORDERED_KEY, "");
+  //   localStorage.setItem(ORDER_KEY, "");
+  //   localStorage.setItem(ORDER_SUMMARY_KEY, "");
+  //   setIsConfirmed(true);
+  // };
 
   return (
     <>
@@ -103,7 +103,7 @@ export default function OrderConfirm({
                   >
                     <div>
                       <button onClick={HandleClose}>Cancel</button>
-                      <button onClick={HandleConfirmOrder}>Confirm</button>
+                      {/* <button onClick={HandleConfirmOrder}>Confirm</button> */}
                     </div>
                   </Typography>{" "}
                 </>

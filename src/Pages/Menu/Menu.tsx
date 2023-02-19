@@ -6,6 +6,7 @@ import { getApiUrl } from "../../Api/api";
 import { ProductContext } from "../Providers/ProductProvider";
 import OrderModal from "../OrderSection/OrderModal";
 import { CartContext } from "../Providers/CartProvider";
+import { HTTP } from "../../Api/Http";
 
 type iProp = {
   image?: string;
@@ -29,15 +30,26 @@ const Menu = () => {
   });
 
   useEffect(() => {
-    axios
-      .get(getApiUrl("get/products"))
-      .then((res) => {
-        setAllProducts(res.data);
-      })
-      .catch((e) => {
-        console.log("Err:", e);
-      });
+    // const getValue = async () => {
+    //   await axios
+    //     .get(getApiUrl("get/products"))
+    //     .then((res) => {
+    //       setAllProducts(res.data);
+    //     })
+    //     .catch((e) => {
+    //       console.log("Err:", e);
+    //     });
+    // };
+    // getValue();
+    getProducts();
   }, [setAllProducts]);
+
+  const getProducts = async () => {
+    try {
+      const response = await HTTP.get("get/products");
+      console.log(response);
+    } catch {}
+  };
 
   return (
     <div className="page-menu-container">

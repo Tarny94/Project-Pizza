@@ -1,5 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
-import { ORDER_KEY, ORDER_SUMMARY_KEY, TOTAL_COST_KEY } from "../../Constant";
+
+import { ORDER_KEY, ORDER_ITEM_KEY } from "../../Constant";
+import { TOKEN_KEY } from "../../Constant";
+import { getCoockie } from "../../Util/Cookies/Coockie";
 
 const initialState = {
   isHover: false,
@@ -53,31 +56,34 @@ export const CartProvider = (props: any) => {
   const [tips, setTips] = useState(0);
 
   useEffect(() => {
-    const valueFromLocalStore = localStorage.getItem(ORDER_KEY);
+    const valueFromLocalStore = localStorage.getItem(ORDER_ITEM_KEY);
     if (valueFromLocalStore) {
-      setProductsOrdered(JSON.parse(valueFromLocalStore));
+      const data = JSON.parse(valueFromLocalStore);
+      setProductsOrdered(data);
     }
   }, []);
 
-  useEffect(() => {
-    const localValue = localStorage.getItem(ORDER_SUMMARY_KEY);
-    if (localValue) {
-      const summary: OrderSummary = JSON.parse(localValue);
-      setTotalPieces(summary.totalPieces);
-      setTotalPrice(summary.totalPrice);
-    }
-    if (productsOrdered.length === 0) {
-      setTotalPieces(0);
-      setTotalPrice(0);
-    }
-  }, [productsOrdered.length, totalPieces, totalPrice]);
 
-  useEffect(() => {
-    const valueFromLocalStore = localStorage.getItem(TOTAL_COST_KEY);
-    if (valueFromLocalStore) {
-      setTotalCost(JSON.parse(valueFromLocalStore));
-    }
-  }, []);
+
+  // useEffect(() => {
+  //   const localValue = localStorage.getItem(ORDER_SUMMARY_KEY);
+  //   if (localValue) {
+  //     const summary: OrderSummary = JSON.parse(localValue);
+  //     setTotalPieces(summary.totalPieces);
+  //     setTotalPrice(summary.totalPrice);
+  //   }
+  //   if (productsOrdered.length === 0) {
+  //     setTotalPieces(0);
+  //     setTotalPrice(0);
+  //   }
+  // }, [productsOrdered.length, totalPieces, totalPrice]);
+
+  // useEffect(() => {
+  //   const valueFromLocalStore = localStorage.getItem(TOTAL_COST_KEY);
+  //   if (valueFromLocalStore) {
+  //     setTotalCost(JSON.parse(valueFromLocalStore));
+  //   }
+  // }, []);
 
   return (
     <CartContext.Provider

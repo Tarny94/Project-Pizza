@@ -40,10 +40,7 @@
         &:last-child {
           border-bottom: none;
         }
-        &:hover{
-          box-shadow: 0 0 7px -1px;
-          border-radius: 20px;
-        }
+      
         .page-cart-product{
           .page-cart-pizza-image-title{
             display: flex;
@@ -51,14 +48,19 @@
             align-items: center;
            
           }
-          .page-cart-price-delete-button{
+          .page-cart-short-details{
             display: flex;
             justify-content: space-between;
             font-size: 26px;
             margin: 10px;
             font-weight: bold;
             color: $usual_600;
+            .page-cart-pieces-part{
+              display: flex;
+              
+            }
           }
+
           .page-cart-delete-button{
             cursor: pointer;
           }
@@ -72,9 +74,7 @@
       justify-content: center;
       width: 20%;
       color: $usual_700;
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
+     
      
     }
     .page-cart-tips{
@@ -82,9 +82,7 @@
       background-color: $usual_100;
       border-radius: 10px;
       padding: 10px 10px;
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
+     
     }
     .page-cart-mentions{
       margin-top: 15px;
@@ -92,9 +90,7 @@
       background-color: $usual_100;
       border-radius: 10px;
       margin-bottom: 24vh; //provizoriu
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
+     
     }
   }
 }
