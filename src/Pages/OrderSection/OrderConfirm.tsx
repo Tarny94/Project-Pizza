@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { CartContext } from "../Providers/CartProvider";
-import { addOrder } from "../../Api/ApiRoutes";
 import { useNavigate } from "react-router-dom";
-// import { ORDERED_KEY, ORDER_KEY, ORDER_SUMMARY_KEY } from "../../Constant";
+import { HTTP } from "../../Api/Http";
+import { ORDER_ITEM_KEY, ORDER_KEY } from "../../Constant";
 
 const style = {
   position: "absolute" as "absolute",
@@ -19,39 +19,70 @@ const style = {
   p: 4,
 };
 
+type iOrder = {
+  productsID: Array<number>;
+  totalCost: number;
+  productsCost: number;
+  productsPieces: number;
+  addressID: number;
+  tips: number;
+  wrapping: number;
+  comments: string;
+  tableware: boolean;
+};
+
+type iProp = {
+  openModal: boolean;
+  setOpenModal: (_: boolean) => void;
+  order: iOrder;
+  address: iAddress;
+};
+
+type iAddress = {
+  id: number;
+  address: string;
+  county: string;
+  city: string;
+  staircase: string;
+  ap: number;
+  number: number | string;
+};
+
 export default function OrderConfirm({
   openModal,
   setOpenModal,
+  order,
   address,
-  ordered,
-}: any) {
-  const { totalCost } = React.useContext(CartContext);
-
+}: iProp) {
+  const { setProductsOrdered } = useContext(CartContext);
   const [isConfirmed, setIsConfirmed] = React.useState(false);
+
   const navigate = useNavigate();
 
   if (isConfirmed) {
     setTimeout(() => {
-      setIsConfirmed(false);
-      setOpenModal(false);
-      navigate("/menu");
-    }, 3500);
+      HandleClose();
+    }, 3000);
   }
-
-  console.log("ord:", ordered);
 
   const HandleClose = () => {
     setOpenModal(false);
     setIsConfirmed(false);
+    setProductsOrdered([]);
+    localStorage.setItem(ORDER_KEY, "");
+    localStorage.setItem(ORDER_ITEM_KEY, "");
+    navigate("/menu");
   };
 
-  // const HandleConfirmOrder = async () => {
-  //   await addOrder(ordered);
-  //   localStorage.setItem(ORDERED_KEY, "");
-  //   localStorage.setItem(ORDER_KEY, "");
-  //   localStorage.setItem(ORDER_SUMMARY_KEY, "");
-  //   setIsConfirmed(true);
-  // };
+  const HandleConfirmOrder = async () => {
+    try {
+      await HTTP.post("add/order", order);
+
+      setIsConfirmed(true);
+    } catch (e: any) {
+      alert("Fail");
+    }
+  };
 
   return (
     <>
@@ -88,8 +119,18 @@ export default function OrderConfirm({
                       textAlign: "center",
                     }}
                   >
-                    Send your order cost {totalCost} $, with delivery to{" "}
-                    {address}
+                    {address && (
+                      <div>
+                        Order cost ${order.totalCost}, with delivery to{" "}
+                        {address.city}, {address.address} nr.{" "}
+                        {address.number + ","}
+                        {address.ap != 0 &&
+                          " apartment " + address.ap + ","}{" "}
+                        {address.staircase &&
+                          " staircase " + address.staircase + ","}{" "}
+                        {address.county}
+                      </div>
+                    )}
                   </Typography>
                   <Typography
                     id="modal-modal-description"
@@ -103,7 +144,7 @@ export default function OrderConfirm({
                   >
                     <div>
                       <button onClick={HandleClose}>Cancel</button>
-                      {/* <button onClick={HandleConfirmOrder}>Confirm</button> */}
+                      <button onClick={HandleConfirmOrder}>Confirm</button>
                     </div>
                   </Typography>{" "}
                 </>

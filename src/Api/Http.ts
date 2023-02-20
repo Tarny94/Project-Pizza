@@ -17,12 +17,22 @@ const get = async (url: string) => {
   return await axiosInstance.get(`${API_URL}/${url}`);
 };
 
-const remove = async (url: string, id: number) => {
-  return await axiosInstance.delete(`${API_URL}/${url}/${id}`);
+const deleteApi = async (url: string) => {
+  return await axiosInstance.delete(`${API_URL}/${url}`);
+};
+
+const post = async (url: string, item: any) => {
+  return await axiosInstance.post(`${API_URL}/${url}`, item);
+};
+
+const patch = async (url: string, item: any) => {
+  return await axiosInstance.patch(`${API_URL}/${url}`, item);
 };
 
 export const HTTP = {
   get,
   setToken,
-  remove,
+  deleteApi,
+  post,
+  patch,
 };

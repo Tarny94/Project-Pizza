@@ -9,6 +9,7 @@ import TipsRadioButtons from "../OrderSection/TipsRadioButtons";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Multiline from "../../Design/Multiline";
 import CheckBox from "../../Design/CheckBox";
+import FlatwareIcon from "@mui/icons-material/Flatware";
 
 type iProduct = {
   id: number;
@@ -81,7 +82,7 @@ const CartPage = () => {
             return (
               <div key={id} className="page-cart-product-container">
                 <div className="page-cart-product">
-                  <div className="page-cart-pizza-image-title">
+                  <div className="page-cart-pizza-image">
                     {" "}
                     <img
                       src={item.image}
@@ -89,52 +90,67 @@ const CartPage = () => {
                       width="100"
                       height="100"
                     />
-                    <h2>Pizza {item.title}</h2>
                   </div>
+                  <div></div>
+
                   <div className="page-cart-short-details">
-                    <div>${item.productsPrice}</div>
+                    <h3 className="page-cart-product-title">
+                      Pizza {item.title}
+                    </h3>
 
                     <div className="page-cart-pieces-part">
-                      {item.productsPieces === 1 ? (
-                        <div
-                          className="page-cart-delete-button"
-                          onClick={async () => {
-                            setProductsOrdered(
-                              productsOrdered.filter(
-                                (value, index) => index !== id
-                              )
-                            );
-                            if (productsOrdered.length === 1) {
-                              localStorage.setItem(
-                                ORDER_ITEM_KEY,
-                                JSON.stringify([])
+                      <div className="page-cart-pieces-part">
+                        {" "}
+                        {item.productsPieces === 1 ? (
+                          <div
+                            className="page-cart-delete-button"
+                            onClick={async () => {
+                              setProductsOrdered(
+                                productsOrdered.filter(
+                                  (value, index) => index !== id
+                                )
                               );
-                              navigate("/menu");
-                            }
-                          }}
-                        >
-                          <DeleteIcon color="primary" />
+                              if (productsOrdered.length === 1) {
+                                localStorage.setItem(
+                                  ORDER_ITEM_KEY,
+                                  JSON.stringify([])
+                                );
+                                navigate("/menu");
+                              }
+                            }}
+                          >
+                            <DeleteIcon color="primary" />
+                          </div>
+                        ) : (
+                          <div
+                            className="page-cart-pieces-select"
+                            onClick={() => {
+                              if (item.productsPieces > 1) {
+                                setTotalPrice(
+                                  (item.productsPrice -= item.price)
+                                );
+                                setTotalPieces(item.productsPieces--);
+                              }
+                            }}
+                          >
+                            -
+                          </div>
+                        )}
+                        <div className="page-cart-pieces-select page-cart-pieces-number">
+                          {item.productsPieces}
                         </div>
-                      ) : (
                         <div
+                          className="page-cart-pieces-select"
                           onClick={() => {
-                            if (item.productsPieces > 1) {
-                              setTotalPrice((item.productsPrice -= item.price));
-                              setTotalPieces(item.productsPieces--);
-                            }
+                            setTotalPrice((item.productsPrice += item.price));
+                            setTotalPieces(item.productsPieces++);
                           }}
                         >
-                          -
+                          +
                         </div>
-                      )}
-                      {item.productsPieces}
-                      <div
-                        onClick={() => {
-                          setTotalPrice((item.productsPrice += item.price));
-                          setTotalPieces(item.productsPieces++);
-                        }}
-                      >
-                        +
+                      </div>
+                      <div className="page-cart-product-price">
+                        ${item.productsPrice}
                       </div>
                     </div>
                   </div>
@@ -158,6 +174,7 @@ const CartPage = () => {
             setTableware={setTableware}
             label="Cutlery"
           />
+          <FlatwareIcon fontSize="large" />
         </div>
         <div className="page-cart-tips">
           <TipsRadioButtons tips={tips} setTips={setTips} />
