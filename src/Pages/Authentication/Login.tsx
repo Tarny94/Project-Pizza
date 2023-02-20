@@ -9,6 +9,7 @@ import { setCoockie } from "../../Util/Cookies/Coockie";
 import { UserContext } from "../Providers/UserProvider";
 import { TOKEN_KEY } from "../../Constant";
 import Snackbar from "../../Design/Snackbar";
+import { HTTP } from "../../Api/Http";
 
 const Login = () => {
   const { setIsLoggedIn, setOpen, open } = useContext(UserContext);
@@ -27,6 +28,7 @@ const Login = () => {
       _id: res.data.user._id,
       token: res.data.user.token,
     });
+    HTTP.setToken(res.data.user.token);
     setIsLoggedIn(true);
     navigate("/");
   };

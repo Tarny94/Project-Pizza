@@ -1,16 +1,15 @@
 import "./CartPage.scss";
 import React, { useContext, useEffect, useState } from "react";
-import { ORDER_KEY } from "../../Constant";
+import { ORDER_KEY, ORDER_ITEM_KEY } from "../../Constant";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../Providers/CartProvider";
 import OrderSummary from "../OrderSection/OrderSummary";
-import { ORDER_SUMMARY_KEY, ORDERED_KEY } from "../../Constant";
 import { UserContext } from "../Providers/UserProvider";
-
 import TipsRadioButtons from "../OrderSection/TipsRadioButtons";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Multiline from "../../Design/Multiline";
 import CheckBox from "../../Design/CheckBox";
+import FlatwareIcon from "@mui/icons-material/Flatware";
 
 type iProduct = {
   id: number;
@@ -22,68 +21,43 @@ type iProduct = {
 };
 
 const CartPage = () => {
-  const {
-    productsOrdered,
-    setTotalPrice,
-    setTotalPieces,
-    totalPieces,
-    totalPrice,
-    tips,
-    setTips,
-  } = useContext(CartContext);
-  const { userId } = useContext(UserContext);
+  const { productsOrdered, setProductsOrdered } = useContext(CartContext);
+  const { isLoggedIn } = useContext(UserContext);
 
+  const [finalPayment, setFinalPayment] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [, setTotalPieces] = useState(0);
   const [tableware, setTableware] = useState(false);
+  const [tips, setTips] = useState(0);
   const [comments, setComments] = useState("");
-
-  const [, setItems] = useState([]);
+  const [productsCost, setProductsCost] = useState(0);
+  const [productsPieces, setProductsPieces] = useState(0);
 
   const navigate = useNavigate();
-  const items = productsOrdered;
-  const productsContains: any[] = [];
-  const date = new Date();
+  const productsID: any[] = [];
 
-  let totalCash = 0;
-  let totalBuc = 1;
-
-  if (items.length === 0) {
-    navigate("/menu");
-  }
+  let price: number = 0;
+  let pieces: number = 0;
 
   useEffect(() => {
-    if (totalCash) {
-      setTotalPrice(totalCash);
-      setTotalPieces(totalBuc);
-      localStorage.setItem(
-        ORDER_SUMMARY_KEY,
-        JSON.stringify({ totalPrice, totalPieces, tips })
-      );
+    setProductsCost(price);
+    setProductsPieces(pieces);
+    if (productsOrdered.length !== 0) {
+      localStorage.setItem(ORDER_ITEM_KEY, JSON.stringify(productsOrdered));
     }
-  }, [
-    setTotalPieces,
-    setTotalPrice,
-    tips,
-    totalBuc,
-    totalCash,
-    totalPieces,
-    totalPrice,
-  ]);
+  }, [pieces, price, productsOrdered, totalPrice]);
 
   const handleOrderedProducts = async () => {
     localStorage.setItem(
-      ORDERED_KEY,
+      ORDER_KEY,
       JSON.stringify({
-        userId,
-        productsContains: [...productsContains],
-        totalCash: 0,
-        productsCash: totalPrice,
-        address_id: "",
-        data: `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`,
-        time: `${date.getHours()}.${
-          date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
-        }`,
+        productsID: [...productsID],
+        totalCost: finalPayment,
+        productsCost,
+        productsPieces,
+        addressID: 0,
         tips,
-        wrapping: totalPieces > 9 ? 5 : 1,
+        wrapping: productsPieces > 9 ? 5 : 1,
         comments,
         tableware,
       })
@@ -97,11 +71,10 @@ const CartPage = () => {
         <div className="page-cart-products-title intro">Your Products</div>
         <div className="page-cart-products-contain">
           {" "}
-          {items.map((item: iProduct, id: number) => {
-            totalCash += item.productsPrice;
-            totalBuc += item.productsPieces;
-
-            productsContains.push({
+          {productsOrdered.map((item: iProduct, id: number) => {
+            price += item.productsPrice;
+            pieces += item.productsPieces;
+            productsID.push({
               productId: item.id,
               productPieces: item.productsPieces,
             });
@@ -109,7 +82,7 @@ const CartPage = () => {
             return (
               <div key={id} className="page-cart-product-container">
                 <div className="page-cart-product">
-                  <div className="page-cart-pizza-image-title">
+                  <div className="page-cart-pizza-image">
                     {" "}
                     <img
                       src={item.image}
@@ -117,21 +90,68 @@ const CartPage = () => {
                       width="100"
                       height="100"
                     />
-                    <h2>Pizza {item.title}</h2>
                   </div>
-                  <div className="page-cart-price-delete-button">
-                    <div>${item.productsPrice}</div>
-                    <div>{item.productsPieces}</div>
-                    <div
-                      className="page-cart-delete-button"
-                      onClick={() => {
-                        setItems(items.splice(id, 1));
-                        setTotalPrice((totalCash -= item.productsPrice));
-                        setTotalPieces((totalBuc -= item.productsPieces));
-                        localStorage.setItem(ORDER_KEY, JSON.stringify(items));
-                      }}
-                    >
-                      <DeleteIcon color="primary" style={{ fontSize: 30 }} />
+                  <div></div>
+
+                  <div className="page-cart-short-details">
+                    <h3 className="page-cart-product-title">
+                      Pizza {item.title}
+                    </h3>
+
+                    <div className="page-cart-pieces-part">
+                      <div className="page-cart-pieces-part">
+                        {" "}
+                        {item.productsPieces === 1 ? (
+                          <div
+                            className="page-cart-delete-button"
+                            onClick={async () => {
+                              setProductsOrdered(
+                                productsOrdered.filter(
+                                  (value, index) => index !== id
+                                )
+                              );
+                              if (productsOrdered.length === 1) {
+                                localStorage.setItem(
+                                  ORDER_ITEM_KEY,
+                                  JSON.stringify([])
+                                );
+                                navigate("/menu");
+                              }
+                            }}
+                          >
+                            <DeleteIcon color="primary" />
+                          </div>
+                        ) : (
+                          <div
+                            className="page-cart-pieces-select"
+                            onClick={() => {
+                              if (item.productsPieces > 1) {
+                                setTotalPrice(
+                                  (item.productsPrice -= item.price)
+                                );
+                                setTotalPieces(item.productsPieces--);
+                              }
+                            }}
+                          >
+                            -
+                          </div>
+                        )}
+                        <div className="page-cart-pieces-select page-cart-pieces-number">
+                          {item.productsPieces}
+                        </div>
+                        <div
+                          className="page-cart-pieces-select"
+                          onClick={() => {
+                            setTotalPrice((item.productsPrice += item.price));
+                            setTotalPieces(item.productsPieces++);
+                          }}
+                        >
+                          +
+                        </div>
+                      </div>
+                      <div className="page-cart-product-price">
+                        ${item.productsPrice}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -154,6 +174,7 @@ const CartPage = () => {
             setTableware={setTableware}
             label="Cutlery"
           />
+          <FlatwareIcon fontSize="large" />
         </div>
         <div className="page-cart-tips">
           <TipsRadioButtons tips={tips} setTips={setTips} />
@@ -172,11 +193,17 @@ const CartPage = () => {
         {" "}
         <OrderSummary
           buttonText="NEXT STEP"
+          totalPrice={productsCost}
+          totalPieces={productsPieces}
+          tips={tips}
+          setFinalPayment={setFinalPayment}
           onClick={() => {
-            if (productsContains) {
+            if (isLoggedIn) {
               handleOrderedProducts();
+              navigate("/cart/page/ordered");
+            } else {
+              navigate("/login");
             }
-            // navigate("/cart/page/ordered");;
           }}
         />
       </div>

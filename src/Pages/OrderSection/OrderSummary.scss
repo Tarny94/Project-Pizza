@@ -19,9 +19,6 @@
       border-radius: 10px;
       background-color: $usual_100;
       padding: 20px;
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
       .order-summary{
         display: flex;
         flex-direction: row;

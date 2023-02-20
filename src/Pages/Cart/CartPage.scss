@@ -40,25 +40,75 @@
         &:last-child {
           border-bottom: none;
         }
-        &:hover{
-          box-shadow: 0 0 7px -1px;
-          border-radius: 20px;
-        }
+      
         .page-cart-product{
-          .page-cart-pizza-image-title{
-            display: flex;
-            justify-content: start;
-            align-items: center;
-           
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          flex-direction: row;
+          height: 9rem;
+          .page-cart-pizza-image{
+           padding: 10px;
+           margin: 10px;
+           background-color: $smoke_100;
+           border-radius: 20px;
+            width: 160px;
           }
-          .page-cart-price-delete-button{
+          .page-cart-short-details{
+            width: 100%;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             font-size: 26px;
             margin: 10px;
             font-weight: bold;
             color: $usual_600;
+            .page-cart-product-title{
+              margin-bottom: 50px;
+            }
+            .page-cart-pieces-part{
+              display: flex;
+              justify-content: space-between;
+
+              .page-cart-delete-button{
+                margin-left: 15px;
+                padding: 0 3px;
+                box-shadow: 1px 2px 6px -3px;
+                border-radius: 5px;
+                text-align: center;
+                &:hover{
+                  background-color: $smoke_100;
+                }
+              }
+              .page-cart-pieces-select{
+                margin-left: 15px;             
+                cursor: pointer;
+                padding: 1px 6px;
+                box-shadow: 1px 2px 6px -3px;
+                border-radius: 5px;
+                text-align: center;
+                
+                &:hover{
+                  background-color: $smoke_100;
+                }
+              }
+              .page-cart-pieces-number{
+                cursor: initial;
+                border: none;
+                box-shadow: none;
+                color: $usual_900;
+                &:hover{
+                  background-color: initial;
+                }
+              }
+              .page-cart-product-price{
+                color: $usual_700;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 27px;
+              }
+            }
+
           }
+
           .page-cart-delete-button{
             cursor: pointer;
           }
@@ -70,11 +120,10 @@
       border-radius: 10px;
       display: flex;
       justify-content: center;
+      align-items: center;
       width: 20%;
       color: $usual_700;
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
+     
      
     }
     .page-cart-tips{
@@ -82,9 +131,7 @@
       background-color: $usual_100;
       border-radius: 10px;
       padding: 10px 10px;
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
+     
     }
     .page-cart-mentions{
       margin-top: 15px;
@@ -92,9 +139,7 @@
       background-color: $usual_100;
       border-radius: 10px;
       margin-bottom: 24vh; //provizoriu
-      &:hover{
-        box-shadow: 0 0 4px -2px;
-      }
+     
     }
   }
 }

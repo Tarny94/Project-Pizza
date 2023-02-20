@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "../../Design/Button";
 import { CartContext } from "../Providers/CartProvider";
-import { ORDER_KEY } from "../../Constant";
+import { ORDER_ITEM_KEY } from "../../Constant";
 
 const style = {
   position: "absolute" as "absolute",
@@ -35,6 +35,15 @@ type iProp = {
   productChosed: iProduct;
 };
 
+type iProducts = {
+  id: number;
+  image: string;
+  title: string;
+  productsPrice: number;
+  productsPieces: number;
+  price: number;
+};
+
 export default function OrderModal({ productChosed }: iProp) {
   const {
     openOrderModal,
@@ -61,20 +70,32 @@ export default function OrderModal({ productChosed }: iProp) {
   };
 
   const handleOrderProducts = async () => {
+    let piecesPR: number = finalPieces;
+
+    productsOrdered.map((item: iProducts, index: number) => {
+      if (productChosed.id === item.id) {
+        piecesPR += item.productsPieces;
+        setProductsOrdered(productsOrdered.splice(index, 1));
+        localStorage.setItem(ORDER_ITEM_KEY, JSON.stringify(productsOrdered));
+      }
+      return "";
+    });
+
     const products = [
       {
         id: productChosed.id,
         image: productChosed.image,
         title: productChosed.title,
         productsPrice: finalPrice,
-        productsPieces: finalPieces,
+        productsPieces: piecesPR,
         price: productChosed.price,
       },
       ...productsOrdered,
     ];
+
     setProductsOrdered(products);
 
-    localStorage.setItem(ORDER_KEY, JSON.stringify(products));
+    localStorage.setItem(ORDER_ITEM_KEY, JSON.stringify(products));
     handleClose();
   };
 

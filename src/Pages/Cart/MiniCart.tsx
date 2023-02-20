@@ -1,6 +1,6 @@
 import "./MiniCart.scss";
-import React, { useEffect, useState } from "react";
-import { ORDER_KEY } from "../../Constant";
+import React, { useEffect, useState, useContext } from "react";
+import { ORDER_ITEM_KEY } from "../../Constant";
 import { CartContext } from "../Providers/CartProvider";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,17 +15,17 @@ type iProduct = {
 };
 
 const MiniCart = () => {
-  const { productsOrdered } = React.useContext(CartContext);
+  const { productsOrdered, setProductsOrdered } = useContext(CartContext);
+  const [products, setProducts] = useState([...productsOrdered]);
 
-  const [, setItems] = useState([]);
   const navigate = useNavigate();
 
-  let products = productsOrdered;
   let total = 0;
 
   useEffect(() => {
-    localStorage.setItem(ORDER_KEY, JSON.stringify(products));
-  }, [products]);
+    setProductsOrdered(products);
+    localStorage.setItem(ORDER_ITEM_KEY, JSON.stringify(products));
+  }, [products, setProductsOrdered]);
 
   return (
     <div className="minicart-container">
@@ -41,14 +41,16 @@ const MiniCart = () => {
                 <div className="minicart-product-first-part">
                   <div
                     className="minicart-delete"
-                    onClick={() => {
-                      setItems(products.splice(id, 1));
+                    onClick={async () => {
+                      setProducts(
+                        products.filter((value, index) => index !== id)
+                      );
                     }}
                     style={{ cursor: "pointer" }}
                   >
                     <DeleteIcon />
                   </div>
-                  {/* <div>{id + 1}</div> */}
+
                   <img
                     src={item.image}
                     alt="img"
@@ -74,7 +76,8 @@ const MiniCart = () => {
         <div
           onClick={() => {
             if (total) {
-              localStorage.setItem(ORDER_KEY, JSON.stringify(products));
+              setProductsOrdered(products);
+              localStorage.setItem(ORDER_ITEM_KEY, JSON.stringify(products));
               navigate("/cart/page");
             }
           }}

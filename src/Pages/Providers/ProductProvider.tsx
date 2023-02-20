@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
-import { deleteProductApi } from "../../Api/ApiRoutes";
+
 import { getAllProductsApi } from "../../Api/ApiRoutes";
+import { HTTP } from "../../Api/Http";
 
 const initialState = {
   image: "",
@@ -102,7 +103,7 @@ export const ProductProvider = (props: any) => {
   useEffect(() => {
     const deleteData = async () => {
       if (!open) {
-        securityDelete && (await deleteProductApi(pizza_id));
+        securityDelete && (await HTTP.deleteApi(`delete/product/${pizza_id}`));
         setAllProducts(await getAllProductsApi());
         setSecurityDelete(false);
       }

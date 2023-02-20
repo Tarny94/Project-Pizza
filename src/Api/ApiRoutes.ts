@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getApiUrl } from "./api";
 
+
 type iProp = {
   image: string;
   title: string;
@@ -9,28 +10,11 @@ type iProp = {
   discount: number;
   pizza_id?: number;
 };
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6060";
 
-export const deleteProductApi = async (id: number) => {
-  await axios
-    .delete(getApiUrl(`delete/product/${id}`))
-    .then((res) => {
-      alert("Succes");
-    })
-    .catch((err) => {
-      alert("Fail");
-    });
-};
+const axiosInstance = axios;
 
-export const deleteAddress = async (id: number) => {
-  await axios
-    .delete(getApiUrl(`delete/address/${id}`))
-    .then((res) => {
-      console.log("Successful delete address");
-    })
-    .catch((err) => {
-      console.log("Fail");
-    });
-};
+const get = async (url: string) => await axios.get(`${API_URL}/${url}`);
 
 export const getAllProductsApi = async () => {
   return await axios
@@ -100,14 +84,16 @@ export const getUser = async (id: number) => {
     });
 };
 
-export const getAddress = async (id: number) => {
+export const getAddress = async () => {
   return await axios
-    .get(getApiUrl(`get/address/${id}`))
+
+    .get(getApiUrl(`get/address`))
     .then((res) => {
       return res.data;
     })
     .catch((err) => {
       alert("Fail to get address");
+      console.log(err);
     });
 };
 
@@ -133,6 +119,6 @@ export const addOrder = async (value: any) => {
     });
 };
 
-
-
-export const setUserToken = (token: string) => {};
+export const API = {
+  get,
+};

@@ -1,19 +1,25 @@
 import "./OrderSummary.scss";
-import React, { useContext } from "react";
-import { CartContext } from "../Providers/CartProvider";
-import { TOTAL_COST_KEY } from "../../Constant";
+import React, { useEffect } from "react";
 
 type iProp = {
-  onChange?: any;
-  onClick?: any;
+  setFinalPayment?: any;
+  onClick?: () => void;
   buttonText?: string;
+  totalPrice?: number;
+  totalPieces?: number;
+  tips?: number;
 };
 
-const OrderSummary = ({ onChange, onClick, buttonText }: iProp) => {
-  const { totalPieces, totalPrice, tips } = useContext(CartContext);
-
-  const pieces = totalPieces;
-  const price = totalPrice;
+const OrderSummary = ({
+  setFinalPayment,
+  onClick,
+  buttonText,
+  totalPieces = 0,
+  totalPrice = 0,
+  tips = 0,
+}: iProp) => {
+  const pieces: number = totalPieces;
+  const price: number = totalPrice;
   const delivary: number = 10;
 
   let service: number = 1;
@@ -23,6 +29,14 @@ const OrderSummary = ({ onChange, onClick, buttonText }: iProp) => {
     service += 4;
   }
 
+  useEffect(() => {
+    if (setFinalPayment) {
+      const result: number = handleTotalPrice();
+
+      result && setFinalPayment(handleTotalPrice());
+    }
+  }, [setFinalPayment, total]);
+
   const handleTotalPrice = () => {
     total = price;
 
@@ -30,12 +44,13 @@ const OrderSummary = ({ onChange, onClick, buttonText }: iProp) => {
       total += service;
       if (price < 100) {
         total += delivary + tips;
-        localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
+
         return total;
       }
-      localStorage.setItem(TOTAL_COST_KEY, JSON.stringify(total));
+
       return total;
     }
+
     return 0;
   };
 

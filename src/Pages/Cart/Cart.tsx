@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
 
 const Cart = () => {
-  const { setIsHover, isHover } = useContext(CartContext);
+  const { setIsHover, isHover, productsOrdered } = useContext(CartContext);
   const { setClick } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -24,8 +24,10 @@ const Cart = () => {
       <div
         className="cart-design"
         onClick={() => {
-          setClick(false);
-          navigate("/cart/page");
+          if (productsOrdered.length !== 0) {
+            setClick(false);
+            navigate("/cart/page");
+          }
         }}
       >
         {<ShoppingCartOutlinedIcon />}
