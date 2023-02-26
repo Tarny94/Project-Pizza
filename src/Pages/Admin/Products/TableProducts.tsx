@@ -12,12 +12,12 @@ import EditIcon from "@mui/icons-material/Edit";
 
 export default function TableProducts({
   edit,
-  columns,
-  row,
+  columns = [],
+  row = [],
   HandleDelete,
   HandleEdit,
 }: any) {
-  return (
+  return row.length !== 0 ? (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -98,5 +98,7 @@ export default function TableProducts({
         </TableBody>
       </Table>
     </TableContainer>
+  ) : (
+    <div></div>
   );
 }

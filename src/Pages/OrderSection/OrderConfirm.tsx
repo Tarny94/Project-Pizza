@@ -6,6 +6,7 @@ import { CartContext } from "../Providers/CartProvider";
 import { useNavigate } from "react-router-dom";
 import { HTTP } from "../../Api/Http";
 import { ORDER_ITEM_KEY, ORDER_KEY } from "../../Constant";
+import { color } from "@mui/system";
 
 const style = {
   position: "absolute" as "absolute",
@@ -106,6 +107,10 @@ export default function OrderConfirm({
                       display: "flex",
                       justifyContent: "space-around",
                       textAlign: "center",
+                      fontSize: "26px",
+                      marginBottom: "10px",
+                      color: "gray",
+                      fontFamily: "fantasy",
                     }}
                   >
                     Your Order
@@ -118,6 +123,9 @@ export default function OrderConfirm({
                       display: "flex",
                       justifyContent: "space-around",
                       textAlign: "center",
+                      fontSize: "23px",
+                      fontFamily: "sans-serif",
+                      fontWeight: "bold",
                     }}
                   >
                     {address && (
@@ -143,9 +151,26 @@ export default function OrderConfirm({
                       textAlign: "center",
                     }}
                   >
-                    <div>
-                      <button onClick={HandleCloseModal}>Cancel</button>
-                      <button onClick={HandleConfirmOrder}>Confirm</button>
+                    <div
+                      style={{
+                        width: "50%",
+                        display: "flex",
+                        justifyContent: "space-around",
+                        marginTop: "15px",
+                      }}
+                    >
+                      <button
+                        style={{ fontSize: 20 }}
+                        onClick={HandleCloseModal}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        style={{ fontSize: 20 }}
+                        onClick={HandleConfirmOrder}
+                      >
+                        Confirm
+                      </button>
                     </div>
                   </Typography>{" "}
                 </>

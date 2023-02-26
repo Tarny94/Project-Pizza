@@ -12,9 +12,9 @@ type iProp = {
 };
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:6060";
 
-const axiosInstance = axios;
 
-const get = async (url: string) => await axios.get(`${API_URL}/${url}`);
+
+
 
 export const getAllProductsApi = async () => {
   return await axios
@@ -119,6 +119,3 @@ export const addOrder = async (value: any) => {
     });
 };
 
-export const API = {
-  get,
-};
