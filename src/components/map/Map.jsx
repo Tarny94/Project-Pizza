@@ -4,7 +4,7 @@ import "./MapStyle.scss";
 
 
 const MapContainer = (props) => {
-  console.log("map", props);
+
   return (
     <div className="map-container">
       {" "}

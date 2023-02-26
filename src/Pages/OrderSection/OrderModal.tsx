@@ -129,23 +129,26 @@ export default function OrderModal({ productChosed }: iProp) {
                 id="modal-modal-title"
                 variant="h6"
                 component="h2"
-                sx={{ textAlign: "center" }}
+                sx={{
+                  textAlign: "center",
+                  color: "gray",
+                  fontFamily: "fantasy",
+                  fontSize: 30,
+                }}
               >
                 {productChosed.title}
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                {productChosed.description}
-              </Typography>
               <Typography
                 id="modal-modal-description"
-                variant="h5"
-                component="h2"
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-around",
+                  mt: 2,
+                  fontFamily: "cursive",
                   textAlign: "center",
+                  marginBottom: 5,
                 }}
-              ></Typography>
+              >
+                {productChosed.description}
+              </Typography>
 
               <Typography
                 className="order-number-container"
@@ -153,6 +156,8 @@ export default function OrderModal({ productChosed }: iProp) {
                   display: "flex",
                   justifyContent: "space-around",
                   textAlign: "center",
+                  fontSize: 20,
+                  fontWeight: "bold",
                 }}
               >
                 <Button
@@ -179,9 +184,11 @@ export default function OrderModal({ productChosed }: iProp) {
                   display: "flex",
                   justifyContent: "space-around",
                   textAlign: "center",
+                  marginTop: 5,
                 }}
               >
                 <Button
+                  className="button-field"
                   title={`ADD TO CART $${finalPrice}`}
                   onClick={handleOrderProducts}
                 />

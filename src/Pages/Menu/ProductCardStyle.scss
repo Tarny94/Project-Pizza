@@ -8,7 +8,7 @@
     border-radius: 10px;
     box-shadow: 8px 2px 15px -5px;
     background: $usual_100;
-
+    margin-bottom: 10%;
     &:hover {
       .card-image-container{
       background-size: 120% 120%;
@@ -100,7 +100,12 @@
 
 @media screen and (max-width: 780px) { 
   .card-component{
+    width: 400px;
+    height: 410px;
 
+
+
+    margin-bottom: 0;
 
     .card-container{
 
