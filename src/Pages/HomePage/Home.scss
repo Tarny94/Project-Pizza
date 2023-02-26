@@ -26,6 +26,10 @@
     flex-direction: column;
     animation-name: chany;
     animation-duration: 1.5s;
+    .intro-buttons{
+      display: flex;
+      flex-direction: row;
+    }
     .phone-contain {
       margin-top: 7rem;
       font-size: 45px;
@@ -84,25 +88,29 @@
 @media only screen and (max-width: 900px) {
 .home-container{
 
-
-  .intro-buttons{
-    width: 100%;
-    margin: 0 auto;
-    
-  
-    
-  }
+  margin: 0 auto ;
+ 
   .home-image {
+
     background-image: linear-gradient( rgba(50, 50, 50, 0.5), rgba(0, 0, 0, 0.5) ),url( "../../Images/pizza6.jpg");
   }
 
   .intro-container{
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto ;
     text-align: center;
     display: flex;
     justify-content: center;
     animation: none;
+     .intro-buttons{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 10px auto;
+      text-align: center;
+    }
       .intro-title{
         margin:0 auto;
        transform: none;
