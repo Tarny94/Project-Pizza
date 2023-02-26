@@ -1,7 +1,6 @@
 @import "../../Styles/vars";
 
 .order-section-container{
-  
   display: flex;
   background:$smoke_100;
   padding-top: 11vh;
@@ -10,8 +9,8 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    margin:0 7% 0 15px ;
-
+    margin: 0 20px ;
+    padding: 0 10px;
     .order-section-components-title{
       font-size: 30px;
       font-weight: bold;
@@ -20,14 +19,12 @@
       margin-bottom: 15px;
     }
     .order-section-addresses-container{
-    
       .order-section-addresses-title{
         font-size: large;
         font-weight: bold;
         color: $usual_600;
          font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       }
-      
       .order-section-addres-contain{
         background-color: $usual_100;
         border-radius: 20px;
@@ -38,29 +35,102 @@
         padding: 10px;
         background-color: $usual_100;
         border-radius: 20px;
-        margin: 15px auto;
-        height: 100px;
+        margin: 10px 0;
+        height: 80px;
         font-size: larger;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         font-weight: bold;
         cursor: pointer;
-      
-       
         &:hover{
           box-shadow: 0 0 3px 0;
         }
         .order-section-addres-details{
           display: flex;
+          text-align: center;
+          align-items: center;
           .order-section-addres-icon-location{
             margin-right: 10px;
           }     
         }
-        .order-section-addres-delete-button{
-       
-         
+        
+      }
+    }
+    .order-section-add-address-button-contain{
+      width: 100%;
+      .order-section-add-address-button{
+        width: 30%;
+        background-color: $usual_100;
+        border-radius: 20px;
+        box-shadow: 1px 1px 3px -2px;
+        padding: 10px;
+        cursor: pointer;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        color:  $usual_600;
+        margin: 10px 0;
+        &:hover {
+          box-shadow: 1px 1px 4px -1px;
         }
       }
     }
- }
-  
+    .order-section-add-address-container{
+      background-color: $usual_100;
+      .order-section-add-address-field{
+        display: flex;
+        flex-direction: column;
+        
+   }     
+  }
+ } 
+  .order-section-payment-method{
+    background-color: $usual_100;
+    border-radius: 20px;
+    padding: 20px 0;
+    margin-top: 10px;
+  }
 }
+.add-address-add-button-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  .add-address-add-button{
+    cursor: pointer;
+    box-shadow: 0 0 1px 1px $usual_300;
+    width: 30%;
+    border-radius: 10px;
+    color: $usual_400;
+    &:hover{
+      color: $usual_800;
+      box-shadow: 0 0 3px 1px $usual_600;
+    }
+  }
+}
+.page-cart-summary-contain{
+  margin-left: 15px;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .page-cart-summary-contain{
+    margin: 0 10px;
+  }
+  .order-section-container{
+    display: flex;
+    flex-direction: column;
+    height: initial;
+   .order-section-components{
+      width: 100%;
+       margin: 0;
+       text-align: center;
+    
+      .order-section-add-address-button-contain{
+       
+        .order-section-add-address-button{
+            width: 100%;
+        }
+      }
+    } 
+  } 
+}
+

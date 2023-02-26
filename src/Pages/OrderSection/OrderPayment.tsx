@@ -13,7 +13,7 @@ export default function OrderPayment() {
   };
 
   return (
-    <FormControl>
+    <FormControl sx={{ marginLeft: "10px" }}>
       <FormLabel id="demo-controlled-radio-buttons-group">
         Payment Method
       </FormLabel>

@@ -65,8 +65,9 @@ export default function OrderConfirm({
     }, 3000);
   }
 
+  const HandleCloseModal = () => setOpenModal(false);
+
   const HandleClose = () => {
-    setOpenModal(false);
     setIsConfirmed(false);
     setProductsOrdered([]);
     localStorage.setItem(ORDER_KEY, "");
@@ -90,7 +91,7 @@ export default function OrderConfirm({
         <div>
           <Modal
             open={openModal}
-            onClose={HandleClose}
+            onClose={HandleCloseModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -143,7 +144,7 @@ export default function OrderConfirm({
                     }}
                   >
                     <div>
-                      <button onClick={HandleClose}>Cancel</button>
+                      <button onClick={HandleCloseModal}>Cancel</button>
                       <button onClick={HandleConfirmOrder}>Confirm</button>
                     </div>
                   </Typography>{" "}
