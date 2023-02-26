@@ -1,20 +1,19 @@
 import "./OrderSection.scss";
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../Providers/UserProvider";
+import React, { useEffect, useState } from "react";
 import OrderSummary from "./OrderSummary";
-import { CartContext } from "../Providers/CartProvider";
 import OrderConfirm from "./OrderConfirm";
 import OrderPayment from "./OrderPayment";
-import { getCoockie } from "../../Util/Cookies/Coockie";
 import { ORDER_KEY } from "../../Constant";
-import { getAddress, addAddress } from "../../Api/ApiRoutes";
-import Autocomplet from "../../Design/Autocomplet";
 import Counties from "../../Util/Counties.json";
 import Cities from "../../Util/Cities.json";
-import TextFields from "../../Design/TextFields";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { HTTP } from "../../Api/Http";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import AddAddress from "./AddAddress";
 
 type iAddress = {
   id: number;
@@ -62,15 +61,6 @@ const OrderSection = () => {
   const value: string | null = localStorage.getItem(ORDER_KEY);
   const order: iOrder = value && JSON.parse(value);
 
-  const addressFields = {
-    county,
-    city,
-    street,
-    number,
-    stairCase,
-    ap,
-  };
-
   useEffect(() => {
     getAddress();
   }, []);
@@ -97,16 +87,6 @@ const OrderSection = () => {
     setAddresses(data);
   };
 
-  const HandleAddNewAddress = async () => {
-    try {
-      await HTTP.post("add/address", addressFields);
-      setOpenAddAddress(false);
-      getAddress();
-    } catch (e) {
-      alert("Fail");
-    }
-  };
-
   const HandleDeleteAddress = async (key: number, id: number) => {
     setAddresses(addresses.filter((value, index) => index !== key));
     try {
@@ -121,48 +101,56 @@ const OrderSection = () => {
         <div className="order-section-components-title">Finish Order</div>
 
         <div className="order-section-addresses-container">
-          <div className="order-section-addresses-title">Addres Details</div>
-
-          {addresses.length !== 0 && addresses
-            ? addresses.map((addres: iAddress, key: number) => {
-                const data = `Street ${addres.address}, ${addres.city}, ${
-                  addres.county
-                }, nr. ${addres.number}  ${
-                  address.ap != 0 ? " apartment " + address.ap + "," : ""
-                }
-                ${address.staircase && " staircase " + address.staircase + ","}
+          <FormLabel id="demo-radio-buttons-group-label">
+            <LocationOnIcon />
+            {` `}
+            Address Details
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue={confirmedAddress && confirmedAddress}
+          >
+            {addresses.length !== 0
+              ? addresses.map((addres: iAddress, key: number) => {
+                  const data = `Street ${addres.address}, ${addres.city}, ${addres.county}, nr. ${addres.number}  
                  `;
-
-                return (
-                  <div
-                    className="order-section-addres-contain"
-                    key={key}
-                    onClick={async () => {
-                      setConfirmedAddress(addres.id);
-                      await getAddresById();
-                    }}
-                  >
-                    <div className="order-section-addres-details">
-                      {" "}
-                      <div className="order-section-addres-icon-location">
-                        <LocationOnIcon />
+                  //    ${
+                  //     address.ap != 0 ? " apartment " + address.ap + "," : ""
+                  //   }
+                  // ${address.staircase && " staircase " + address.staircase + ","}
+                  return (
+                    <div className="order-section-addres-contain " key={key}>
+                      <div className="order-section-addres-details">
+                        {" "}
+                        <div>
+                          <FormControlLabel
+                            value={key}
+                            control={<Radio />}
+                            label={data}
+                            onClick={async () => {
+                              setConfirmedAddress(addres.id);
+                              await getAddresById();
+                            }}
+                          />{" "}
+                        </div>
                       </div>
-                      <div className="order-section-addres">{data}</div>
+                      <div
+                        className="order-section-addres-delete-button"
+                        onClick={async () => {
+                          HandleDeleteAddress(key, addres.id);
+                        }}
+                      >
+                        <DeleteIcon />
+                      </div>
                     </div>
-                    <div
-                      className="order-section-addres-delete-button"
-                      onClick={async () => {
-                        HandleDeleteAddress(key, addres.id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </div>
-                  </div>
-                );
-              })
-            : ""}
-          <div>
-            <button
+                  );
+                })
+              : ""}
+          </RadioGroup>
+          <div className="order-section-add-address-button-contain">
+            <div
+              className={"order-section-add-address-button"}
+              // "order-section-add-address-button order-section-add-address-button2"
               onClick={() => {
                 if (openAddAddress) {
                   setOpenAddAddress(false);
@@ -171,66 +159,37 @@ const OrderSection = () => {
                 }
               }}
             >
-              {!openAddAddress ? "➕" : "➖"}
-            </button>{" "}
-            Add New Address
-          </div>
-          <div>
-            {openAddAddress && (
-              <div>
-                {" "}
-                <div>
-                  <Autocomplet
-                    counties={Counties}
-                    label="County *"
-                    onChange={setCounty}
-                  />
-                  <Autocomplet
-                    counties={Cities[county as keyof typeof Cities] || []}
-                    label="City *"
-                    onChange={setCity}
-                  ></Autocomplet>
-                </div>
-                <div>
-                  <TextFields
-                    onChange={setStreet}
-                    label="Street"
-                    required={true}
-                  />
-                  <TextFields onChange={setNumber} label="No" />
-                </div>
-                <div>
-                  <TextFields onChange={setStairCase} label="Staircase" />
-                  <TextFields
-                    onChange={setAp}
-                    label="Apartament"
-                    type="number"
-                  />
-                </div>
-                <button
-                  onClick={() => {
-                    if (
-                      addressFields.county &&
-                      addressFields.city &&
-                      addressFields.street
-                    ) {
-                      HandleAddNewAddress();
-                    } else {
-                      alert("Complet required fields!");
-                    }
-                  }}
-                >
-                  SUBMIT
-                </button>
-              </div>
-            )}
+              Add New Address
+            </div>
+            <div className="order-section-add-address">
+              {" "}
+              <AddAddress
+                openModal={openAddAddress}
+                setOpenModal={setOpenAddAddress}
+                Counties={Counties}
+                Cities={Cities}
+                title="ADD NEW ADDRESS"
+                getAddress={getAddress}
+                city={city}
+                setCity={setCity}
+                county={county}
+                setCounty={setCounty}
+                setOpenAddAddress={setOpenAddAddress}
+                street={street}
+                setStreet={setStreet}
+                number={number}
+                setNumber={setNumber}
+                stairCase={stairCase}
+                setStairCase={setStairCase}
+                ap={ap}
+                setAp={setAp}
+              />
+            </div>
           </div>
         </div>
-
-        <div>
+        <div className="order-section-payment-method">
           <OrderPayment />
         </div>
-
         <OrderConfirm
           openModal={openModal}
           setOpenModal={setOpenModal}
