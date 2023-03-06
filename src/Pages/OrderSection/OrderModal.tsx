@@ -71,10 +71,12 @@ export default function OrderModal({ productChosed }: iProp) {
 
   const handleOrderProducts = async () => {
     let piecesPR: number = finalPieces;
+    let pricePR: number = finalPrice;
 
     productsOrdered.map((item: iProducts, index: number) => {
       if (productChosed.id === item.id) {
         piecesPR += item.productsPieces;
+        pricePR += item.productsPrice;
         setProductsOrdered(productsOrdered.splice(index, 1));
         localStorage.setItem(ORDER_ITEM_KEY, JSON.stringify(productsOrdered));
       }
@@ -86,7 +88,7 @@ export default function OrderModal({ productChosed }: iProp) {
         id: productChosed.id,
         image: productChosed.image,
         title: productChosed.title,
-        productsPrice: finalPrice,
+        productsPrice: pricePR,
         productsPieces: piecesPR,
         price: productChosed.price,
       },
